@@ -1,0 +1,86 @@
+:root {
+    --admin-background: #F8EDEB;
+    --white: #fff;
+    --black: #000;
+    --card-border: #bebebe;
+    --admin-button-color: linear-gradient(227.51deg, #44A08D -21.65%, #164207 79.95%);
+    --form-border-inner: #44A08D;
+    --form-border-outter: #164207;
+
+}
+
+html, body {
+    overflow-x: clip;
+}
+
+.admin-background {
+    background: var(--admin-background);
+}
+
+.login-date-font {
+    margin-top: 0.5rem;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 700;
+}
+
+.login-text {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+}
+
+.login-card {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    padding: 20px;
+}
+
+.news-primary-btn {
+    color: var(--white);
+    border: none;
+    width: -webkit-fill-available;
+    width: -moz-fit-content;
+    transition: all 0.2s;
+    cursor: pointer;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 1rem;
+    gap: 0.625rem;
+    line-height: 1.15rem;
+    background: var(--admin-button-color);
+}
+
+.news-primary-btn:hover {
+    background: var(--admin-button-color);
+    color: var(--white);
+}
+
+/*Bootstrap Override*/
+
+.form-control:focus {
+    box-shadow: none;
+    outline: 0;
+    border-color: var(--form-border-inner);
+    line-height: 1rem;
+}
+
+.form-select:focus {
+    box-shadow: none;
+    outline: 0;
+    border-color: var(--form-border-inner);
+}
+
+.form-check-input:checked {
+    background-color: var(--form-border-outter);
+    border-color: var(--form-border-outter);
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}
+
+/*Bootstrap Override End*/

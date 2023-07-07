@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    {% load static %}
+    {% include 'root/css.html' %}
+</head>
+<body>
+<div class="container-fluid admin-background">
+    <div class="row d-flex justify-content-between align-items-center" style="background: var(--white)">
+        <div class="col-sm-2" style="margin-left: 5rem">
+            <img src="{% static 'logo/logo.svg' %}">
+            <p class="login-date-font"> শুক্রবার, ০৭ জুলাই ২০২৩ , ২৩ আষাঢ় ১৪৩০ </p>
+        </div>
+        <div class="col-sm-2">
+            <img src="{% static 'logo/hand.svg' %}" style="float: right">
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center" style="padding: 16rem 0">
+        <div class="col-md-3 login-card">
+            <p class="text-center login-text">Login</p>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                <label for="emailInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                <button class="btn" style="position: absolute;right: 5px;bottom: 10px;" type="button"><i
+                        style="color: var(--black);" id="togglePassword_1" class="bi-eye-slash"
+                        onclick="passwordShow();"></i></button>
+                <label for="passwordInput">Password</label>
+            </div>
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" name="rememberCheck" id="rememberCheck">
+                <label class="form-check-label" for="rememberCheck">
+                    Remember me
+                </label>
+            </div>
+            <button class="btn news-primary-btn mt-3">Login</button>
+        </div>
+    </div>
+</div>
+{% include 'root/js.html' %}
+</body>
+</html>
