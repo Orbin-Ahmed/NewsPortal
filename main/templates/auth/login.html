@@ -9,15 +9,7 @@
 </head>
 <body>
 <div class="container-fluid admin-background">
-    <div class="row d-flex justify-content-between align-items-center" style="background: var(--white)">
-        <div class="col-sm-2" style="margin-left: 5rem">
-            <img src="{% static 'logo/logo.svg' %}">
-            <p class="login-date-font"> শুক্রবার, ০৭ জুলাই ২০২৩ , ২৩ আষাঢ় ১৪৩০ </p>
-        </div>
-        <div class="col-sm-2">
-            <img src="{% static 'logo/hand.svg' %}" style="float: right">
-        </div>
-    </div>
+    {% include 'admin_nav.html' %}
     <div class="row d-flex justify-content-center" style="padding: 16rem 0">
         <div class="col-md-3 login-card">
             <p class="text-center login-text">Login</p>
@@ -38,7 +30,9 @@
                     Remember me
                 </label>
             </div>
-            <button class="btn news-primary-btn mt-3">Login</button>
+            <a style="all: unset;" href="/reporter-dashboard/">
+                <button class="btn news-primary-btn mt-3">Login</button>
+            </a>
         </div>
     </div>
 </div>
