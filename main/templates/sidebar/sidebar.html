@@ -6,19 +6,23 @@
     <div>
         <ul class="list-unstyled ps-0" style="position: relative">
             <li class="mb-1" style="position: relative">
-                <button class="btn">
-                    <img style="margin-right: 0.5rem" width="24" height="24"
-                         src="{% static '/logo/newWork.svg' %}" alt="">
-                    <span class="label-medium">Publish a report</span>
-                </button>
+                <a href="/publish-news/">
+                    <button class="btn">
+                        <img style="margin-right: 0.5rem" width="24" height="24"
+                             src="{% static '/logo/newWork.svg' %}" alt="">
+                        <span class="label-medium">Publish a report</span>
+                    </button>
+                </a>
             </li>
 
             <li class="mb-1" style="position: relative">
-                <button class="btn">
-                    <img style="margin-right: 0.5rem" width="24" height="24"
-                         src="{% static '/logo/pendingWorks.svg' %}" alt="">
-                    <span class="label-medium">Editable reports</span>
-                </button>
+                <a href="/edit-news/">
+                    <button class="btn">
+                        <img style="margin-right: 0.5rem" width="24" height="24"
+                             src="{% static '/logo/pendingWorks.svg' %}" alt="">
+                        <span class="label-medium">Editable reports</span>
+                    </button>
+                </a>
             </li>
 
             <span class="label-light" style="margin-left: 0.5rem;color: var(--sc);">Warning</span>

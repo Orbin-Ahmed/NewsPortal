@@ -9,6 +9,8 @@
     --sc: #B7B7B7;
     --900: #012347;
     --text-field-outline: #79747E;
+    --card-primary-bg: #EEEEEE;
+    --card-secondary-bg: #E7DDDD;
 
 }
 
@@ -17,23 +19,14 @@ html, body {
     font-family: Roboto;
 }
 
+a {
+    all: unset;
+}
+
 .admin-background {
     background: var(--admin-background);
 }
 
-.login-date-font {
-    margin-top: 0.5rem;
-    font-size: 14px;
-    line-height: 17px;
-    font-weight: 700;
-}
-
-.login-text {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: 0em;
-}
 
 .login-card {
     background: var(--white);
@@ -89,48 +82,73 @@ html, body {
 
 /*Bootstrap Override End*/
 
+/*Typography Start*/
+
+.login-date-font {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.0625rem;
+    font-weight: 700;
+}
+
+.login-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    letter-spacing: 0;
+}
+
 .headline-medium {
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: 400;
-    line-height: 36px;
-    letter-spacing: 0em;
+    line-height: 2.25rem;
+    letter-spacing: 0;
 }
 
 .label-medium {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 500;
-    line-height: 16px;
-    letter-spacing: 0em;
+    line-height: 1rem;
+    letter-spacing: 0;
     color: var(--900);
 }
 
 .label-light {
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-weight: 500;
-    line-height: 16px;
-    letter-spacing: 0em;
+    line-height: 1rem;
+    letter-spacing: 0;
 }
 
 .headline {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 700;
-    line-height: 38px;
-    letter-spacing: 0em;
+    line-height: 2.375rem;
+    letter-spacing: 0;
 }
 
 .sub-headline {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 700;
-    line-height: 23px;
-    letter-spacing: 0em;
+    line-height: 1.4375rem;
+    letter-spacing: 0;
 }
+
+.card-headline {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.3125rem;
+    letter-spacing: 0;
+}
+
+/*Typography end*/
 
 .admin-text-field {
     background: inherit;
     border: 1px solid var(--text-field-outline);
 }
 
-/*Image Upload Area*/
+/*Image Upload Area start*/
 
 .file-upload {
     width: 100%;
@@ -227,7 +245,6 @@ html, body {
     transition: all .2s ease;
 }
 
-/*drishty css*/
 
 .error {
     color: red;
@@ -241,4 +258,32 @@ html, body {
 }
 
 
-/*Image Upload Area*/
+/*Image Upload Area end*/
+
+/*Media Queries Start*/
+
+@media only screen and (max-width: 1366px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 1020px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    html {
+        font-size: 9px;
+    }
+}
+
+/*Media Queries End*/
