@@ -12,27 +12,30 @@
     {% include 'admin_nav.html' %}
     <div class="row d-flex justify-content-center" style="padding: 16rem 0">
         <div class="col-md-3 login-card">
-            <p class="text-center login-text">Login</p>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-                <label for="emailInput">Email address</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-                <button class="btn" style="position: absolute;right: 5px;bottom: 10px;" type="button"><i
-                        style="color: var(--black);" id="togglePassword_1" class="bi-eye-slash"
-                        onclick="passwordShow();"></i></button>
-                <label for="passwordInput">Password</label>
-            </div>
-            <div class="form-check mt-2">
-                <input class="form-check-input" type="checkbox" name="rememberCheck" id="rememberCheck">
-                <label class="form-check-label" for="rememberCheck">
-                    Remember me
-                </label>
-            </div>
-            <a style="all: unset;" href="/reporter-dashboard/">
-                <button class="btn news-primary-btn mt-3">Login</button>
-            </a>
+            <form method="post" action="/">
+                {% csrf_token %}
+                <p class="text-center login-text">Login</p>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="usernameInput" placeholder="name@example.com"
+                           name="usernameInput">
+                    <label for="usernameInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="passwordInput" placeholder="Password"
+                           name="passwordInput">
+                    <button class="btn" style="position: absolute;right: 5px;bottom: 10px;" type="button"><i
+                            style="color: var(--black);" id="togglePassword_1" class="bi-eye-slash"
+                            onclick="passwordShow();"></i></button>
+                    <label for="passwordInput">Password</label>
+                </div>
+                <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" name="rememberCheck" id="rememberCheck">
+                    <label class="form-check-label" for="rememberCheck">
+                        Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn news-primary-btn mt-3">Login</button>
+            </form>
         </div>
     </div>
 </div>

@@ -1,4 +1,2 @@
-
-
-def login(username, password):
+def t_login(username, password):
     return "success"
