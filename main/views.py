@@ -14,5 +14,9 @@ def login(request):
     return render(request, 'auth/login.html')
 
 
-def reporter_dashboard(request):
+def publish_news(request):
     return render(request, 'reporter/newReport.html')
+
+
+def edit_news(request):
+    return render(request, 'reporter/editReport.html')
