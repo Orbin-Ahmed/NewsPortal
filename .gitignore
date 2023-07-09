@@ -144,6 +144,7 @@ GitHub.sublime-settings
 
 # my env file
 newsenv
+venv
 .idea/misc.xml
 *.xml
 *.tmp
