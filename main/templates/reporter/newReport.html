@@ -14,9 +14,10 @@
         <div class="col-md-2" style="background: var(--white)">
             {% include 'sidebar/sidebar.html' %}
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <p class="headline text-center mt-2">Publish a report</p>
-            <div class="row d-flex justify-content-between">
+            <div class="row d-flex justify-content-evenly">
+                {#Bengali News#}
                 <div class="col-md-5">
                     <p class="sub-headline">বাংলা</p>
                     <div class="form-floating mb-3">
@@ -25,23 +26,97 @@
                     </div>
                     <div class="form-floating mb-3">
                         <textarea class="form-control admin-text-field" placeholder="বিস্তারিত সংবাদ" id="detailsNewsBN"
-                                  style="height: 100px"></textarea>
+                                  style="height: 9rem"></textarea>
                         <label for="detailsNewsBN">বিস্তারিত সংবাদ</label>
                     </div>
                     <div class="input-group mb-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control admin-text-field" id="floatingInputGroup1"
-                                   placeholder="Username">
-                            <label for="floatingInputGroup1">Username</label>
+                            <input type="text" class="form-control admin-text-field" id="newsTagBN"
+                                   placeholder="ট্যাগ সমূহ">
+                            <label for="newsTagBN">ট্যাগ সমূহ</label>
                         </div>
                         <button class="input-group-text news-primary-btn"
                                 style="width: unset;padding: 0.375rem 0.75rem;border-radius: 0 0.375rem 0.375rem 0;">
-                            Add
+                            <span class="material-symbols-outlined">add</span>
                         </button>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control admin-text-field" id="newsCategoryBN"
+                               placeholder="ক্যাটাগরি নির্বাচন" list="categoryListBN">
+                        <label for="newsCategoryBN">ক্যাটাগরি নির্বাচন</label>
+                        <datalist id="categoryListBN">
+                            <option value="জাতীয়">জাতীয়</option>
+                            <option value="শোবিজ">শোবিজ</option>
+                        </datalist>
+                    </div>
                 </div>
+                {#Bengali News end#}
+
+                {#English News#}
                 <div class="col-md-5">
                     <p class="sub-headline">English</p>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control admin-text-field" id="newsTitleEn" placeholder="Title">
+                        <label for="newsTitleBN">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control admin-text-field" placeholder="Content" id="detailsNewsEN"
+                                  style="height: 9rem"></textarea>
+                        <label for="detailsNewsEN">Content</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control admin-text-field" id="newsTagEN"
+                                   placeholder="Tags">
+                            <label for="newsTagBN">Tags</label>
+                        </div>
+                        <button class="input-group-text news-primary-btn"
+                                style="width: unset;padding: 0.375rem 0.75rem;border-radius: 0 0.375rem 0.375rem 0;">
+                            <span class="material-symbols-outlined">add</span>
+                        </button>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control admin-text-field" id="newsCategoryEN"
+                               placeholder="Category" list="categoryListEN">
+                        <label for="newsCategoryBN">Category</label>
+                        <datalist id="categoryListEN">
+                            <option value="জাতীয়">National</option>
+                            <option value="শোবিজ">Showbiz</option>
+                        </datalist>
+                    </div>
+                </div>
+                {#English News end#}
+
+                {#Image Upload#}
+                <div class="col-md-11">
+                    <div class="file-upload">
+                        <div class="image-upload-wrap">
+                            <input class="file-upload-input" name="project_image_1" id="image" type='file'
+                                   onchange="readURL(this);" accept="image/png, image/jpeg" required/>
+                            <div class="drag-text">
+                                <h3><i class="bi bi-plus-lg"></i>ফাইলটি এখানে ড্রপ করুন অথবা ব্রাউজ করুন</h3>
+                            </div>
+                        </div>
+                        <p class="error" id="errorImage_4" style="display: block; padding-left: 2%"></p>
+                        <div class="file-upload-content">
+                            <img class="file-upload-image" src="#" alt="your image"/>
+                            <div class="image-title-wrap">
+                                <button type="button" onclick="removeUpload()" class="remove-image">
+                                    <span class="cross_btn material-symbols-outlined">close</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {#Image Upload end#}
+
+                <div class="row d-flex justify-content-end mb-3">
+                    <div class="col-md-2">
+                        <button class="btn news-primary-btn d-flex align-items-center float-end"
+                                style="width: unset;padding: 0.75rem 1.5rem;"><span
+                                class="material-symbols-outlined">save</span>Publish
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
