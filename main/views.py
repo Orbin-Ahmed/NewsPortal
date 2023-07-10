@@ -9,8 +9,11 @@ def login(request):
     if request.method == "POST":
         username = request.POST['usernameInput']
         password = request.POST['passwordInput']
-        t = t_login(username, password)
-        print(t)
+        user_object = user_login(request, username, password)
+        if user_object:
+            print(user_object.username)
+        else:
+            print("None")
     return render(request, 'auth/login.html')
 
 
