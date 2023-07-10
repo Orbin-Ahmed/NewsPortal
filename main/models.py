@@ -18,7 +18,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     reporter = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="reporter")
-    moderator = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="moderator")
+    moderator = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="moderator", null=True, blank=True)
     english_image = models.ImageField(upload_to='post/english/')
     bangla_image = models.ImageField(upload_to='post/bangla/')
     english_content = models.TextField()
@@ -30,6 +30,7 @@ class Post(models.Model):
     english_category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL,
                                          related_name="english_category")
     bangla_category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, related_name="bangla_category")
+    is_approved = models.BooleanField(default=False)
     date_created = models.DateField()
     social_link = models.URLField()
     like_counter = models.IntegerField(default=0)
