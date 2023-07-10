@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 
-from main.models import Post, Tag, EnglishCategory, BanglaCategory
+from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag
 
 
 # login call -> returns None if not authenticated
@@ -39,22 +39,22 @@ def post_report(request, bangla_title, bangla_content, bangla_tag, bangla_catego
                                         )
     for i in english_tag:
         i = i.lower()
-        tag_object = Tag.objects.filter(the_tag=i)
+        tag_object = EnglishTag.objects.filter(the_tag=i)
         if tag_object:
             tag_object.post.add(report_object)
             tag_object.save()
         else:
-            new_tag_object = Tag.objects.create(the_tag=i)
+            new_tag_object = EnglishTag.objects.create(the_tag=i)
             new_tag_object.post.add(report_object)
             new_tag_object.save()
 
     for i in bangla_tag:
-        tag_object = Tag.objects.filter(the_tag=i)
+        tag_object = BanglaTag.objects.filter(the_tag=i)
         if tag_object:
             tag_object.post.add(report_object)
             tag_object.save()
         else:
-            new_tag_object = Tag.objects.create(the_tag=i)
+            new_tag_object = BanglaTag.objects.create(the_tag=i)
             new_tag_object.post.add(report_object)
             new_tag_object.save()
 

@@ -29,11 +29,17 @@ class Post(models.Model):
     bangla_category = models.ForeignKey(BanglaCategory, null=True, on_delete=models.SET_NULL,
                                         related_name="bangla_category")
     is_approved = models.BooleanField(default=False)
+    need_edit = models.BooleanField(default=False)
     date_created = models.DateField(null=True, blank=True)
     like_counter = models.IntegerField(default=0)
     view_counter = models.IntegerField(default=0)
 
 
-class Tag(models.Model):
+class BanglaTag(models.Model):
+    the_tag = models.CharField(max_length=255)
+    post = models.ManyToManyField(Post)
+
+
+class EnglishTag(models.Model):
     the_tag = models.CharField(max_length=255)
     post = models.ManyToManyField(Post)

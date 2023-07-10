@@ -13,7 +13,11 @@ class PostAdmin(admin.ModelAdmin):
     pass
 
 
-class TagAdmin(admin.ModelAdmin):
+class BanglaTagAdmin(admin.ModelAdmin):
+    pass
+
+
+class EnglishTagAdmin(admin.ModelAdmin):
     pass
 
 
@@ -26,7 +30,8 @@ class EnglishCategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.User, UserAdmin)
-admin.site.register(models.Tag, TagAdmin)
+admin.site.register(models.BanglaTag, BanglaTagAdmin)
+admin.site.register(models.EnglishTag, EnglishTagAdmin)
 admin.site.register(models.BanglaCategory, BanglaCategoryAdmin)
 admin.site.register(models.EnglishCategory, EnglishCategoryAdmin)
 admin.site.register(models.Post, PostAdmin)
