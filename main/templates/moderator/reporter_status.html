@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moderator Dashboard</title>
+    {% load static %}
+    {% include 'root/css.html' %}
+</head>
+<body>
+<div class="container-fluid admin-background">
+    {% include 'admin_nav.html' %}
+    <div class="row d-flex justify-content-between">
+        <div class="col-md-2" style="background: var(--white)">
+            {% include 'sidebar/mod_sidebar.html' %}
+        </div>
+        <div class="col-md-10">
+            <p class="headline text-center mt-2">Reporters</p>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Reporter 1</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end">Suspend</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Reporter 2</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end">Suspend</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Reporter 3</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end">Suspend</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Reporter 4</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end">Suspend</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'root/js.html' %}
+</body>
+</html>
