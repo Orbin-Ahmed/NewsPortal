@@ -6,7 +6,7 @@ from main.models import Post, Tag
 # login call -> returns None if not authenticated
 
 def user_login(request, username, password):
-    user = authenticate(username, password)
+    user = authenticate(request, username, password)
     if user is not None:
         login(request, user)
         return user
@@ -28,7 +28,7 @@ def post_report(request, bangla_title, bangla_content, bangla_tag, bangla_catego
                                         bangla_category=bangla_category,
                                         social_link=social_link)
     for i in bangla_tag:
-        i=i.lower()
+        i = i.lower()
         if Tag.objects.filter(the_tag=i):
             report_object.bangla_tag = Tag.objects.get(the_tag=i)
             report_object.save()
