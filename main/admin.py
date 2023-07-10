@@ -8,5 +8,9 @@ from main import models
 class UserAdmin(admin.ModelAdmin):
     pass
 
+class PostAdmin(admin.ModelAdmin):
+    pass
 
 admin.site.register(models.User, UserAdmin)
+
+admin.site.register(models.Post, PostAdmin)
