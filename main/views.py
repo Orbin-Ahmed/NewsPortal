@@ -71,3 +71,7 @@ def reporter_status(request):
 
 def focus_news(request):
     return render(request, 'moderator/focus_news.html')
+
+
+def news_details(request):
+    return render(request, 'moderator/report_details.html')

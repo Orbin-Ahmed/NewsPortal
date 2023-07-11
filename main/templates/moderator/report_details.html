@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moderator Dashboard</title>
+    {% load static %}
+    {% include 'root/css.html' %}
+</head>
+<body>
+<div class="container-fluid admin-background">
+    {% include 'admin_nav.html' %}
+    <div class="row d-flex justify-content-between">
+        <div class="col-md-2" style="background: var(--white)">
+            {% include 'sidebar/mod_sidebar.html' %}
+        </div>
+        <div class="col-md-10">
+            <div class="row d-flex justify-content-around align-items-center mt-3">
+                <div class="offset-1 col-8">
+                    <p class="report-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
+                </div>
+                <div class="col-2">
+                    <label class="toggle">
+                        <input class="toggle-input" type="checkbox" checked/>
+                        <span class="toggle-label" data-off="Bengali" data-on="English"></span>
+                        <span class="toggle-handle"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'root/js.html' %}
+</body>
+</html>
