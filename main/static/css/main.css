@@ -11,7 +11,7 @@
     --text-field-outline: #79747E;
     --card-primary-bg: #EEEEEE;
     --card-secondary-bg: #E7DDDD;
-    --danger-red: #5c0512;
+    --danger-red: #ED1C24;
 
 }
 
@@ -74,6 +74,24 @@ a {
     color: var(--white);
 }
 
+.modal-primary-btn {
+    padding: 0.4rem 0.7rem;
+    gap: 1rem;
+    border: 1px solid var(--form-border-inner);
+    background: var(--white);
+    color: var(--form-border-inner);
+    margin: 0 1rem 1rem;
+}
+
+.modal-secondary-btn {
+    padding: 0.4rem 0.7rem;
+    gap: 1rem;
+    border: 1px solid var(--danger-red);
+    background: var(--white);
+    color: var(--danger-red);
+    margin: 0 1rem 1rem;
+}
+
 /*Bootstrap Override*/
 
 .form-control:focus {
@@ -96,6 +114,11 @@ a {
 
 .form-check-input:focus {
     box-shadow: none;
+}
+
+.modal-open {
+    overflow: auto;
+    padding-right: 0 !important;
 }
 
 /*Bootstrap Override End*/
@@ -157,6 +180,22 @@ a {
     font-weight: 700;
     line-height: 1.3125rem;
     letter-spacing: 0;
+}
+
+.backdrop-modal-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4375rem;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.backdrop-modal-body {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1rem;
+    letter-spacing: 0;
+    text-align: center;
 }
 
 /*Typography end*/
