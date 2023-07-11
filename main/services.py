@@ -8,7 +8,10 @@ from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, Bangl
 def user_login(request, username, password):
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request, user)
+        if user.user_type == 3 and user.is_suspended is True:
+            return False
+        else:
+            login(request, user)
         return user
     else:
         return None
@@ -67,8 +70,58 @@ def approve_post(request, post_id):
     if request.user.user_type == 2:
         post_object = Post.objects.get(id=post_id)
         post_object.is_approved = True
+        post_object.need_edit = False
+        # approved true, need edit false
         post_object.save()
         return True
     else:
         return None
+
+
+# need edit from reporter
+def re_edit_post(request, post_id):
+    if request.user.user_type == 2:
+        post_object = Post.objects.get(id=post_id)
+        post_object.is_approved = False
+        post_object.need_edit = True
+        # approved false, need edit True
+        post_object.save()
+        return True
+    else:
+        return None
+
+
+# delete post by moderator
+def delete_post(request, post_id):
+    if request.user.user_type == 2:
+        post_object = Post.objects.get(id=post_id)
+        post_object.delete()
+        # directly delete
+        return True
+    else:
+        return None
+
+
+# moderator view
+def moderator_view(request):
+    if request.user.user_type == 2:
+        post_list = Post.objects.filter(is_approved=False, need_edit=False)
+        return post_list  # queryset for iteration
+    else:
+        return False
+
+
+# reporter view for need editing
+def reporter_view(request):
+    if request.user.user_type == 3:
+        post_list = Post.objects.filter(is_approved=False, need_edit=True)
+        return post_list
+    else:
+        return False
+
+
+# return post object
+def post_details(post_id):
+    post_object = Post.objects.get(id=post_id)
+    return post_object
 
