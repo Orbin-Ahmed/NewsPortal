@@ -6,6 +6,7 @@ from django.db import models
 
 class User(AbstractUser):
     user_type = models.IntegerField(default=0)
+    is_suspended = models.BooleanField(default=False)
 
 
 class BanglaCategory(models.Model):
@@ -33,6 +34,7 @@ class Post(models.Model):
     date_created = models.DateField(null=True, blank=True)
     like_counter = models.IntegerField(default=0)
     view_counter = models.IntegerField(default=0)
+
 
 
 class BanglaTag(models.Model):
