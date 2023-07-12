@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AnonymousUser
 from django.http import HttpResponseRedirect
@@ -64,9 +66,9 @@ def pending_news(request):
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         pending_news_list = moderator_view(request)
-        print(pending_news_list)
+        loop_counter = int(pending_news_list.count() / 2);
         return render(request, 'moderator/pending_news.html',
-                      {'user_name': user_obj, 'pending_news_list': pending_news_list})
+                      {'user_name': user_obj, 'pending_news_list': pending_news_list, 'loop_counter': loop_counter})
     else:
         return HttpResponseRedirect('/')
 
@@ -91,5 +93,9 @@ def focus_news(request):
     return render(request, 'moderator/focus_news.html')
 
 
-def news_details(request):
-    return render(request, 'moderator/report_details.html')
+def news_details(request, news_id):
+    news_details_info = post_details(news_id)
+    # Remove line breaks from the content
+    news_details_info.bangla_content = re.sub(r'\r?\n', '', news_details_info.bangla_content)
+    news_details_info.english_content = re.sub(r'\r?\n', '', news_details_info.english_content)
+    return render(request, 'moderator/report_details.html', {'news_details': news_details_info})
