@@ -11,4 +11,5 @@ urlpatterns = [
     path('rolling-headlines/', views.rolling_headlines),
     path('reporter/', views.reporter_status),
     path('focus-news/', views.focus_news),
+    path('news-details/', views.news_details),
 ]

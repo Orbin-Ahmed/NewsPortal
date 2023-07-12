@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moderator Dashboard</title>
+    {% load static %}
+    {% include 'root/css.html' %}
+</head>
+<body>
+<div class="container-fluid admin-background">
+    {% include 'admin_nav.html' %}
+    <div class="row d-flex justify-content-between">
+        <div class="col-md-2" style="background: var(--white)">
+            {% include 'sidebar/mod_sidebar.html' %}
+        </div>
+        <div class="col-md-10">
+            <div class="row d-flex justify-content-around align-items-center mt-3">
+                <div class="offset-1 col-8">
+                    <p class="report-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
+                    <P><b>Reported by</b> : Reporter 1</P>
+                </div>
+                <div class="col-2">
+                    <label class="toggle">
+                        <input class="toggle-input" type="checkbox" checked/>
+                        <span class="toggle-label" data-off="Bengali" data-on="English"></span>
+                        <span class="toggle-handle"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-10 text-center">
+                    <img class="img-fluid" src="{% static 'images/Rectangle 45.png' %}">
+                </div>
+                <div class="col-10 mt-3">
+                    <p style="text-align: justify;text-justify: inter-word;margin: 0 3rem">গ্রামীণ ঐতিহ্যের এক সময়ের
+                        জনপ্রিয় খেলা
+                        হা-ডু-ডু এখন অনেকটাই
+                        বিলুপ্তির পথে। গ্রামের
+                        কাঁচা রাস্তায়,
+                        মাঠ, বাগানে বা খোলা স্থানে জমজমাট ও উৎসবমুখর পরিবেশে হতো এ হা-ডু-ডু খেলা।
+                        কিন্তু কালের আবর্তে সেই খেলা এখন আর দেখা যায় না। তাই জনপ্রিয় এ খেলাটি টিকিয়ে রাখা এবং নতুন
+                        প্রজন্মকে উজ্জীবিত করতে মাদারীপুরে অনুষ্ঠিত হয়ে গেল হা-ডু-ডু প্রতিযোগিতা। দূর-দূরান্ত থেকে আসা
+                        শত শত দর্শক এ খেলা উপভোগ করেন। খেলাকে কেন্দ্র করে এলাকায় উৎসবের আমেজ লক্ষ্য করা যায়।
+                        বুধবার বিকালে মাদারীপুর সদর উপজেলার ধুরাইল ইউনিয়নের জালালপুর আইডিয়াল হাই স্কুল মাঠে চাছার
+                        প্রবাসী কল্যাণ পরিষদের উদ্যোগে গ্রাম বাংলার হারিয়ে যাওয়া ঐতিহ্যবাহী হা-ডু-ডু খেলা পুনরুদ্ধারের
+                        জন্যই তারা এ আয়োজন করে।
+                        সদর উপজেলার ধুরাইল ইউনিয়নের চেয়ারম্যান হাবিবুর রহমানের সভাপতিত্বে প্রধান অতিথি হিসেবে উপস্থিত
+                        ছিলেন জালালপুর আইডিয়াল স্কুলের ম্যানেজিং কমিটির সভাপতি আলহাজ্ব সাহেব আলী মিয়া।
+                        খেলায় সাবেক ইউপি সদস্য সাইদুর রহমান হাওলাদার বনাম বর্তমান ইউপি সদস্য শাজাহান মাতুব্বরের দল
+                        অংশগ্রহণ করে। খেলা শেষে প্রাপ্ত ফলাফল অনুযায়ী সাবেক ইউপি সদস্য সাইদুর রহমান হাওলাদারের দলকে ৩-০
+                        গোলে হারিয়ে বর্তমান ইউপি সদস্য শাজাহান মাতুব্বরের দল বিজয়ী হয়।
+                        খেলা শেষে প্রধান অতিথি বিজয়ীদের হাতে পুরস্কার তুলে দেন। খেলা চলাকালে আশেপাশের বিভিন্ন ইউনিয়ন
+                        থেকে আসা শত শত দর্শকের কারণে মাঠ ছিল কানায় কানায় পূর্ণ।
+                        চেয়ারম্যান হাবিবুর রহমান বলেন, ‘গ্রাম বাংলার হারিয়ে যাওয়া হা-ডু-ডু খেলা উপভোগ করার জন্য
+                        দূর-দূরান্ত থেকে শত শত দর্শক উপস্থিত হয়েছেন। ঐতিহ্যবাহী এ খেলা এখনো মানুষের স্মৃতিতে জ্বলজ্বল
+                        করছে।’
+                        তিনি আরও বলেন, ‘আশা করি গ্রামবাংলার ঐতিহ্যবাহী এ খেলা আবার দেশের সর্বত্র ছড়িয়ে পড়ুক। আগামীতে
+                        খেলাটি যেন আরও জনপ্রিয়তা লাভ করে, সে ব্যাপারে সর্বস্তরের সবাইকে সজাগ দৃষ্টি রাখার জন্য দাবি
+                        জানাচ্ছি।’
+                        বিডি প্রতিদিন/আরাফাত</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'root/js.html' %}
+</body>
+</html>
