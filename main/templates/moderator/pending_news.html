@@ -26,7 +26,7 @@
                             <img src="{% if data.image %}{{ data.image }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <a href="/news-details/{{ data.id }}/" style="cursor: pointer;"><h5 class="card-headline">{{ data.bangla_title }}</h5></a>
-                                <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#approve_report_modal" onclick="document.getElementById('approve_post_id_anchor').href = '/approve-post/{{ data.id }}'">
+                                <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#approve_report_modal" onclick="document.getElementById('approve_post_id_anchor').href = '/approve-post/{{ data.id }}/'">
                                     <img src="{% static 'logo/approve_tick.svg' %}">
                                 </button>
                             </div>
