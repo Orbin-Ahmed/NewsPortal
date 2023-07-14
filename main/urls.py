@@ -15,9 +15,13 @@ urlpatterns = [path('', views.login),
                path('news-details/<news_id>/', views.news_details),  # Moderator
                path('admin-news/', views.admin_news),  # Admin
                path('moderator/', views.moderator_status),  # Admin
+               path('admin-news-details/<news_id>/', views.admin_news_details),  # Admin
                path('reporter-suspend/', views.reporter_suspend),  # Admin
                path('approve-post/<post_id>/', views.approve_post_view),  # Function start
+               path('edit-post/<post_id>/', views.edit_post_view),
                path('delete-news/<post_id>/', views.delete_news_view),
+               path('delete-news-mod/<post_id>/', views.delete_news_mod_view),
                path('suspend-user/<username>/', views.suspend_user_view),
+               path('add-to-something/<post_id>/<post_type>/', views.add_to_something),
                path('password-update/', views.password_update),
                ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

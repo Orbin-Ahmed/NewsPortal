@@ -49,6 +49,19 @@ def moderator_status(request):
         return render(request, 'admin/moderator_status.html', {'user_name': user_obj, 'list_moderator': list_moderator})
 
 
+def admin_news_details(request, news_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 1:
+        user_obj = user_obj.username
+        news_details_info = post_details(news_id)
+        news_details_info.bangla_content = re.sub(r'\r?\n', '', news_details_info.bangla_content)
+        news_details_info.english_content = re.sub(r'\r?\n', '', news_details_info.english_content)
+        return render(request, 'admin/admin_news_details.html',
+                      {'user_name': user_obj, 'news_details': news_details_info})
+
+
 def reporter_suspend(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
@@ -126,7 +139,8 @@ def all_news(request):
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
-        return render(request, 'moderator/all_news.html', {'user_name': user_obj})
+        all_news_list = admin_view(request)
+        return render(request, 'moderator/all_news.html', {'user_name': user_obj, 'all_news_list': all_news_list})
     else:
         return HttpResponseRedirect('/')
 
@@ -194,8 +208,21 @@ def news_details(request, news_id):
 
 # Single Api View start
 def approve_post_view(request, post_id):
-    approve_post(request, post_id)
-    return HttpResponseRedirect('/pending-news/')
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 2:
+        approve_post(request, post_id)
+        return HttpResponseRedirect('/pending-news/')
+
+
+def edit_post_view(request, post_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 2:
+        re_edit_post(request, post_id)
+        return HttpResponseRedirect('/pending-news/')
 
 
 def delete_news_view(request, post_id):
@@ -206,6 +233,18 @@ def delete_news_view(request, post_id):
         result = delete_news(request, post_id)
         if result:
             return HttpResponseRedirect('/admin-news/')
+        else:
+            print("False")
+
+
+def delete_news_mod_view(request, post_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type != 3:
+        result = delete_news(request, post_id)
+        if result:
+            return HttpResponseRedirect('/all-news/')
         else:
             print("False")
 
@@ -233,3 +272,12 @@ def suspend_user_view(request, username):
     elif user_obj.user_type != 3:
         suspend_user(request, username)
         return HttpResponseRedirect('/admin-news/')
+
+
+def add_to_something(request, post_id, post_type):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 2:
+        result = add_to_special(post_id, post_type)
+        return HttpResponseRedirect('/all-news/')
