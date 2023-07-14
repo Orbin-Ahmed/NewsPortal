@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth import authenticate, login
 
 from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag
@@ -71,6 +73,7 @@ def approve_post(request, post_id):
         post_object = Post.objects.get(id=post_id)
         post_object.is_approved = True
         post_object.need_edit = False
+        post_object.date_created = datetime.datetime.now()
         # approved true, need edit false
         post_object.save()
         return True

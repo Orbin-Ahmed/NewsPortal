@@ -18,8 +18,8 @@ class EnglishCategory(models.Model):
 
 
 class Post(models.Model):
-    reporter = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name="reporter")
-    moderator = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name="moderator", null=True, blank=True)
+    reporter = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="reporter")
+    moderator = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="moderator", null=True, blank=True)
     image = models.ImageField(upload_to='post/')
     english_content = models.TextField()
     bangla_content = models.TextField()
