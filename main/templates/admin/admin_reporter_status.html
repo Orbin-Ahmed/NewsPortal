@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-6">
                                     <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                            data-bs-target="#reporter_suspend_modal">{% if data.is_suspended == False %}Suspend{% else %}Reinstate{% endif %}
+                                            data-bs-target="#reporter_suspend_modal" onclick="document.getElementById('admin_r_suspend_msg').innerHTML = '{% if data.is_suspended == False %}Once you suspend the user, the account will be temporarily locked from the system.{% else %}Once you reinstate the user, the account can access the system.{% endif %}'">{% if data.is_suspended == False %}Suspend{% else %}Reinstate{% endif %}
                                     </button>
                                     <button class="btn news-secondary-btn" data-bs-toggle="modal"
                                             data-bs-target="#reporter_pass_modal" onclick="document.getElementById('user_name_field').value = '{{ data.username }}'">Change password
