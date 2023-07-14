@@ -257,15 +257,23 @@ def pass_update(request, username, new_pass1, new_pass2):
 
 def reporter_list():
     user_list = User.objects.filter(user_type=3)
-    the_list = []
+    users = []
     for i in user_list:
-        the_list.append(i.username)
-    return the_list
+        the_object = {
+            "username": i.username,
+            "is_suspended": i.is_suspended
+        }
+        users.append(the_object)
+    return users
 
 
 def moderator_list():
     user_list = User.objects.filter(user_type=2)
     the_list = []
     for i in user_list:
-        the_list.append(i.username)
+        the_object = {
+            "username": i.username,
+            "is_suspended": i.is_suspended
+        }
+        the_list.append(the_object)
     return the_list
