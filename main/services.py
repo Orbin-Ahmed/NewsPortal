@@ -216,6 +216,24 @@ def suspend_user(request, username):
         return False
 
 
+# unsuspend
+def unsuspend_user(request, username):
+    user_object = User.objects.get(username=username)
+    if request.user.user_type == 1:
+        user_object.is_suspended = False
+        user_object.save()
+        return True
+    elif request.user.user_type == 2:
+        if user_object.user_type == 3:
+            user_object.is_suspended = False
+            user_object.save()
+            return True
+        else:
+            return "cant unsuspend same rank"
+    else:
+        return False
+
+
 # change pass
 def pass_update(request, username, new_pass1, new_pass2):
     if new_pass1 != new_pass2:
@@ -251,4 +269,3 @@ def moderator_list():
     for i in user_list:
         the_list.append(i.username)
     return the_list
-
