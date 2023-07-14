@@ -140,7 +140,6 @@ def all_news(request):
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         all_news_list = admin_view(request)
-        print(all_news_list)
         return render(request, 'moderator/all_news.html', {'user_name': user_obj, 'all_news_list': all_news_list})
     else:
         return HttpResponseRedirect('/')
@@ -280,5 +279,6 @@ def add_to_something(request, post_id, post_type):
     if user_obj == AnonymousUser():
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 2:
-        add_to_special(post_id, post_type)
+        result = add_to_special(post_id, post_type)
+        print(result)
         return HttpResponseRedirect('/all-news/')
