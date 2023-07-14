@@ -190,7 +190,7 @@ def filter_admin_view(request, date):
 
 # admin delete news
 def delete_news(request, post_id):
-    if request.user.user_type == 1:
+    if request.user.user_type == 1 or request.user.user_type == 2:
         post = Post.objects.get(id=post_id)
         post.delete()
         return True
