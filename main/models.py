@@ -36,6 +36,12 @@ class Post(models.Model):
     view_counter = models.IntegerField(default=0)
 
 
+class SpecialNews(models.Model):
+    post = models.OneToOneField(Post, on_delete=models.CASCADE)
+    is_trending = models.BooleanField(default=False)
+    is_headline = models.BooleanField(default=False)
+    is_focus = models.BooleanField(default=False)
+
 
 class BanglaTag(models.Model):
     the_tag = models.CharField(max_length=255)

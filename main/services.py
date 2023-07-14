@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth import authenticate, login
 
-from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag
+from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag, SpecialNews
 
 
 # login call -> returns None if not authenticated
@@ -73,7 +73,7 @@ def approve_post(request, post_id):
         post_object = Post.objects.get(id=post_id)
         post_object.is_approved = True
         post_object.need_edit = False
-        post_object.date_created = datetime.datetime.now()
+        post_object.date_created = datetime.now()
         # approved true, need edit false
         post_object.save()
         return True
@@ -128,3 +128,42 @@ def post_details(post_id):
     post_object = Post.objects.get(id=post_id)
     return post_object
 
+
+# add to special
+def add_to_special(post_id, post_type):
+    post_object = Post.objects.get(id=post_id)
+    if post_type == "headline":
+        if SpecialNews.objects.filter(is_headline=True).count() > 29:
+            return "remove headlines"
+        else:
+            post_object.specialnews.is_headline = True
+            post_object.save()
+    elif post_type == "trending":
+        if SpecialNews.objects.filter(is_trending=True).count() > 29:
+            return "remove trending"
+        else:
+            post_object.specialnews.is_trending = True
+            post_object.save()
+    elif post_type == "focus":
+        if SpecialNews.objects.filter(is_focus=True).count() > 29:
+            return "remove focus"
+        else:
+            post_object.specialnews.is_focus = True
+            post_object.save()
+    else:
+        return "incorrect type"
+
+
+def remove_from_special(post_id, post_type):
+    post_object = Post.objects.get(id=post_id)
+    if post_type == "headline":
+        post_object.specialnews.is_headline = False
+        post_object.save()
+    elif post_type == "trending":
+        post_object.specialnews.is_trending = False
+        post_object.save()
+    elif post_type == "focus":
+        post_object.specialnews.is_focus = False
+        post_object.save()
+    else:
+        return "incorrect type"
