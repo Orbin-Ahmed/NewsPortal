@@ -47,8 +47,9 @@ def post_report(request, bangla_title, bangla_content, bangla_tag, bangla_catego
         i = i.lower()
         tag_object = EnglishTag.objects.filter(the_tag=i)
         if tag_object:
-            tag_object.post.add(report_object)
-            tag_object.save()
+            for each in tag_object:
+                each.post.add(report_object)
+                each.save()
         else:
             new_tag_object = EnglishTag.objects.create(the_tag=i)
             new_tag_object.post.add(report_object)
@@ -57,8 +58,9 @@ def post_report(request, bangla_title, bangla_content, bangla_tag, bangla_catego
     for i in bangla_tag:
         tag_object = BanglaTag.objects.filter(the_tag=i)
         if tag_object:
-            tag_object.post.add(report_object)
-            tag_object.save()
+            for each in tag_object:
+                each.post.add(report_object)
+                each.save()
         else:
             new_tag_object = BanglaTag.objects.create(the_tag=i)
             new_tag_object.post.add(report_object)
@@ -190,7 +192,7 @@ def filter_admin_view(request, date):
 
 # admin delete news
 def delete_news(request, post_id):
-    if request.user.user_type == 1:
+    if request.user.user_type == 1 or request.user.user_type == 2:
         post = Post.objects.get(id=post_id)
         post.delete()
         return True
@@ -212,6 +214,24 @@ def suspend_user(request, username):
             return True
         else:
             return "cant suspend same rank"
+    else:
+        return False
+
+
+# unsuspend
+def unsuspend_user(request, username):
+    user_object = User.objects.get(username=username)
+    if request.user.user_type == 1:
+        user_object.is_suspended = False
+        user_object.save()
+        return True
+    elif request.user.user_type == 2:
+        if user_object.user_type == 3:
+            user_object.is_suspended = False
+            user_object.save()
+            return True
+        else:
+            return "cant unsuspend same rank"
     else:
         return False
 
@@ -239,16 +259,23 @@ def pass_update(request, username, new_pass1, new_pass2):
 
 def reporter_list():
     user_list = User.objects.filter(user_type=3)
-    the_list = []
+    users = []
     for i in user_list:
-        the_list.append(i.username)
-    return the_list
+        the_object = {
+            "username": i.username,
+            "is_suspended": i.is_suspended
+        }
+        users.append(the_object)
+    return users
 
 
 def moderator_list():
     user_list = User.objects.filter(user_type=2)
     the_list = []
     for i in user_list:
-        the_list.append(i.username)
+        the_object = {
+            "username": i.username,
+            "is_suspended": i.is_suspended
+        }
+        the_list.append(the_object)
     return the_list
-
