@@ -49,6 +49,19 @@ def moderator_status(request):
         return render(request, 'admin/moderator_status.html', {'user_name': user_obj, 'list_moderator': list_moderator})
 
 
+def admin_news_details(request, news_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 1:
+        user_obj = user_obj.username
+        news_details_info = post_details(news_id)
+        news_details_info.bangla_content = re.sub(r'\r?\n', '', news_details_info.bangla_content)
+        news_details_info.english_content = re.sub(r'\r?\n', '', news_details_info.english_content)
+        return render(request, 'admin/admin_news_details.html',
+                      {'user_name': user_obj, 'news_details': news_details_info})
+
+
 def reporter_suspend(request):
     user_obj = request.user
     if user_obj == AnonymousUser():

@@ -15,6 +15,7 @@ urlpatterns = [path('', views.login),
                path('news-details/<news_id>/', views.news_details),  # Moderator
                path('admin-news/', views.admin_news),  # Admin
                path('moderator/', views.moderator_status),  # Admin
+               path('admin-news-details/<news_id>/', views.admin_news_details),  # Admin
                path('reporter-suspend/', views.reporter_suspend),  # Admin
                path('approve-post/<post_id>/', views.approve_post_view),  # Function start
                path('delete-news/<post_id>/', views.delete_news_view),

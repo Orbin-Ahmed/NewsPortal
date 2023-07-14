@@ -39,7 +39,7 @@
                     <div class="card" style="{% if forloop.counter0|mod:2 == 1 %}background:var(--card-primary-bg){% else %}background:var(--card-secondary-bg){% endif %}">
                         <img src="{% if data.image %}{{ data.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <a href="/news-details/{{ data.id }}/" style="cursor: pointer;"><h5 class="card-headline">{{ data.bangla_title }}</h5></a>
+                            <a href="/admin-news-details/{{ data.id }}/" style="cursor: pointer;"><h5 class="card-headline">{{ data.bangla_title }}</h5></a>
                             <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#admin_delete_report_modal" onclick="document.getElementById('delete_post_id_anchor').href = '/delete-news/{{ data.id }}/'">
                                 <img src="{% static 'logo/delete.svg' %}">
                             </button>
