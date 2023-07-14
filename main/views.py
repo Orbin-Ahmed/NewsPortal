@@ -280,5 +280,4 @@ def add_to_something(request, post_id, post_type):
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 2:
         result = add_to_special(post_id, post_type)
-        print(result)
         return HttpResponseRedirect('/all-news/')
