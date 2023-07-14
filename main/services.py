@@ -143,18 +143,21 @@ def add_to_special(post_id, post_type):
         else:
             post_object.specialnews.is_headline = True
             post_object.save()
+            return True
     elif post_type == "trending":
         if SpecialNews.objects.filter(is_trending=True).count() > 29:
             return "remove trending"
         else:
             post_object.specialnews.is_trending = True
             post_object.save()
+            return True
     elif post_type == "focus":
         if SpecialNews.objects.filter(is_focus=True).count() > 29:
             return "remove focus"
         else:
             post_object.specialnews.is_focus = True
             post_object.save()
+            return True
     else:
         return "incorrect type"
 
