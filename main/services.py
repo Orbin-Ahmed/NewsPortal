@@ -174,7 +174,7 @@ def remove_from_special(post_id, post_type):
 
 # admin view all approved news
 def admin_view(request):
-    if request.user.user_type == 1:
+    if request.user.user_type == 1 or request.user.user_type == 2:
         post_list = Post.objects.filter(is_approved=True)
         return post_list
     else:

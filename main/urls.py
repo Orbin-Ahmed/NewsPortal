@@ -22,5 +22,6 @@ urlpatterns = [path('', views.login),
                path('delete-news/<post_id>/', views.delete_news_view),
                path('delete-news-mod/<post_id>/', views.delete_news_mod_view),
                path('suspend-user/<username>/', views.suspend_user_view),
+               path('add-to-something/<post_id>/<post_type>/', views.add_to_something),
                path('password-update/', views.password_update),
                ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

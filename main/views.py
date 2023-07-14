@@ -139,7 +139,9 @@ def all_news(request):
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
-        return render(request, 'moderator/all_news.html', {'user_name': user_obj})
+        all_news_list = admin_view(request)
+        print(all_news_list)
+        return render(request, 'moderator/all_news.html', {'user_name': user_obj, 'all_news_list': all_news_list})
     else:
         return HttpResponseRedirect('/')
 
@@ -271,3 +273,12 @@ def suspend_user_view(request, username):
     elif user_obj.user_type != 3:
         suspend_user(request, username)
         return HttpResponseRedirect('/admin-news/')
+
+
+def add_to_something(request, post_id, post_type):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 2:
+        add_to_special(post_id, post_type)
+        return HttpResponseRedirect('/all-news/')
