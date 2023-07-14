@@ -27,15 +27,30 @@
                         <span class="toggle-handle"></span>
                     </label>
                     <div class="mt-3">
-                        <button class="btn news-tertiary-btn">Edit</button>
-                        <button class="btn news-tertiary-btn">Approve</button>
-                        <button class="btn news-tertiary-btn">Delete</button>
+                        <a href="/edit-post/{{ news_details.id }}/">
+                            <button class="btn news-tertiary-btn">Edit</button>
+                        </a>
+                        <a href="/approve-post/{{ news_details.id }}/">
+                            <button class="btn news-tertiary-btn">Approve</button>
+                        </a>
+                        <a href="/delete-news-mod/{{ news_details.id }}/">
+                            <button class="btn news-tertiary-btn">Delete</button>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center mt-3">
                 <div class="col-10 text-center">
                     <img class="img-fluid" src="
+
+
+
+
+
+
+
+
+
 
 
                             {% if news_details.image %}{{ news_details.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}"

@@ -207,8 +207,21 @@ def news_details(request, news_id):
 
 # Single Api View start
 def approve_post_view(request, post_id):
-    approve_post(request, post_id)
-    return HttpResponseRedirect('/pending-news/')
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 2:
+        approve_post(request, post_id)
+        return HttpResponseRedirect('/pending-news/')
+
+
+def edit_post_view(request, post_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 2:
+        re_edit_post(request, post_id)
+        return HttpResponseRedirect('/pending-news/')
 
 
 def delete_news_view(request, post_id):
@@ -219,6 +232,18 @@ def delete_news_view(request, post_id):
         result = delete_news(request, post_id)
         if result:
             return HttpResponseRedirect('/admin-news/')
+        else:
+            print("False")
+
+
+def delete_news_mod_view(request, post_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type != 3:
+        result = delete_news(request, post_id)
+        if result:
+            return HttpResponseRedirect('/all-news/')
         else:
             print("False")
 
