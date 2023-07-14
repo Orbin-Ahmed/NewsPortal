@@ -35,7 +35,8 @@ def admin_news(request):
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
-    return render(request, 'admin/admin_news.html', {'user_name': user_obj})
+        admin_news_list = admin_view(request)
+    return render(request, 'admin/admin_news.html', {'user_name': user_obj, 'admin_news_list': admin_news_list})
 
 
 def moderator_status(request):
@@ -194,6 +195,18 @@ def news_details(request, news_id):
 def approve_post_view(request, post_id):
     approve_post(request, post_id)
     return HttpResponseRedirect('/pending-news/')
+
+
+def delete_news_view(request, post_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type != 3:
+        result = delete_news(request, post_id)
+        if result:
+            return HttpResponseRedirect('/admin-news/')
+        else:
+            print("False")
 
 
 def password_update(request):
