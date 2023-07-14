@@ -204,36 +204,44 @@ def delete_news(request, post_id):
 def suspend_user(request, username):
     user_object = User.objects.get(username=username)
     if request.user.user_type == 1:
-        user_object.is_suspended = True
-        user_object.save()
-        return True
-    elif request.user.user_type == 2:
-        if user_object.user_type == 3:
+        if not user_object.is_suspended:
             user_object.is_suspended = True
             user_object.save()
-            return True
         else:
-            return "cant suspend same rank"
-    else:
-        return False
-
-
-# unsuspend
-def unsuspend_user(request, username):
-    user_object = User.objects.get(username=username)
-    if request.user.user_type == 1:
-        user_object.is_suspended = False
-        user_object.save()
+            user_object.is_suspended = False
+            user_object.save()
         return True
     elif request.user.user_type == 2:
         if user_object.user_type == 3:
-            user_object.is_suspended = False
-            user_object.save()
+            if not user_object.is_suspended:
+                user_object.is_suspended = True
+                user_object.save()
+            else:
+                user_object.is_suspended = False
+                user_object.save()
             return True
         else:
-            return "cant unsuspend same rank"
+            return "invalid rank"
     else:
         return False
+
+
+# # unsuspend
+# def unsuspend_user(request, username):
+#     user_object = User.objects.get(username=username)
+#     if request.user.user_type == 1:
+#         user_object.is_suspended = False
+#         user_object.save()
+#         return True
+#     elif request.user.user_type == 2:
+#         if user_object.user_type == 3:
+#             user_object.is_suspended = False
+#             user_object.save()
+#             return True
+#         else:
+#             return "cant unsuspend same rank"
+#     else:
+#         return False
 
 
 # change pass
