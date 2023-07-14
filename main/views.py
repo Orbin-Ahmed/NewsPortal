@@ -93,6 +93,11 @@ def focus_news(request):
     return render(request, 'moderator/focus_news.html')
 
 
+def approve_post_view(request, post_id):
+    approve_post(request, post_id)
+    return HttpResponseRedirect('/pending-news/')
+
+
 def news_details(request, news_id):
     news_details_info = post_details(news_id)
     # Remove line breaks from the content
