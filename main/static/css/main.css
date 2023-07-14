@@ -27,6 +27,16 @@ a {
     all: unset;
 }
 
+.truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; /* Number of lines to display */
+    line-height: 1.2; /* Adjust line height if needed */
+    max-height: 2.4em; /* Line height multiplied by the number of lines */
+    text-overflow: ellipsis;
+}
+
 .admin-background {
     background: var(--admin-background);
 }
