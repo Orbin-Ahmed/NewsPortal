@@ -23,9 +23,9 @@
                     {% endif %}
                     <div class="col-md-2">
                         <div class="card" style="{% if forloop.counter0|mod:2 == 1 %}background:var(--card-primary-bg){% else %}background:var(--card-secondary-bg){% endif %}">
-                            <img src="{% if data.image %}{{ data.image }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top" alt="...">
+                            <img src="{% if data.image %}{{ data.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top img-fluid" alt="..." style="height: 150px;">
                             <div class="card-body">
-                                <a href="/news-details/{{ data.id }}/" style="cursor: pointer;"><h5 class="card-headline">{{ data.bangla_title }}</h5></a>
+                                <a href="/news-details/{{ data.id }}/" style="cursor: pointer;"><h5 class="card-headline truncate">{{ data.bangla_title }}</h5></a>
                                 <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#approve_report_modal" onclick="document.getElementById('approve_post_id_anchor').href = '/approve-post/{{ data.id }}/'">
                                     <img src="{% static 'logo/approve_tick.svg' %}">
                                 </button>

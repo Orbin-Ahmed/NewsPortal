@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Moderator Dashboard</title>
     {% load static %}
+    {% load mathfilters %}
     {% include 'root/css.html' %}
     <style>
         .form-control:focus {
@@ -30,106 +31,25 @@
                     </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-evenly mt-3 mb-4">
+            {% for data in admin_news_list %}
+                {% if forloop.counter0|mod:4 == 0 %}
+                    <div class="row d-flex justify-content-evenly mt-4 mb-4">
+                {% endif %}
                 <div class="col-md-2">
-                    <div class="card" style="background: var(--card-primary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
+                    <div class="card" style="{% if forloop.counter0|mod:2 == 1 %}background:var(--card-primary-bg){% else %}background:var(--card-secondary-bg){% endif %}">
+                        <img src="{% if data.image %}{{ data.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
+                            <a href="/news-details/{{ data.id }}/" style="cursor: pointer;"><h5 class="card-headline">{{ data.bangla_title }}</h5></a>
+                            <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#admin_delete_report_modal" onclick="document.getElementById('delete_post_id_anchor').href = '/delete-news/{{ data.id }}/'">
+                                <img src="{% static 'logo/delete.svg' %}">
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="card" style="background: var(--card-secondary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
-                            </button>
-                        </div>
+                {% if forloop.counter0|mod:4 == 3 or loop.last %}
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card" style="background: var(--card-primary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card" style="background: var(--card-secondary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-evenly mt-4 mb-3">
-                <div class="col-md-2">
-                    <div class="card" style="background: var(--card-primary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card" style="background: var(--card-secondary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card" style="background: var(--card-primary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card" style="background: var(--card-secondary-bg)">
-                        <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal"
-                                    data-bs-target="#admin_delete_report_modal"><img
-                                    src="{% static 'logo/delete.svg' %}">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
