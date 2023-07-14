@@ -1,8 +1,9 @@
 from datetime import datetime
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import make_password
 
-from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag, SpecialNews
+from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag, SpecialNews, User
 
 
 # login call -> returns None if not authenticated
@@ -167,3 +168,87 @@ def remove_from_special(post_id, post_type):
         post_object.save()
     else:
         return "incorrect type"
+
+
+# admin view all approved news
+def admin_view(request):
+    if request.user.user_type == 1:
+        post_list = Post.objects.filter(is_approved=True)
+        return post_list
+    else:
+        return False
+
+
+# date filter admin view all approved news
+def filter_admin_view(request, date):
+    if request.user.user_type == 1:
+        post_list = Post.objects.filter(is_approved=True, date_created=date)
+        return post_list
+    else:
+        return False
+
+
+# admin delete news
+def delete_news(request, post_id):
+    if request.user.user_type == 1:
+        post = Post.objects.get(id=post_id)
+        post.delete()
+        return True
+    else:
+        return None
+
+
+# suspend
+def suspend_user(request, username):
+    user_object = User.objects.get(username=username)
+    if request.user.user_type == 1:
+        user_object.is_suspended = True
+        user_object.save()
+        return True
+    elif request.user.user_type == 2:
+        if user_object.user_type == 3:
+            user_object.is_suspended = True
+            user_object.save()
+            return True
+        else:
+            return "cant suspend same rank"
+    else:
+        return False
+
+
+# change pass
+def pass_update(request, username, new_pass1, new_pass2):
+    if new_pass1 != new_pass2:
+        return "Password mismatch"
+    else:
+        user_object = User.objects.get(username=username)
+        if request.user.user_type == 1:
+            user_object.password = make_password(new_pass1)
+            user_object.save()
+            return True
+        elif request.user.user_type == 2:
+            if user_object.user_type == 3:
+                user_object.password = make_password(new_pass1)
+                user_object.save()
+                return True
+            else:
+                return "cant suspend same rank"
+        else:
+            return False
+
+
+def reporter_list():
+    user_list = User.objects.filter(user_type=3)
+    the_list = []
+    for i in user_list:
+        the_list.append(i.username)
+    return the_list
+
+
+def moderator_list():
+    user_list = User.objects.filter(user_type=2)
+    the_list = []
+    for i in user_list:
+        the_list.append(i.username)
+    return the_list
+
