@@ -97,6 +97,10 @@ def moderator_status(request):
     return render(request, 'admin/moderator_status.html')
 
 
+def reporter_suspend(request):
+    return render(request, 'admin/admin_reporter_status.html')
+
+
 def focus_news(request):
     return render(request, 'moderator/focus_news.html')
 
