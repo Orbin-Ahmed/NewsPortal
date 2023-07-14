@@ -135,6 +135,8 @@ def post_details(post_id):
 # add to special
 def add_to_special(post_id, post_type):
     post_object = Post.objects.get(id=post_id)
+    if not SpecialNews.objects.filter(post=post_object):
+        SpecialNews.objects.create(post=post_object)
     if post_type == "headline":
         if SpecialNews.objects.filter(is_headline=True).count() > 29:
             return "remove headlines"
