@@ -47,8 +47,9 @@ def post_report(request, bangla_title, bangla_content, bangla_tag, bangla_catego
         i = i.lower()
         tag_object = EnglishTag.objects.filter(the_tag=i)
         if tag_object:
-            tag_object.post.add(report_object)
-            tag_object.save()
+            for each in tag_object:
+                each.post.add(report_object)
+                each.save()
         else:
             new_tag_object = EnglishTag.objects.create(the_tag=i)
             new_tag_object.post.add(report_object)
@@ -57,8 +58,9 @@ def post_report(request, bangla_title, bangla_content, bangla_tag, bangla_catego
     for i in bangla_tag:
         tag_object = BanglaTag.objects.filter(the_tag=i)
         if tag_object:
-            tag_object.post.add(report_object)
-            tag_object.save()
+            for each in tag_object:
+                each.post.add(report_object)
+                each.save()
         else:
             new_tag_object = BanglaTag.objects.create(the_tag=i)
             new_tag_object.post.add(report_object)
