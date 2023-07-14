@@ -16,4 +16,5 @@ urlpatterns = [
     path('moderator/', views.moderator_status),  # Admin
     path('reporter-suspend/', views.reporter_suspend),  # Admin
     path('approve-post/<post_id>/', views.approve_post_view),  # Function start
+    path('password-update/', views.password_update),
 ]

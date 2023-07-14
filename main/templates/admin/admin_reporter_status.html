@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Moderator Dashboard</title>
     {% load static %}
+    {% load mathfilters %}
     {% include 'root/css.html' %}
 </head>
 <body>
@@ -16,82 +17,27 @@
         </div>
         <div class="col-md-10">
             <p class="headline text-center mt-2">Reporters</p>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 1</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_suspend_modal">Suspend
-                                </button>
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_pass_modal">Change password
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 2</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_suspend_modal">Suspend
-                                </button>
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_pass_modal">Change password
-                                </button>
+            {% for data in list_reporter %}
+                <div class="row d-flex justify-content-center mt-3 mb-4">
+                    <div class="col-md-5">
+                        <div class="card" style="{% if forloop.counter0|mod:2 == 1 %}background:var(--card-primary-bg){% else %}background:var(--card-secondary-bg){% endif %};padding: 1rem 1.5rem">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-6">
+                                    <p class="login-text m-auto">{{ data }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn news-secondary-btn" data-bs-toggle="modal"
+                                            data-bs-target="#reporter_suspend_modal">Suspend
+                                    </button>
+                                    <button class="btn news-secondary-btn" data-bs-toggle="modal"
+                                            data-bs-target="#reporter_pass_modal" onclick="document.getElementById('user_name_field').value = '{{ data }}'">Change password
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 3</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_suspend_modal">Suspend
-                                </button>
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_pass_modal">Change password
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 4</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_suspend_modal">Suspend
-                                </button>
-                                <button class="btn news-secondary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#reporter_pass_modal">Change password
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
