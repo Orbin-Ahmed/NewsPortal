@@ -201,7 +201,6 @@ def password_update(request):
         username = request.POST['user_name']
         new_pass1 = request.POST['change_pass']
         new_pass2 = request.POST['re_pass']
-        print(username)
         user_obj = request.user
         if user_obj == AnonymousUser():
             return HttpResponseRedirect('/')
