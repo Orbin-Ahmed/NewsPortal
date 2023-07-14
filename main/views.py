@@ -46,7 +46,7 @@ def moderator_status(request):
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
         list_moderator = moderator_list()
-    return render(request, 'admin/moderator_status.html', {'user_name': user_obj, 'list_moderator': list_moderator})
+        return render(request, 'admin/moderator_status.html', {'user_name': user_obj, 'list_moderator': list_moderator})
 
 
 def reporter_suspend(request):
@@ -56,7 +56,8 @@ def reporter_suspend(request):
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
         list_reporter = reporter_list()
-    return render(request, 'admin/admin_reporter_status.html', {'user_name': user_obj, 'list_reporter': list_reporter})
+        return render(request, 'admin/admin_reporter_status.html',
+                      {'user_name': user_obj, 'list_reporter': list_reporter})
 
 
 # Admin View End
@@ -223,3 +224,12 @@ def password_update(request):
                 return HttpResponseRedirect('/admin-news/')
             else:
                 print("False")
+
+
+def suspend_user_view(request, username):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type != 3:
+        suspend_user(request, username)
+        return HttpResponseRedirect('/admin-news/')
