@@ -63,7 +63,7 @@ def publish_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
         return HttpResponseRedirect('/')
-    else:
+    elif user_obj.user_type == 3:
         user_obj = user_obj.username
         if request.method == "POST":
             title_bn = request.POST['newsTitleBN']
@@ -84,10 +84,19 @@ def publish_news(request):
                             tag_en,
                             category_en)
         return render(request, 'reporter/newReport.html', {'user_name': user_obj})
+    else:
+        return HttpResponseRedirect('/')
 
 
 def edit_news(request):
-    return render(request, 'reporter/editReport.html')
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 3:
+        user_obj = user_obj.username
+        return render(request, 'reporter/editReport.html', {'user_name': user_obj})
+    else:
+        return HttpResponseRedirect('/')
 
 
 # Reporter View End
