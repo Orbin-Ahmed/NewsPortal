@@ -1,0 +1,52 @@
+{% load static %}
+<div>
+    <div>
+        <p class="headline-medium mt-4" style="margin-left: 0.5rem">{{ user_name }}</p>
+    </div>
+    <div>
+        <ul class="list-unstyled ps-0" style="position: relative">
+
+            <li class="mb-1" style="position: relative">
+                <a href="/admin-news/">
+                    <button class="btn">
+                        <img style="margin-right: 0.5rem" width="24" height="24"
+                             src="{% static '/logo/newWork.svg' %}" alt="">
+                        <span class="label-medium">All news</span>
+                    </button>
+                </a>
+            </li>
+
+
+            <li class="mb-1" style="position: relative">
+                <a href="/reporter/">
+                    <button class="btn">
+                        <img style="margin-right: 0.5rem" width="24" height="24"
+                             src="{% static '/logo/reporter.svg' %}" alt="">
+                        <span class="label-medium">Reporters</span>
+                    </button>
+                </a>
+            </li>
+
+            <li class="mb-1" style="position: relative">
+                <a href="/moderator/">
+                    <button class="btn">
+                        <img style="margin-right: 0.5rem" width="24" height="24"
+                             src="{% static '/logo/reporter.svg' %}" alt="">
+                        <span class="label-medium">Moderators</span>
+                    </button>
+                </a>
+            </li>
+
+            <span class="label-light" style="margin-left: 0.5rem;color: var(--sc);">Warning</span>
+            <a style="all: unset;" href="/">
+                <li class="mb-1" style="position: relative;">
+                    <button class="btn">
+                        <img style="margin-right: 0.5rem" width="24" height="24"
+                             src="{% static '/logo/logout.svg' %}" alt="">
+                        <span class="label-medium">Logout</span>
+                    </button>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>

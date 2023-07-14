@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moderator Dashboard</title>
+    {% load static %}
+    {% include 'root/css.html' %}
+</head>
+<body>
+<div class="container-fluid admin-background">
+    {% include 'admin_nav.html' %}
+    <div class="row d-flex justify-content-between">
+        <div class="col-md-2" style="background: var(--white)">
+            {% include 'sidebar/admin_sidebar.html' %}
+        </div>
+        <div class="col-md-10">
+            <p class="headline text-center mt-2">Moderators</p>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Moderator 1</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
+                                        data-bs-target="#suspend_modal">Suspend
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Moderator 2</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
+                                        data-bs-target="#suspend_modal">Suspend
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Moderator 3</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
+                                        data-bs-target="#suspend_modal">Suspend
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3 mb-4">
+                <div class="col-md-5">
+                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <p class="login-text m-auto">Moderator 4</p>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
+                                        data-bs-target="#suspend_modal">Suspend
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'root/js.html' %}
+{% include 'modal/suspend.html' %}
+</body>
+</html>

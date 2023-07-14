@@ -12,5 +12,7 @@ urlpatterns = [
     path('reporter/', views.reporter_status),
     path('focus-news/', views.focus_news),
     path('news-details/<news_id>/', views.news_details),
+    path('admin-news/', views.admin_news),
+    path('moderator/', views.moderator_status),
     path('approve-post/<post_id>/', views.approve_post_view),  # Function start
 ]

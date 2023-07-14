@@ -21,7 +21,7 @@ def login(request):
             elif user_object.user_type == 2:
                 return HttpResponseRedirect('/pending-news/')
             else:
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/admin-news/')
         else:
             print("Invalid")
             return HttpResponseRedirect('/')
@@ -59,6 +59,10 @@ def edit_news(request):
     return render(request, 'reporter/editReport.html')
 
 
+def admin_news(request):
+    return render(request, 'admin/admin_news.html')
+
+
 def pending_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
@@ -87,6 +91,10 @@ def rolling_headlines(request):
 
 def reporter_status(request):
     return render(request, 'moderator/reporter_status.html')
+
+
+def moderator_status(request):
+    return render(request, 'admin/moderator_status.html')
 
 
 def focus_news(request):
