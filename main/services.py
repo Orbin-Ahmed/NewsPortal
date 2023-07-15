@@ -169,13 +169,13 @@ def remove_from_special(post_id, post_type):
     post_object = Post.objects.get(id=post_id)
     if post_type == "headline":
         post_object.specialnews.is_headline = False
-        post_object.save()
+        post_object.specialnews.save()
     elif post_type == "trending":
         post_object.specialnews.is_trending = False
-        post_object.save()
+        post_object.specialnews.save()
     elif post_type == "focus":
         post_object.specialnews.is_focus = False
-        post_object.save()
+        post_object.specialnews.save()
     else:
         return "incorrect type"
 
