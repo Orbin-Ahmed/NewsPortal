@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Moderator Dashboard</title>
     {% load static %}
+    {% load mathfilters %}
     {% include 'root/css.html' %}
 </head>
 <body>
@@ -16,70 +17,27 @@
         </div>
         <div class="col-md-10">
             <p class="headline text-center mt-2">Reporters</p>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 1</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
-                                        data-bs-target="#suspend_modal">Suspend
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 2</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
-                                        data-bs-target="#suspend_modal">Suspend
-                                </button>
+            {% for data in list_reporter %}
+                <div class="row d-flex justify-content-center mt-3 mb-4">
+                    <div class="col-md-5">
+                        <div class="card" style="{% if forloop.counter0|mod:2 == 1 %}background:var(--card-primary-bg){% else %}background:var(--card-secondary-bg){% endif %};padding: 1rem 1.5rem">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-6">
+                                    <p class="login-text m-auto">{{ data.username }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
+                                            data-bs-target="#suspend_modal"
+                                            onclick="document.getElementById('moderator_r_suspend').innerHTML = '{% if data.is_suspended == False %}Once you suspend the user, the account will be temporarily locked from the system.{% else %}Once you reinstate the user, the account can access the system.{% endif %}'; document.getElementById('moderator_suspend_user_id').href = '/suspend-user-mod/{{ data.username }}/'">
+                                        {% if data.is_suspended == False %}
+                                            Suspend{% else %}Reinstate{% endif %}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-primary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 3</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
-                                        data-bs-target="#suspend_modal">Suspend
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center mt-3 mb-4">
-                <div class="col-md-5">
-                    <div class="card" style="background: var(--card-secondary-bg);padding: 1rem 1.5rem">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <p class="login-text m-auto">Reporter 4</p>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn news-secondary-btn float-end" data-bs-toggle="modal"
-                                        data-bs-target="#suspend_modal">Suspend
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
