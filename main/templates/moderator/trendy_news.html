@@ -23,7 +23,7 @@
                 {% endif %}
                 <div class="col-md-2">
                     <div class="card" style="{% if forloop.counter0|mod:2 == 1 %}background:var(--card-primary-bg){% else %}background:var(--card-secondary-bg){% endif %}">
-                        <img src="{% if data.image %}{{ data.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top img-fluid" alt="..." style="height: 150px;">
+                        <img src="{% if data.post.image %}{{ data.post.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top img-fluid" alt="..." style="height: 150px;">
                         <div class="card-body">
                             <h5 class="card-headline truncate">{{ data.post.bangla_title }}</h5>
                             <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#delete_report_modal"><img src="{% static 'logo/delete.svg' %}"></button>
