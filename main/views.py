@@ -128,8 +128,11 @@ def edit_news_redirect(request, post_id):
         category_en = request.POST['newsCategoryEN']
 
         news_image = request.FILES['news_image']
-        edit_post_obj = {''}
-        edit_post(request, )
+        edit_post_obj = {'bangla_title': title_bn, 'bangla_content': details_bn, 'bangla_tag': tag_bn,
+                         'bangla_category': category_bn, 'image': news_image, 'english_title': title_en,
+                         'english_content': details_en, 'english_tag': tag_en, 'english_category': category_en}
+        edit_post(request, post_id, edit_post_obj)
+        return HttpResponseRedirect('/publish-news/')
     my_date = bangla_date()
     user_obj = request.user
     if user_obj == AnonymousUser():
