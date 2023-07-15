@@ -317,65 +317,81 @@ def bangla_date():
     return bangla_object
 
 
-# reporter edits the post
+# # reporter edits the post
+# def edit_post(request, post_id, update_object):
+#     if request.user.user_type == 3:
+#         post_object = Post.objects.get(id=post_id)
+#         key_list = list(update_object.keys())
+#         for i in key_list:
+#             if i == "image":
+#                 post_object.image = update_object.get("image")
+#                 post_object.save()
+#             if i == "english_content":
+#                 post_object.english_content = update_object.get("english_content")
+#                 post_object.save()
+#             if i == "bangla_content":
+#                 post_object.bangla_content = update_object.get("bangla_content")
+#                 post_object.save()
+#             if i == "english_title":
+#                 post_object.english_title = update_object.get("english_title")
+#                 post_object.save()
+#             if i == "bangla_title":
+#                 post_object.bangla_title = update_object.get("bangla_title")
+#                 post_object.save()
+#             if i == "english_category":
+#                 post_object.english_category = update_object.get("english_category")
+#                 post_object.save()
+#             if i == "bangla_category":
+#                 post_object.bangla_category = update_object.get("bangla_category")
+#                 post_object.save()
+#             # send me all the new tags, previous tags will be deleted
+#             if i == "english_tag":
+#                 the_tag = update_object.get("english_tag").lower()
+#                 for j in the_tag:
+#                     remove_tag_objects = EnglishTag.objects.filter(post=post_object)
+#                     for each in remove_tag_objects:
+#                         each.post.remove(post_object)
+#                     add_tag_objects = EnglishTag.objects.filter(the_tag=j)
+#                 if add_tag_objects:
+#                     for each in add_tag_objects:
+#                         each.post.add(post_object)
+#                         each.save()
+#                 else:
+#                     new_tag_object = EnglishTag.objects.create(the_tag=j)
+#                     new_tag_object.post.add(post_object)
+#                     new_tag_object.save()
+#             # send me all the new tags, previous tags will be deleted
+#             if i == "bangla_tag":
+#                 the_tag = update_object.get("bangla_tag").lower()
+#                 for j in the_tag:
+#                     remove_tag_objects = BanglaTag.objects.filter(post=post_object)
+#                     for each in remove_tag_objects:
+#                         each.post.remove(post_object)
+#                     add_tag_objects = BanglaTag.objects.filter(the_tag=j)
+#                 if add_tag_objects:
+#                     for each in add_tag_objects:
+#                         each.post.add(post_object)
+#                         each.save()
+#                 else:
+#                     new_tag_object = BanglaTag.objects.create(the_tag=j)
+#                     new_tag_object.post.add(post_object)
+#                     new_tag_object.save()
+#         return True
+#     else:
+#         return None
+
 def edit_post(request, post_id, update_object):
     if request.user.user_type == 3:
         post_object = Post.objects.get(id=post_id)
-        key_list = list(update_object.keys())
-        for i in key_list:
-            if i == "image":
-                post_object.image = update_object.get("image")
-                post_object.save()
-            if i == "english_content":
-                post_object.english_content = update_object.get("english_content")
-                post_object.save()
-            if i == "bangla_content":
-                post_object.bangla_content = update_object.get("bangla_content")
-                post_object.save()
-            if i == "english_title":
-                post_object.english_title = update_object.get("english_title")
-                post_object.save()
-            if i == "bangla_title":
-                post_object.bangla_title = update_object.get("bangla_title")
-                post_object.save()
-            if i == "english_category":
-                post_object.english_category = update_object.get("english_category")
-                post_object.save()
-            if i == "bangla_category":
-                post_object.bangla_category = update_object.get("bangla_category")
-                post_object.save()
-            # send me all the new tags, previous tags will be deleted
-            if i == "english_tag":
-                the_tag = update_object.get("english_tag").lower()
-                for j in the_tag:
-                    remove_tag_objects = EnglishTag.objects.filter(post=post_object)
-                    for each in remove_tag_objects:
-                        each.post.remove(post_object)
-                    add_tag_objects = EnglishTag.objects.filter(the_tag=j)
-                if add_tag_objects:
-                    for each in add_tag_objects:
-                        each.post.add(post_object)
-                        each.save()
-                else:
-                    new_tag_object = EnglishTag.objects.create(the_tag=j)
-                    new_tag_object.post.add(post_object)
-                    new_tag_object.save()
-            # send me all the new tags, previous tags will be deleted
-            if i == "bangla_tag":
-                the_tag = update_object.get("bangla_tag").lower()
-                for j in the_tag:
-                    remove_tag_objects = BanglaTag.objects.filter(post=post_object)
-                    for each in remove_tag_objects:
-                        each.post.remove(post_object)
-                    add_tag_objects = BanglaTag.objects.filter(the_tag=j)
-                if add_tag_objects:
-                    for each in add_tag_objects:
-                        each.post.add(post_object)
-                        each.save()
-                else:
-                    new_tag_object = BanglaTag.objects.create(the_tag=j)
-                    new_tag_object.post.add(post_object)
-                    new_tag_object.save()
-        return True
-    else:
-        return None
+        post_object.delete()
+        return post_report(request,
+                           update_object.get("bangla_title"),
+                           update_object.get("bangla_content"),
+                           update_object.get("bangla_tag"),
+                           update_object.get("bangla_category"),
+                           update_object.get("image"),
+                           update_object.get("english_title"),
+                           update_object.get("english_content"),
+                           update_object.get("english_tag"),
+                           update_object.get("english_category")
+                           )
