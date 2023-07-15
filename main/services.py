@@ -1,5 +1,5 @@
-from datetime import datetime
-
+from datetime import datetime, date
+import pybengali
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 
@@ -129,7 +129,14 @@ def reporter_view(request):
 # return post object
 def post_details(post_id):
     post_object = Post.objects.get(id=post_id)
-    return post_object
+    bn_tag = BanglaTag.objects.get(post=post_object).the_tag
+    en_tag = EnglishTag.objects.get(post=post_object).the_tag
+    new_object = {
+        "bn_tag": bn_tag,
+        "en_tag": en_tag
+    }
+    new_object.update(post_object)
+    return new_object
 
 
 # add to special
@@ -292,3 +299,33 @@ def moderator_list():
         }
         the_list.append(the_object)
     return the_list
+
+
+def headline_list():
+    return SpecialNews.objects.filter(is_headline=True)
+
+
+def trending_list():
+    return SpecialNews.objects.filter(is_trending=True)
+
+
+def bangla_date():
+    bangla_object = pybengali.today()
+    today = date.today().split("-")
+    english_object = {
+        "english_year": pybengali.convert_e2b_digit(today[0]),
+        "english_month": pybengali.eng_month_to_bengali(today[1]),
+        "english_date": pybengali.convert_e2b_digit(today[2])
+    }
+    bangla_object.update(english_object)
+    return bangla_object
+
+
+# reporter edits the post
+def edit_post(request, post_id):
+    if request.user.user_type == 3:
+        post_object = Post.objects.get(id=post_id)
+
+    else:
+        return None
+
