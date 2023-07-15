@@ -11,6 +11,7 @@ from .services import *
 
 
 def login(request):
+    my_date = bangla_date()
     if request.method == "POST":
         username = request.POST['usernameInput']
         password = request.POST['passwordInput']
@@ -25,7 +26,7 @@ def login(request):
         else:
             print("Invalid")
             return HttpResponseRedirect('/')
-    return render(request, 'auth/login.html')
+    return render(request, 'auth/login.html', {'date': my_date})
 
 
 # Admin View Start
@@ -111,6 +112,7 @@ def edit_news_redirect(request, post_id):
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 3:
         news_details_info = post_details(post_id)
+        print(news_details_info)
         return render(request, 'reporter/newReport.html',
                       {'user_name': user_obj, 'news_data': news_details_info})
 
