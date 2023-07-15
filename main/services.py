@@ -307,20 +307,58 @@ def trending_list():
 
 def bangla_date():
     bangla_object = pybengali.today()
-    today = date.today().split("-")
+    today = date.today()
     english_object = {
-        "english_year": pybengali.convert_e2b_digit(today[0]),
-        "english_month": pybengali.eng_month_to_bengali(today[1]),
-        "english_date": pybengali.convert_e2b_digit(today[2])
+        "english_year": pybengali.convert_e2b_digit(date.today().year),
+        "english_month": pybengali.eng_month_to_bengali(date.today().month),
+        "english_date": pybengali.convert_e2b_digit(date.today().day)
     }
     bangla_object.update(english_object)
     return bangla_object
 
 
 # reporter edits the post
-def edit_post(request, post_id):
+def edit_post(request, post_id, update_object):
+    object1 = {
+        "post_id": 5,
+        "title": "is the title"
+
+    }
     if request.user.user_type == 3:
         post_object = Post.objects.get(id=post_id)
+        key_list = list(object1.keys())
+        for i in key_list:
+            if i == "image":
+                post_object.image = update_object.get("image")
+                post_object.save()
+            if i == "english_content":
+                post_object.english_content = update_object.get("english_content")
+                post_object.save()
+            if i == "bangla_content":
+                post_object.bangla_content = update_object.get("bangla_content")
+                post_object.save()
+            if i == "english_title":
+                post_object.english_title = update_object.get("english_title")
+                post_object.save()
+            if i == "bangla_title":
+                post_object.bangla_title = update_object.get("bangla_title")
+                post_object.save()
+            if i == "english_category":
+                post_object.english_category = update_object.get("english_category")
+                post_object.save()
+            if i == "bangla_category":
+                post_object.bangla_category = update_object.get("bangla_category")
+                post_object.save()
+            if i == "english_tag":
+                the_tag = update_object.get("english_tag").lower()
+                tag_object = EnglishTag.objects.filter(the_tag=the_tag)
+                if tag_object:
+                    for each in tag_object:
+                        each.post.remove(post_object)
+                        each.post.add
+
+
+
 
     else:
         return None
