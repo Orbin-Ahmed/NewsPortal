@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Reporter Dashboard</title>
     {% load static %}
+    {% load mathfilters %}
     {% include 'root/css.html' %}
 </head>
 <body>
@@ -16,15 +17,16 @@
         </div>
         <div class="col-md-10">
             <p class="headline text-center mt-2">Editable report</p>
-            {% for data in all_news_list %}
+            {% for data in edit_news_list %}
                 {% if forloop.counter0|mod:4 == 0 %}
                     <div class="row d-flex justify-content-evenly mt-4 mb-4">
                 {% endif %}
                 <div class="col-md-2">
                     <div class="card" style="{% if forloop.counter0|mod:2 == 1 %}background:var(--card-primary-bg){% else %}background:var(--card-secondary-bg){% endif %}">
-                        <img src="{% if data.image %}{{ data.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top img-fluid" alt="..." style="height: 150px;">
+                        <img src="{% if data.image %}{{ data.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top img-fluid" alt="img" style="height: 150px;">
                         <div class="card-body">
                             <h5 class="card-headline truncate">{{ data.bangla_title }}</h5>
+                            <a href="/edit-news-redirect/{{ data.id }}/" class="btn news-primary-btn float-end" style="width: unset">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -35,7 +37,6 @@
         </div>
     </div>
 </div>
-<a href="#" class="btn news-primary-btn float-end" style="width: unset">Edit</a>
 {% include 'root/js.html' %}
 </body>
 </html>

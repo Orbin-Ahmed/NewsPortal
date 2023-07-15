@@ -105,6 +105,16 @@ def publish_news(request):
         return HttpResponseRedirect('/')
 
 
+def edit_news_redirect(request, post_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 3:
+        news_details_info = post_details(post_id)
+        return render(request, 'reporter/newReport.html',
+                      {'user_name': user_obj, 'news_data': news_details_info})
+
+
 def edit_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
