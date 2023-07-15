@@ -114,6 +114,22 @@ def publish_news(request):
 
 
 def edit_news_redirect(request, post_id):
+    if request.method == "POST":
+        title_bn = request.POST['newsTitleBN']
+        details_bn = request.POST['detailsNewsBN']
+        tag_bn = request.POST['newsTagBN']
+        tag_bn = [tag_bn]
+        category_bn = request.POST['newsCategoryBN']
+
+        title_en = request.POST['newsTitleEn']
+        details_en = request.POST['detailsNewsEN']
+        tag_en = request.POST['newsTagEN']
+        tag_en = [tag_en]
+        category_en = request.POST['newsCategoryEN']
+
+        news_image = request.FILES['news_image']
+        edit_post_obj = {''}
+        edit_post(request, )
     my_date = bangla_date()
     user_obj = request.user
     if user_obj == AnonymousUser():
