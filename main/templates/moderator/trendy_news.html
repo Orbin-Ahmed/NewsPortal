@@ -26,7 +26,7 @@
                         <img src="{% if data.post.image %}{{ data.post.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}" class="card-img-top img-fluid" alt="..." style="height: 150px;">
                         <div class="card-body">
                             <h5 class="card-headline truncate">{{ data.post.bangla_title }}</h5>
-                            <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#delete_report_modal"><img src="{% static 'logo/delete.svg' %}"></button>
+                            <button class="btn p-0 float-end" data-bs-toggle="modal" data-bs-target="#delete_report_modal" onclick="document.getElementById('add_to_delete_anchor_id').href = '/remove-from-something/{{ data.post.id }}/trending/'"><img src="{% static 'logo/delete.svg' %}"></button>
                         </div>
                     </div>
                 </div>
