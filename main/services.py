@@ -169,13 +169,13 @@ def remove_from_special(post_id, post_type):
     post_object = Post.objects.get(id=post_id)
     if post_type == "headline":
         post_object.specialnews.is_headline = False
-        post_object.save()
+        post_object.specialnews.save()
     elif post_type == "trending":
         post_object.specialnews.is_trending = False
-        post_object.save()
+        post_object.specialnews.save()
     elif post_type == "focus":
         post_object.specialnews.is_focus = False
-        post_object.save()
+        post_object.specialnews.save()
     else:
         return "incorrect type"
 
@@ -319,14 +319,9 @@ def bangla_date():
 
 # reporter edits the post
 def edit_post(request, post_id, update_object):
-    object1 = {
-        "post_id": 5,
-        "title": "is the title"
-
-    }
     if request.user.user_type == 3:
         post_object = Post.objects.get(id=post_id)
-        key_list = list(object1.keys())
+        key_list = list(update_object.keys())
         for i in key_list:
             if i == "image":
                 post_object.image = update_object.get("image")
