@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [path('', views.login),
                path('publish-news/', views.publish_news),  # Reporter
                path('edit-news/', views.edit_news),  # Reporter
+               path('edit-news-redirect/<post_id>/', views.edit_news_redirect),  # Reporter
                path('pending-news/', views.pending_news),  # Moderator
                path('all-news/', views.all_news),  # Moderator
                path('trendy-news/', views.trendy_news),  # Moderator
@@ -22,6 +23,7 @@ urlpatterns = [path('', views.login),
                path('delete-news/<post_id>/', views.delete_news_view),
                path('delete-news-mod/<post_id>/', views.delete_news_mod_view),
                path('suspend-user/<username>/', views.suspend_user_view),
+               path('suspend-user-mod/<username>/', views.suspend_mod_user_view),
                path('add-to-something/<post_id>/<post_type>/', views.add_to_something),
                path('password-update/', views.password_update),
                ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

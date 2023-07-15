@@ -36,7 +36,7 @@ def admin_news(request):
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
         admin_news_list = admin_view(request)
-    return render(request, 'admin/admin_news.html', {'user_name': user_obj, 'admin_news_list': admin_news_list})
+        return render(request, 'admin/admin_news.html', {'user_name': user_obj, 'admin_news_list': admin_news_list})
 
 
 def moderator_status(request):
@@ -105,13 +105,24 @@ def publish_news(request):
         return HttpResponseRedirect('/')
 
 
+def edit_news_redirect(request, post_id):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type == 3:
+        news_details_info = post_details(post_id)
+        return render(request, 'reporter/newReport.html',
+                      {'user_name': user_obj, 'news_data': news_details_info})
+
+
 def edit_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 3:
         user_obj = user_obj.username
-        return render(request, 'reporter/editReport.html', {'user_name': user_obj})
+        edit_news_list = reporter_view(request)
+        return render(request, 'reporter/editReport.html', {'user_name': user_obj, 'edit_news_list': edit_news_list})
     else:
         return HttpResponseRedirect('/')
 
@@ -173,7 +184,9 @@ def reporter_status(request):
         return HttpResponseRedirect('/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
-        return render(request, 'moderator/reporter_status.html', {'user_name': user_obj})
+        list_reporter = reporter_list()
+        return render(request, 'moderator/reporter_status.html',
+                      {'user_name': user_obj, 'list_reporter': list_reporter})
     else:
         return HttpResponseRedirect('/')
 
@@ -272,6 +285,15 @@ def suspend_user_view(request, username):
     elif user_obj.user_type != 3:
         suspend_user(request, username)
         return HttpResponseRedirect('/admin-news/')
+
+
+def suspend_mod_user_view(request, username):
+    user_obj = request.user
+    if user_obj == AnonymousUser():
+        return HttpResponseRedirect('/')
+    elif user_obj.user_type != 3:
+        suspend_user(request, username)
+        return HttpResponseRedirect('/reporter/')
 
 
 def add_to_something(request, post_id, post_type):
