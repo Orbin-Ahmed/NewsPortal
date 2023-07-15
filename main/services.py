@@ -135,24 +135,29 @@ def post_details(post_id):
 # add to special
 def add_to_special(post_id, post_type):
     post_object = Post.objects.get(id=post_id)
+    if not SpecialNews.objects.filter(post=post_object):
+        SpecialNews.objects.create(post=post_object)
     if post_type == "headline":
         if SpecialNews.objects.filter(is_headline=True).count() > 29:
             return "remove headlines"
         else:
             post_object.specialnews.is_headline = True
             post_object.save()
+            return True
     elif post_type == "trending":
         if SpecialNews.objects.filter(is_trending=True).count() > 29:
             return "remove trending"
         else:
             post_object.specialnews.is_trending = True
             post_object.save()
+            return True
     elif post_type == "focus":
         if SpecialNews.objects.filter(is_focus=True).count() > 29:
             return "remove focus"
         else:
             post_object.specialnews.is_focus = True
             post_object.save()
+            return True
     else:
         return "incorrect type"
 
@@ -174,7 +179,7 @@ def remove_from_special(post_id, post_type):
 
 # admin view all approved news
 def admin_view(request):
-    if request.user.user_type == 1:
+    if request.user.user_type == 1 or request.user.user_type == 2:
         post_list = Post.objects.filter(is_approved=True)
         return post_list
     else:
