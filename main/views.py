@@ -59,11 +59,11 @@ def admin_news_details(request, news_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
         return HttpResponseRedirect('/login/')
-    elif user_obj.user_type == 1:
+    elif user_obj.user_type != 3:
         user_obj = user_obj.username
         news_details_info = post_details(news_id)
-        news_details_info.bangla_content = re.sub(r'\r?\n', '', news_details_info.bangla_content)
-        news_details_info.english_content = re.sub(r'\r?\n', '', news_details_info.english_content)
+        news_details_info[2].bangla_content = re.sub(r'\r?\n', '', news_details_info[2].bangla_content)
+        news_details_info[2].english_content = re.sub(r'\r?\n', '', news_details_info[2].english_content)
         return render(request, 'admin/admin_news_details.html',
                       {'user_name': user_obj, 'news_details': news_details_info, 'date': my_date})
 
@@ -232,8 +232,9 @@ def news_details(request, news_id):
     elif user_obj.user_type != 3:
         user_obj = user_obj.username
         news_details_info = post_details(news_id)
-        news_details_info.bangla_content = re.sub(r'\r?\n', '', news_details_info.bangla_content)
-        news_details_info.english_content = re.sub(r'\r?\n', '', news_details_info.english_content)
+        print(news_details_info)
+        news_details_info[2].bangla_content = re.sub(r'\r?\n', '', news_details_info[2].bangla_content)
+        news_details_info[2].english_content = re.sub(r'\r?\n', '', news_details_info[2].english_content)
         return render(request, 'moderator/report_details.html',
                       {'news_details': news_details_info, 'user_name': user_obj, 'date': my_date})
     else:
