@@ -17,8 +17,8 @@
         <div class="col-md-10">
             <div class="row d-flex justify-content-around align-items-center mt-3">
                 <div class="offset-1 col-8">
-                    <p class="report-headline" id="report_headline">{{ news_details.bangla_title }}</p>
-                    <P><b>Reported by</b> : {{ news_details.reporter }}</P>
+                    <p class="report-headline" id="report_headline">{{ news_details.2.bangla_title }}</p>
+                    <P><b>Reported by</b> : {{ news_details.2.reporter }}</P>
                 </div>
                 <div class="col-2">
                     <label class="toggle" onclick="toggleLanguage()">
@@ -27,7 +27,7 @@
                         <span class="toggle-handle"></span>
                     </label>
                     <div class="mt-3">
-                        <a href="/delete-news/{{ news_details.id }}/">
+                        <a href="/delete-news/{{ news_details.2.id }}/">
                             <button class="btn news-tertiary-btn">Delete</button>
                         </a>
                     </div>
@@ -37,12 +37,13 @@
                 <div class="col-10 text-center">
                     <img class="img-fluid" src="
 
-                            {% if news_details.image %}{{ news_details.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}"
+
+                            {% if news_details.2.image %}{{ news_details.2.image.url }}{% else %}{% static 'images/placeholder.png' %}{% endif %}"
                          style="height: 500px">
                 </div>
                 <div class="col-10 mt-3">
                     <p style="text-align: justify;text-justify: inter-word;margin: 0 3rem"
-                       id="report_content">{{ news_details.bangla_content }}</p>
+                       id="report_content">{{ news_details.2.bangla_content }}</p>
                 </div>
             </div>
         </div>
@@ -56,11 +57,11 @@
         let toggleInput = document.querySelector(".toggle-input");
 
         if (toggleInput.checked) {
-            headline.innerHTML = "{{ news_details.bangla_title }}";
-            content.innerHTML = "{{ news_details.bangla_content }}";
+            headline.innerHTML = "{{ news_details.2.bangla_title }}";
+            content.innerHTML = "{{ news_details.2.bangla_content }}";
         } else {
-            headline.innerHTML = "{{ news_details.english_title }}";
-            content.innerHTML = "{{ news_details.english_content }}";
+            headline.innerHTML = "{{ news_details.2.english_title }}";
+            content.innerHTML = "{{ news_details.2.english_content }}";
         }
     }
 </script>
