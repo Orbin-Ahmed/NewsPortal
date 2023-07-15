@@ -29,9 +29,14 @@ class EnglishCategoryAdmin(admin.ModelAdmin):
     pass
 
 
+class SpecialNewsAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.BanglaTag, BanglaTagAdmin)
 admin.site.register(models.EnglishTag, EnglishTagAdmin)
 admin.site.register(models.BanglaCategory, BanglaCategoryAdmin)
 admin.site.register(models.EnglishCategory, EnglishCategoryAdmin)
 admin.site.register(models.Post, PostAdmin)
+admin.site.register(models.SpecialNews, SpecialNewsAdmin)
