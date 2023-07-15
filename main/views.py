@@ -25,7 +25,7 @@ def login(request):
                 return HttpResponseRedirect('/admin-news/')
         else:
             print("Invalid")
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/login/')
     return render(request, 'auth/login.html', {'date': my_date})
 
 
@@ -33,7 +33,7 @@ def login(request):
 def admin_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
         admin_news_list = admin_view(request)
@@ -43,7 +43,7 @@ def admin_news(request):
 def moderator_status(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
         list_moderator = moderator_list()
@@ -53,7 +53,7 @@ def moderator_status(request):
 def admin_news_details(request, news_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
         news_details_info = post_details(news_id)
@@ -66,7 +66,7 @@ def admin_news_details(request, news_id):
 def reporter_suspend(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 1:
         user_obj = user_obj.username
         list_reporter = reporter_list()
@@ -80,7 +80,7 @@ def reporter_suspend(request):
 def publish_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 3:
         user_obj = user_obj.username
         if request.method == "POST":
@@ -103,13 +103,13 @@ def publish_news(request):
                             category_en)
         return render(request, 'reporter/newReport.html', {'user_name': user_obj})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 def edit_news_redirect(request, post_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 3:
         news_details_info = post_details(post_id)
         print(news_details_info)
@@ -120,13 +120,13 @@ def edit_news_redirect(request, post_id):
 def edit_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 3:
         user_obj = user_obj.username
         edit_news_list = reporter_view(request)
         return render(request, 'reporter/editReport.html', {'user_name': user_obj, 'edit_news_list': edit_news_list})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 # Reporter View End
@@ -135,7 +135,7 @@ def edit_news(request):
 def pending_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         pending_news_list = moderator_view(request)
@@ -143,65 +143,65 @@ def pending_news(request):
         return render(request, 'moderator/pending_news.html',
                       {'user_name': user_obj, 'pending_news_list': pending_news_list, 'loop_counter': loop_counter})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 def all_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         all_news_list = admin_view(request)
         return render(request, 'moderator/all_news.html', {'user_name': user_obj, 'all_news_list': all_news_list})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 def trendy_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         return render(request, 'moderator/trendy_news.html', {'user_name': user_obj})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 def rolling_headlines(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         return render(request, 'moderator/rolling_headline.html', {'user_name': user_obj})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 def reporter_status(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         list_reporter = reporter_list()
         return render(request, 'moderator/reporter_status.html',
                       {'user_name': user_obj, 'list_reporter': list_reporter})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 def focus_news(request):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
         return render(request, 'moderator/focus_news.html', {'user_name': user_obj})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 # Moderator View End
@@ -209,7 +209,7 @@ def focus_news(request):
 def news_details(request, news_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type != 3:
         user_obj = user_obj.username
         news_details_info = post_details(news_id)
@@ -218,14 +218,14 @@ def news_details(request, news_id):
         return render(request, 'moderator/report_details.html',
                       {'news_details': news_details_info, 'user_name': user_obj})
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
 
 
 # Single Api View start
 def approve_post_view(request, post_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         approve_post(request, post_id)
         return HttpResponseRedirect('/pending-news/')
@@ -234,7 +234,7 @@ def approve_post_view(request, post_id):
 def edit_post_view(request, post_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         re_edit_post(request, post_id)
         return HttpResponseRedirect('/pending-news/')
@@ -243,7 +243,7 @@ def edit_post_view(request, post_id):
 def delete_news_view(request, post_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type != 3:
         result = delete_news(request, post_id)
         if result:
@@ -255,7 +255,7 @@ def delete_news_view(request, post_id):
 def delete_news_mod_view(request, post_id):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type != 3:
         result = delete_news(request, post_id)
         if result:
@@ -271,7 +271,7 @@ def password_update(request):
         new_pass2 = request.POST['re_pass']
         user_obj = request.user
         if user_obj == AnonymousUser():
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/login/')
         elif user_obj.user_type == 1:
             result = pass_update(request, username, new_pass1, new_pass2)
             if result:
@@ -283,7 +283,7 @@ def password_update(request):
 def suspend_user_view(request, username):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type != 3:
         suspend_user(request, username)
         return HttpResponseRedirect('/admin-news/')
@@ -292,7 +292,7 @@ def suspend_user_view(request, username):
 def suspend_mod_user_view(request, username):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type != 3:
         suspend_user(request, username)
         return HttpResponseRedirect('/reporter/')
@@ -301,7 +301,7 @@ def suspend_mod_user_view(request, username):
 def add_to_something(request, post_id, post_type):
     user_obj = request.user
     if user_obj == AnonymousUser():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         result = add_to_special(post_id, post_type)
         return HttpResponseRedirect('/all-news/')
