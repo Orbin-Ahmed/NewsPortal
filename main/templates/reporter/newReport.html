@@ -24,19 +24,19 @@
                         <p class="sub-headline">বাংলা</p>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control admin-text-field" id="newsTitleBN" name="newsTitleBN"
-                                   placeholder="শিরোনাম" value="{{ news_data.2.bangla_title }}">
+                                   placeholder="শিরোনাম" value="{{ news_data.2.bangla_title }}" required>
                             <label for="newsTitleBN">শিরোনাম</label>
                         </div>
                         <div class="form-floating mb-3">
                         <textarea class="form-control admin-text-field" placeholder="বিস্তারিত সংবাদ" id="detailsNewsBN"
                                   name="detailsNewsBN"
-                                  style="height: 9rem">{{ news_data.2.bangla_content }}</textarea>
+                                  style="height: 9rem" required>{{ news_data.2.bangla_content }}</textarea>
                             <label for="detailsNewsBN">বিস্তারিত সংবাদ</label>
                         </div>
                         <div class="input-group mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control admin-text-field" id="newsTagBN" name="newsTagBN"
-                                       placeholder="ট্যাগ সমূহ" value="{{ news_data.0 }}">
+                                       placeholder="ট্যাগ সমূহ" value="{{ news_data.0 }}" required>
                                 <label for="newsTagBN">ট্যাগ</label>
                             </div>
                             {#                            <button class="input-group-text news-primary-btn"#}
@@ -48,7 +48,7 @@
                             <input type="text" class="form-control admin-text-field" id="newsCategoryBN"
                                    name="newsCategoryBN"
                                    placeholder="ক্যাটাগরি নির্বাচন" list="categoryListBN"
-                                   value="{{ news_data.2.bangla_category.the_category }}">
+                                   value="{{ news_data.2.bangla_category.the_category }}" required>
                             <label for="newsCategoryBN">ক্যাটাগরি নির্বাচন</label>
                             <datalist id="categoryListBN">
                                 <option value="জাতীয়">জাতীয়</option>
@@ -62,19 +62,19 @@
                         <p class="sub-headline">English</p>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control admin-text-field" id="newsTitleEn" name="newsTitleEn"
-                                   placeholder="Title" value="{{ news_data.2.english_title }}">
+                                   placeholder="Title" value="{{ news_data.2.english_title }}" required>
                             <label for="newsTitleBN">Title</label>
                         </div>
                         <div class="form-floating mb-3">
                         <textarea class="form-control admin-text-field" placeholder="Content" id="detailsNewsEN"
                                   name="detailsNewsEN"
-                                  style="height: 9rem">{{ news_data.2.english_content }}</textarea>
+                                  style="height: 9rem" required>{{ news_data.2.english_content }}</textarea>
                             <label for="detailsNewsEN">Content</label>
                         </div>
                         <div class="input-group mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control admin-text-field" id="newsTagEN" name="newsTagEN"
-                                       placeholder="Tags" value="{{ news_data.1 }}">
+                                       placeholder="Tags" value="{{ news_data.1 }}" required>
                                 <label for="newsTagBN">Tag</label>
                             </div>
                             {#                            <button class="input-group-text news-primary-btn"#}
@@ -86,7 +86,7 @@
                             <input type="text" class="form-control admin-text-field" id="newsCategoryEN"
                                    name="newsCategoryEN"
                                    placeholder="Category" list="categoryListEN"
-                                   value="{{ news_data.2.english_category.the_category }}">
+                                   value="{{ news_data.2.english_category.the_category }}" required>
                             <label for="newsCategoryBN">Category</label>
                             <datalist id="categoryListEN">
                                 <option value="National">National</option>
