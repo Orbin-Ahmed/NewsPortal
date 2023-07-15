@@ -131,12 +131,8 @@ def post_details(post_id):
     post_object = Post.objects.get(id=post_id)
     bn_tag = BanglaTag.objects.get(post=post_object).the_tag
     en_tag = EnglishTag.objects.get(post=post_object).the_tag
-    new_object = {
-        "bn_tag": bn_tag,
-        "en_tag": en_tag
-    }
-    new_object.update(post_object)
-    return new_object
+    the_list = [bn_tag, en_tag, post_object]
+    return the_list
 
 
 # add to special
@@ -328,4 +324,5 @@ def edit_post(request, post_id):
 
     else:
         return None
+
 
