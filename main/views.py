@@ -11,6 +11,7 @@ from .services import *
 
 
 def login(request):
+    my_date = bangla_date()
     if request.method == "POST":
         username = request.POST['usernameInput']
         password = request.POST['passwordInput']
@@ -25,7 +26,7 @@ def login(request):
         else:
             print("Invalid")
             return HttpResponseRedirect('/')
-    return render(request, 'auth/login.html')
+    return render(request, 'auth/login.html', {'date': my_date})
 
 
 # Admin View Start
