@@ -192,7 +192,9 @@ def rolling_headlines(request):
         return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 2:
         user_obj = user_obj.username
-        return render(request, 'moderator/rolling_headline.html', {'user_name': user_obj, 'date': my_date})
+        headline_news_list = headline_list()
+        return render(request, 'moderator/rolling_headline.html',
+                      {'user_name': user_obj, 'date': my_date, 'headline_news_list': headline_news_list})
     else:
         return HttpResponseRedirect('/login/')
 
