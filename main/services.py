@@ -349,18 +349,38 @@ def edit_post(request, post_id, update_object):
             if i == "bangla_category":
                 post_object.bangla_category = update_object.get("bangla_category")
                 post_object.save()
+            # send me all the new tags, previous tags will be deleted
             if i == "english_tag":
                 the_tag = update_object.get("english_tag").lower()
-                tag_object = EnglishTag.objects.filter(the_tag=the_tag)
-                if tag_object:
-                    for each in tag_object:
+                for j in the_tag:
+                    remove_tag_objects = EnglishTag.objects.filter(post=post_object)
+                    for each in remove_tag_objects:
                         each.post.remove(post_object)
-                        each.post.add
-
-
-
-
+                    add_tag_objects = EnglishTag.objects.filter(the_tag=j)
+                if add_tag_objects:
+                    for each in add_tag_objects:
+                        each.post.add(post_object)
+                        each.save()
+                else:
+                    new_tag_object = EnglishTag.objects.create(the_tag=j)
+                    new_tag_object.post.add(post_object)
+                    new_tag_object.save()
+            # send me all the new tags, previous tags will be deleted
+            if i == "bangla_tag":
+                the_tag = update_object.get("bangla_tag").lower()
+                for j in the_tag:
+                    remove_tag_objects = BanglaTag.objects.filter(post=post_object)
+                    for each in remove_tag_objects:
+                        each.post.remove(post_object)
+                    add_tag_objects = BanglaTag.objects.filter(the_tag=j)
+                if add_tag_objects:
+                    for each in add_tag_objects:
+                        each.post.add(post_object)
+                        each.save()
+                else:
+                    new_tag_object = BanglaTag.objects.create(the_tag=j)
+                    new_tag_object.post.add(post_object)
+                    new_tag_object.save()
+        return True
     else:
         return None
-
-
