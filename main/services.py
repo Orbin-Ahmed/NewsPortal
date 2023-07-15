@@ -319,14 +319,9 @@ def bangla_date():
 
 # reporter edits the post
 def edit_post(request, post_id, update_object):
-    object1 = {
-        "post_id": 5,
-        "title": "is the title"
-
-    }
     if request.user.user_type == 3:
         post_object = Post.objects.get(id=post_id)
-        key_list = list(object1.keys())
+        key_list = list(update_object.keys())
         for i in key_list:
             if i == "image":
                 post_object.image = update_object.get("image")
