@@ -120,7 +120,6 @@ def edit_news_redirect(request, post_id):
         return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 3:
         news_details_info = post_details(post_id)
-        print(news_details_info)
         return render(request, 'reporter/newReport.html',
                       {'user_name': user_obj, 'news_data': news_details_info, 'date': my_date})
 
