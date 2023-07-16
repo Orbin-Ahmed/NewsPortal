@@ -120,7 +120,7 @@ def moderator_view(request):
 # reporter view for need editing
 def reporter_view(request):
     if request.user.user_type == 3:
-        post_list = Post.objects.filter(is_approved=False, need_edit=True)
+        post_list = Post.objects.filter(is_approved=False, need_edit=True, reporter=request.user)
         return post_list
     else:
         return False
