@@ -356,3 +356,9 @@ def remove_from_something(request, post_id, post_type):
     elif user_obj.user_type == 2:
         result = remove_from_special(post_id, post_type)
         return HttpResponseRedirect('/all-news/')
+
+
+# Client Side
+def landing_page(request):
+    my_date = bangla_date()
+    return render(request, 'client/landing_page.html', {'date': my_date})

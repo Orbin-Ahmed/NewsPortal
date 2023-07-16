@@ -16,6 +16,8 @@
     --toggle-inner: #908282;
     --tertiary-background: #dadada;
     --tertiary-color: #727272;
+    --nav-background: linear-gradient(270deg, #E4EFFF -2.69%, #FCE8EB 100%);
+    --nav-typo-color: #172958;
 }
 
 html, body {
@@ -41,6 +43,10 @@ a {
     background: var(--admin-background);
 }
 
+.nav-border-left {
+    border-right: 1px solid var(--black);
+    padding-right: 0.5rem;
+}
 
 .login-card {
     background: var(--white);
@@ -127,6 +133,16 @@ a {
 
 /*Bootstrap Override*/
 
+.navbar-brand {
+    margin-right: 0;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    /*padding-left: 1rem;*/
+    /*padding-right: 1rem;*/
+    cursor: pointer;
+}
+
 .form-control:focus {
     box-shadow: none;
     outline: 0;
@@ -154,6 +170,10 @@ a {
     padding-right: 0 !important;
 }
 
+.dropdown-item {
+    width: unset;
+}
+
 /*Bootstrap Override End*/
 
 /*Typography Start*/
@@ -163,6 +183,13 @@ a {
     font-size: 0.875rem;
     line-height: 1.0625rem;
     font-weight: 700;
+}
+
+.nav-typography {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--nav-typo-color);
 }
 
 .login-text {
@@ -478,6 +505,18 @@ a {
 @media only screen and (max-width: 1020px) {
     html {
         font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 993px) {
+    .nav-border-left {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .responsive-class {
+        margin-bottom: 1rem;
+        float: right;
     }
 }
 
