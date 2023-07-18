@@ -362,3 +362,8 @@ def remove_from_something(request, post_id, post_type):
 def landing_page(request):
     my_date = bangla_date()
     return render(request, 'client/landing_page.html', {'date': my_date})
+
+
+def today_news(request):
+    my_date = bangla_date()
+    return render(request, 'client/today_news.html', {'date': my_date})

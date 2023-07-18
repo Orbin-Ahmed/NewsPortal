@@ -11,18 +11,15 @@
 {#Navbar#}
 <nav class="navbar navbar-expand-lg" style="background: var(--nav-background)">
     <div class="container-fluid" style="padding: 0 5rem">
-        <a class="navbar-brand d-flex align-items-center nav-border-left" href="#"><img
+        <a class="navbar-brand d-flex align-items-center nav-border-left" href="/"><img
                 src="{% static 'logo/home.svg' %}"
-                style="padding-bottom: 0.1rem"></a>
+                style="padding-bottom: 0.1rem;cursor:pointer;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link nav-typography nav-border-left" href="#">আজকের শিরোনাম</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link nav-typography nav-border-left" href="#">জাতীয়</a>
                 </li>
@@ -51,6 +48,9 @@
                         </li>
                         <li><a class="dropdown-item nav-typography" href="#">ক্যাম্পাস</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-typography nav-border-left" href="/today-news/">আজকের শিরোনাম</a>
                 </li>
                 {#                <li class="nav-item">#}
                 {#                    <a class="nav-link nav-typography nav-border-left" href="#">ই-পেপার</a>#}
