@@ -1,0 +1,67 @@
+{% load static %}
+<div class="row d-flex justify-content-center" style="padding-top:2rem">
+    <div class="col-md-4">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2000">
+                    <img src="{% static 'images/Rectangle 65.png' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block slider-caption">
+                        <p>তিস্তা নদীর তীব্র ভাঙন, নদীগর্ভে বিলীন বাড়িঘর</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{% static 'images/Rectangle 67.png' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block slider-caption">
+                        <p>তামিম না ফিরলে আফগানিস্তান সিরিজে নেতৃত্ব দেবেন লিটন</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{% static 'images/Rectangle 68.png' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block slider-caption">
+                        <p>বিশ্বকাপের আগে হঠাৎ কেন বিদায় তামিমের</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{% static 'images/Rectangle 69.png' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block slider-caption">
+                        <p>গণতন্ত্র সুরক্ষায় একসঙ্গে কাজ করছি</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4 p-0" style="margin-left: 1rem">
+        <p class="last-news">সর্বশেষ খবর</p>
+        <div class="row d-flex justify-content-evenly mt-3"
+             style="background: var(--card-primary-bg);border-radius: 5px">
+            <div class="col-8" style="padding:1.5rem">
+                <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
+                <p>Posted : <span>9 min ago</span></p>
+            </div>
+            <div class="col-4 p-0">
+                <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-evenly mt-3"
+             style="background: var(--card-secondary-bg);border-radius: 5px">
+            <div class="col-8" style="padding:1.5rem">
+                <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
+                <p>Posted : <span>9 min ago</span></p>
+            </div>
+            <div class="col-4 p-0">
+                <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
+            </div>
+        </div>
+    </div>
+</div>
