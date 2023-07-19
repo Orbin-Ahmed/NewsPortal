@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dainik 71 ar Bangladesh</title>
+    {% load static %}
+    {% include 'root/css.html' %}
+    <style>
+        .main-section {
+            background-color: var(--admin-background) !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid p-0">
+    {% include 'client/res/nav.html' %}
+    <div class="main-section">
+        {% include 'client/landing_section/section_1.html' %}
+        {% include 'client/landing_section/section_2.html' %}
+        {% include 'client/landing_section/section_3.html' %}
+        {% include 'client/landing_section/section_4.html' %}
+        {% include 'client/landing_section/section_5.html' %}
+        {% include 'client/landing_section/section_6.html' %}
+        {% include 'client/landing_section/section_7.html' %}
+    </div>
+    {% include 'client/res/footer.html' %}
+</div>
+{% include 'root/js.html' %}
+</body>
+</html>

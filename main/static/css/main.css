@@ -16,6 +16,10 @@
     --toggle-inner: #908282;
     --tertiary-background: #dadada;
     --tertiary-color: #727272;
+    --nav-background: linear-gradient(270deg, #E4EFFF -2.69%, #FCE8EB 100%);
+    --nav-typo-color: #172958;
+    --rolling-background: #f3f3f3;
+    --highlight-title: #2C3092;
 }
 
 html, body {
@@ -25,6 +29,7 @@ html, body {
 
 a {
     all: unset;
+    cursor: pointer;
 }
 
 .truncate {
@@ -32,15 +37,20 @@ a {
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 2; /* Number of lines to display */
-    line-height: 1.2; /* Adjust line height if needed */
-    max-height: 2.4em; /* Line height multiplied by the number of lines */
+    line-height: 1.5 !important; /* Adjust line height if needed */
+    max-height: 3em; /* Line height multiplied by the number of lines */
     text-overflow: ellipsis;
 }
+
 
 .admin-background {
     background: var(--admin-background);
 }
 
+.nav-border-left {
+    border-right: 1px solid var(--black);
+    padding-right: 0.5rem;
+}
 
 .login-card {
     background: var(--white);
@@ -127,6 +137,21 @@ a {
 
 /*Bootstrap Override*/
 
+.navbar-brand {
+    margin-right: 0;
+}
+
+.my-row {
+    margin-right: 0;
+    margin-left: 0
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    /*padding-left: 1rem;*/
+    /*padding-right: 1rem;*/
+    cursor: pointer;
+}
+
 .form-control:focus {
     box-shadow: none;
     outline: 0;
@@ -154,6 +179,10 @@ a {
     padding-right: 0 !important;
 }
 
+.dropdown-item {
+    width: unset;
+}
+
 /*Bootstrap Override End*/
 
 /*Typography Start*/
@@ -163,6 +192,13 @@ a {
     font-size: 0.875rem;
     line-height: 1.0625rem;
     font-weight: 700;
+}
+
+.nav-typography {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--nav-typo-color);
 }
 
 .login-text {
@@ -215,6 +251,31 @@ a {
     letter-spacing: 0;
 }
 
+.last-news {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    letter-spacing: 0;
+    color: var(--danger-red);
+    background: var(--white);
+    margin-bottom: 0;
+    position: relative;
+    padding: 1rem 1rem 0.7rem 2rem;
+    border-radius: 5px;
+}
+
+.last-news::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    transform: translateY(-50%);
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background-color: red;
+}
+
 .backdrop-modal-title {
     font-size: 1.25rem;
     font-weight: 500;
@@ -238,8 +299,21 @@ a {
     letter-spacing: 0;
 }
 
-/*Typography end*/
+.footer-slogan {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    letter-spacing: 0;
+}
 
+.footer-ownership-tag {
+    font-size: 0.5rem;
+    font-weight: 400;
+    line-height: 0.6rem;
+    letter-spacing: 0;
+}
+
+/*Typography end*/
 .admin-text-field {
     background: inherit;
     border: 1px solid var(--text-field-outline);
@@ -460,6 +534,148 @@ a {
 }
 
 /*English to Bangla Toggle Button end*/
+/*Rolling headline*/
+.news-container {
+    top: 13.75rem;
+    box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.3);
+}
+
+.news-container .title {
+    position: absolute;
+    background: var(--white);
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    color: var(--black);
+    font-weight: bold;
+    z-index: 200;
+}
+
+.news-container ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    animation: scroll 25s infinite linear;
+}
+
+.news-container ul li {
+    white-space: nowrap;
+    padding: 10px 24px;
+    color: var(--black);
+    position: relative;
+}
+
+.news-container ul li::after {
+    content: "";
+    width: 1px;
+    height: 100%;
+    background: #b8b8b8;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.news-container ul li:last-child::after {
+    display: none;
+}
+
+.background-highlights {
+    background-image: url("../images/Rectangle 74.png");
+    background-repeat: no-repeat;
+    padding: 0 10rem;
+}
+
+.background-showbiz {
+    background-image: url("../images/showbiz.png");
+    background-repeat: no-repeat;
+    padding: 0 2rem;
+}
+
+.background-field {
+    background-image: url("../images/Rectangle 75.png");
+    background-repeat: no-repeat;
+    padding: 0 2rem;
+}
+
+.social-media-icon img {
+    padding: 0.7rem;
+}
+
+.social-media-icon img:first-child {
+    padding: 0.7rem 0.7rem 0.7rem 0;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+
+    }
+}
+
+/*Rolling headline end*/
+
+.slider-caption {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.0625rem;
+    letter-spacing: 0;
+}
+
+.slider-caption p {
+    margin: 0;
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 0%;
+    left: 0%;
+    background: rgba(0, 0, 0, 0.27);
+    padding: 1rem;
+    bottom: 0%;
+    color: #fff;
+    text-align: left;
+}
+
+.img-container {
+    position: relative;
+}
+
+.footer-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo-text-container {
+    position: relative;
+}
+
+.footer-logo-text-column-1 {
+    position: absolute;
+    left: -21rem;
+    top: -2.1875rem;
+}
+
+.footer-logo-text-column-2 {
+    position: absolute;
+    left: -8.5rem;
+    top: -2.1875rem;
+}
+
+.footer-logo-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.footer-logo-text::before {
+    content: "\2022";
+    margin-right: 0.5rem;
+    color: red;
+}
 
 /*Media Queries Start*/
 
@@ -479,11 +695,71 @@ a {
     html {
         font-size: 10px;
     }
+
+    .footer-logo-text-column-1 {
+        position: absolute;
+        left: -31rem;
+        top: -2.1875rem;
+    }
+
+    .footer-logo-text-column-2 {
+        position: absolute;
+        left: -18.5rem;
+        top: -2.1875rem;
+    }
+}
+
+@media only screen and (max-width: 993px) {
+    .nav-border-left {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .responsive-class {
+        margin-bottom: 1rem;
+        float: right;
+    }
 }
 
 @media only screen and (max-width: 850px) {
     html {
         font-size: 9px;
+    }
+
+    .last-news {
+        margin-right: 1rem;
+        margin-left: 1rem;
+        padding-left: 3rem;
+    }
+
+    .background-highlights {
+        padding: 0;
+    }
+
+    .footer-logo-text-column-1 {
+        position: absolute;
+        left: -50rem;
+        top: -2.1875rem;
+    }
+
+    .footer-logo-text-column-2 {
+        position: absolute;
+        left: -37.5rem;
+        top: -2.1875rem;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .footer-logo-text-column-1 {
+        position: absolute;
+        left: -60rem;
+        top: -2.1875rem;
+    }
+
+    .footer-logo-text-column-2 {
+        position: absolute;
+        left: -47.5rem;
+        top: -2.1875rem;
     }
 }
 

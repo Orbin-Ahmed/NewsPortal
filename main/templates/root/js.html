@@ -3,4 +3,24 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    $("#datepicker").datepicker({
+        beforeShow: function (input, inst) {
+            var iconPosition = $(input).offset();
+            iconPosition.top += $(input).outerHeight();
+            inst.dpDiv.css({
+                top: iconPosition.top,
+                left: iconPosition.left
+            });
+        },
+        onSelect: function (dateText) {
+            console.log("Selected Date:", dateText);
+        }
+    });
+
+    function open_date_picker() {
+        $("#datepicker").datepicker("show");
+    }
+</script>
