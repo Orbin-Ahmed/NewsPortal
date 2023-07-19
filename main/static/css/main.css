@@ -299,8 +299,21 @@ a {
     letter-spacing: 0;
 }
 
-/*Typography end*/
+.footer-slogan {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    letter-spacing: 0;
+}
 
+.footer-ownership-tag {
+    font-size: 0.5rem;
+    font-weight: 400;
+    line-height: 0.6rem;
+    letter-spacing: 0;
+}
+
+/*Typography end*/
 .admin-text-field {
     background: inherit;
     border: 1px solid var(--text-field-outline);
@@ -585,6 +598,14 @@ a {
     padding: 0 2rem;
 }
 
+.social-media-icon img {
+    padding: 0.7rem;
+}
+
+.social-media-icon img:first-child {
+    padding: 0.7rem 0.7rem 0.7rem 0;
+}
+
 @keyframes scroll {
     from {
         transform: translateX(0%);
@@ -624,6 +645,38 @@ a {
     position: relative;
 }
 
+.footer-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo-text-container {
+    position: relative;
+}
+
+.footer-logo-text-column-1 {
+    position: absolute;
+    left: -21rem;
+    top: -2.1875rem;
+}
+
+.footer-logo-text-column-2 {
+    position: absolute;
+    left: -8.5rem;
+    top: -2.1875rem;
+}
+
+.footer-logo-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.footer-logo-text::before {
+    content: "\2022";
+    margin-right: 0.5rem;
+    color: red;
+}
+
 /*Media Queries Start*/
 
 @media only screen and (max-width: 1366px) {
@@ -641,6 +694,18 @@ a {
 @media only screen and (max-width: 1020px) {
     html {
         font-size: 10px;
+    }
+
+    .footer-logo-text-column-1 {
+        position: absolute;
+        left: -31rem;
+        top: -2.1875rem;
+    }
+
+    .footer-logo-text-column-2 {
+        position: absolute;
+        left: -18.5rem;
+        top: -2.1875rem;
     }
 }
 
@@ -669,6 +734,32 @@ a {
 
     .background-highlights {
         padding: 0;
+    }
+
+    .footer-logo-text-column-1 {
+        position: absolute;
+        left: -50rem;
+        top: -2.1875rem;
+    }
+
+    .footer-logo-text-column-2 {
+        position: absolute;
+        left: -37.5rem;
+        top: -2.1875rem;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .footer-logo-text-column-1 {
+        position: absolute;
+        left: -60rem;
+        top: -2.1875rem;
+    }
+
+    .footer-logo-text-column-2 {
+        position: absolute;
+        left: -47.5rem;
+        top: -2.1875rem;
     }
 }
 

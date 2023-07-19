@@ -1,10 +1,31 @@
 {% load static %}
 <div class="row d-flex justify-content-between align-items-center" style="background: var(--white)">
-    <div class="col-sm-2" style="margin-left: 5rem">
-        <img src="{% static 'logo/logo.svg' %}">
-        <p class="login-date-font"> {{ date.weekday }}, {{ date.english_date }} {{ date.english_month }} {{ date.english_year }}, {{ date.date }} {{ date.month }} {{ date.year }} </p>
+    <div class="col-sm-5">
+        <div class="footer-logo-container">
+            <img src="{% static 'logo/footer_left.svg' %}">
+            <div class="footer-logo-text-container">
+                <div class="footer-logo-text-column-1">
+                    <p class="footer-logo-text">হোম</p>
+                    <p class="footer-logo-text">আজকের শিরোনাম</p>
+                    <p class="footer-logo-text">মাঠে ময়দানে</p>
+                </div>
+                <div class="footer-logo-text-column-2">
+                    <p class="footer-logo-text">দেশগ্রাম</p>
+                    <p class="footer-logo-text">পূর্ব-পশ্চিম</p>
+                    <p class="footer-logo-text">শোবিজ</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-5 p-0">
-        <img src="{% static 'logo/hand.svg' %}" style="float: right">
+    <div class="col-sm-3">
+        <p class="text-center m-0">সম্পাদকের নাম : মধুবালা</p>
+        <div class="social-media-icon text-center">
+            <img src="{% static 'logo/fb_logo.svg' %}" class="img-fluid">
+            <img src="{% static 'logo/insta_logo.svg' %}" class="img-fluid">
+            <img src="{% static 'logo/yt_logo.svg' %}" class="img-fluid">
+            <img src="{% static 'logo/tw_logo.svg' %}" class="img-fluid">
+        </div>
+        <p class="footer-slogan">আমরা দেশের স্বার্থে কথা বলি, আমাদের সঙ্গে থাকুন</p>
+        <p class="footer-ownership-tag text-center m-0">© ২০২৩,৭১ এর দৈনিক বাংলাদেশ</p>
     </div>
 </div>
