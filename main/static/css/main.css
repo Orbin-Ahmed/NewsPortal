@@ -639,6 +639,7 @@ a {
     bottom: 0%;
     color: #fff;
     text-align: left;
+    border-radius: 0.6rem;
 }
 
 .img-container {

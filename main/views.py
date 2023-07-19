@@ -367,3 +367,8 @@ def landing_page(request):
 def today_news(request):
     my_date = bangla_date()
     return render(request, 'client/today_news.html', {'date': my_date})
+
+
+def category_news(request):
+    my_date = bangla_date()
+    return render(request, 'client/category_news.html', {'date': my_date})
