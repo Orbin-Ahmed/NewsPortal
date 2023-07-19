@@ -37,10 +37,11 @@ a {
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 2; /* Number of lines to display */
-    line-height: 1.2; /* Adjust line height if needed */
-    max-height: 2.4em; /* Line height multiplied by the number of lines */
+    line-height: 1.5 !important; /* Adjust line height if needed */
+    max-height: 3em; /* Line height multiplied by the number of lines */
     text-overflow: ellipsis;
 }
+
 
 .admin-background {
     background: var(--admin-background);
@@ -568,9 +569,14 @@ a {
 
 .background-highlights {
     background-image: url("../images/Rectangle 74.png");
-    width: 100%;
     background-repeat: no-repeat;
     padding: 0 10rem;
+}
+
+.background-showbiz {
+    background-image: url("../images/showbiz.png");
+    background-repeat: no-repeat;
+    padding: 0 2rem;
 }
 
 @keyframes scroll {
@@ -606,6 +612,10 @@ a {
     bottom: 0%;
     color: #fff;
     text-align: left;
+}
+
+.img-container {
+    position: relative;
 }
 
 /*Media Queries Start*/
@@ -649,6 +659,10 @@ a {
         margin-right: 1rem;
         margin-left: 1rem;
         padding-left: 3rem;
+    }
+
+    .background-highlights {
+        padding: 0;
     }
 }
 
