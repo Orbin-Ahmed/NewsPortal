@@ -1,0 +1,10 @@
+{% load static %}
+<div class="row d-flex justify-content-between align-items-center" style="background: var(--white)">
+    <div class="col-sm-2" style="margin-left: 5rem">
+        <img src="{% static 'logo/logo.svg' %}">
+        <p class="login-date-font"> {{ date.weekday }}, {{ date.english_date }} {{ date.english_month }} {{ date.english_year }}, {{ date.date }} {{ date.month }} {{ date.year }} </p>
+    </div>
+    <div class="col-sm-5 p-0">
+        <img src="{% static 'logo/hand.svg' %}" style="float: right">
+    </div>
+</div>
