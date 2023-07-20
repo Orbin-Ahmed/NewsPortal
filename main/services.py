@@ -2,6 +2,7 @@ from datetime import datetime, date
 import pybengali
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
+from django.db.models import Q
 
 from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag, SpecialNews, User
 
@@ -395,3 +396,41 @@ def edit_post(request, post_id, update_object):
                            update_object.get("english_tag"),
                            update_object.get("english_category")
                            )
+
+
+def highlights():
+    approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
+    return approved_post.order_by("-view_counter")[:8]
+
+
+def category_list():
+    approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
+    return approved_post.exclude(Q(english_category__the_category="national") |
+                                 Q(english_category__the_category="sports") |
+                                 Q(english_category__the_category="country") |
+                                 Q(english_category__the_category="showbiz") |
+                                 Q(english_category__the_category="world"))
+
+
+def focus_list():
+    approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
+    return approved_post.filter(specialnews__is_trending=True)
+
+
+def headline_list():
+    approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
+    return approved_post.filter(specialnews__is_headline=True)
+
+
+def like_counter(post_id):
+    post_object = Post.objects.get(id=post_id)
+    post_object.like_counter = post_object.like_counter + 1
+    post_object.save()
+    return True
+
+
+def view_counter(post_id):
+    post_object = Post.objects.get(id=post_id)
+    post_object.view_counter = post_object.view_counter + 1
+    post_object.save()
+    return True
