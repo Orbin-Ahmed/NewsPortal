@@ -1,0 +1,110 @@
+{% load static %}
+<div class="row d-flex justify-content-between align-items-center" style="background: var(--white)">
+    <div class="col-sm-2" style="margin-left: 5rem">
+        <img src="{% static 'logo/logo.svg' %}">
+        <p class="login-date-font"> {{ date.weekday }}, {{ date.english_date }} {{ date.english_month }} {{ date.english_year }}, {{ date.date }} {{ date.month }} {{ date.year }} </p>
+    </div>
+    <div class="col-sm-5 p-0">
+        <img src="{% static 'logo/hand.svg' %}" style="float: right">
+    </div>
+</div>
+{#Navbar#}
+<nav class="navbar navbar-expand-lg" style="background: var(--nav-background)">
+    <div class="container-fluid" style="padding: 0 5rem">
+        <a class="navbar-brand d-flex align-items-center nav-border-left" href="/"><img
+                src="{% static 'logo/home.svg' %}"
+                style="padding-bottom: 0.1rem;cursor:pointer;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-typography nav-border-left" href="/category-news/">জাতীয়</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-typography nav-border-left" href="#">দেশগ্রাম</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-typography nav-border-left" href="#">পূর্ব-পশ্চিম</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-typography nav-border-left" href="#">শোবিজ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-typography nav-border-left" href="#">মাঠে ময়দানে</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-typography nav-border-left" href="#" role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        অন্যান্য
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item nav-typography" href="#">শিল্প বাণিজ্য</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item nav-typography" href="#">ক্যাম্পাস</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-typography nav-border-left" href="/today-news/">আজকের শিরোনাম</a>
+                </li>
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link nav-typography nav-border-left" href="#">ই-পেপার</a>#}
+                {#                </li>#}
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link nav-typography" href="#">সংস্করণ</a>#}
+                {#                </li>#}
+            </ul>
+            <img class="responsive-class" src="{% static 'logo/calendar_month.svg' %}"
+                 style="margin: 0 1rem" onclick="open_date_picker()">
+            <input type="text" id="datepicker" class="responsive-class" value="" hidden>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="button">Search</button>
+            </form>
+            <label class="toggle responsive-class" style="margin: 0 1rem 0.5rem 1rem">
+                <input class="toggle-input" type="checkbox" checked/>
+                <span class="toggle-label" data-off="Bengali" data-on="English"></span>
+                <span class="toggle-handle"></span>
+            </label>
+        </div>
+    </div>
+</nav>
+{#Rolling Headline#}
+<div class="news-container">
+    <div class="title">
+        শিরোনাম
+    </div>
+    <ul>
+        <li>
+            ‘৬৯-র গণঅভ্যুত্থানের পুনরাবৃত্তি ঘটিয়ে সরকারের পতন ঘটানো হবে’
+        </li>
+
+        <li>
+            চীনের জলবায়ু পরিবর্তন ‘মানবজাতির জন্য হুমকিস্বরুপ’: জন কেরি
+        </li>
+
+        <li>
+            কালীগঞ্জে বিদ্যুৎস্পৃষ্টে গ্রিল মিস্ত্রির মৃত্যু
+        </li>
+        <li>
+            খুলনায় ইজিবাইক চালক হত্যা মামলার আসামি গ্রেফতার
+        </li>
+        <li>
+            খুলনায় হত্যা মামলার আসামি গ্রেফতার
+        </li>
+        <li>
+            চার দশক পর দক্ষিণ কোরিয়ায় মার্কিন পরমাণু সাবমেরিন, ক্ষেপেছে কিম প্রশাসন
+        </li>
+        <li>
+            কেন্দ্রীয় ১৪ দলের সভা কাল
+        </li>
+        <li>
+            কার্চ সেতুতে ইউক্রেনের হামলার পর যে কৌশল নিচ্ছে রাশিয়া
+        </li>
+    </ul>
+</div>

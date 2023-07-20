@@ -62,3 +62,7 @@ $('.image-upload-wrap').bind('dragleave', function () {
 });
 
 // Image Upload End
+
+// DatePicker
+
+
