@@ -678,6 +678,10 @@ a {
     color: red;
 }
 
+.news-details-btn-grp img {
+    margin-right: 0.7rem;
+}
+
 /*Media Queries Start*/
 
 @media only screen and (max-width: 1366px) {
