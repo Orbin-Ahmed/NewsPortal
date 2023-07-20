@@ -372,3 +372,8 @@ def today_news(request):
 def category_news(request):
     my_date = bangla_date()
     return render(request, 'client/category_news.html', {'date': my_date})
+
+
+def details_news(request):
+    my_date = bangla_date()
+    return render(request, 'client/details_news.html', {'date': my_date})
