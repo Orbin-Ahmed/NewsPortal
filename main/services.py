@@ -454,9 +454,12 @@ def latest_news():
     return Post.objects.filter(is_approved=True).order_by("-date_created")
 
 
-def highest_view_category_news(category_name):
-    return Post.objects.filter(is_approved=True, english_category__the_category=category_name.lower()).order_by(
+def highest_view_category_news(category_name, number=None):
+    result = Post.objects.filter(is_approved=True, english_category__the_category=category_name.lower()).order_by(
         "-view_counter")
+    if number is None:
+        result = result[:number]
+    return result
 
 
 def latest_category_news(category_name):
@@ -465,7 +468,10 @@ def latest_category_news(category_name):
 
 
 def max_views_today():
-    return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day).order_by("-view_counter")[:30]
+    result = Post.objects.filter(is_approved=True, date_created__day=datetime.today().day).order_by("-view_counter")
+    if result.count() > 30:
+        result = result[:30]
+    return result
 
 
 def filtered_all_news():
