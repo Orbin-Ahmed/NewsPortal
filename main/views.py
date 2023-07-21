@@ -397,6 +397,8 @@ def details_news(request, post_id, category_name):
     for news in latest_news_list:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
+    news_details_info[2].bangla_content = re.sub(r'\r?\n', '', news_details_info[2].bangla_content)
+    news_details_info[2].english_content = re.sub(r'\r?\n', '', news_details_info[2].english_content)
     return render(request, 'client/details_news.html',
                   {'date': my_date, 'news_details_info': news_details_info, 'headline_list': headline,
                    'latest_news_list': latest_news_list})

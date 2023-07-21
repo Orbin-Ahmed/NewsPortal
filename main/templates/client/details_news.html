@@ -21,7 +21,8 @@
                 <div class="row d-flex justify-content-around align-items-center">
                     <div class="offset-1 col-8">
                         <p class="report-headline" id="report_headline">{{ news_details_info.2.bangla_title }}</p>
-                        <P><b>রিপোর্টার</b> : নিজস্ব প্রতিবেদক</P>
+                        <P><b><span id="reporter_place">রিপোর্টার</span></b> : <span
+                                id="reporter_id">নিজস্ব প্রতিবেদক</span></P>
                     </div>
                     <div class="col-2">
                         <div class="news-details-btn-grp mt-3">
@@ -39,7 +40,7 @@
                 </div>
                 <div class="row d-flex justify-content-center mt-3">
                     <div class="col-10 text-center">
-                        <img class="img-fluid" src="{% static 'images/placeholder.png' %}"
+                        <img class="img-fluid" src="{{ news_details_info.2.image.url }}"
                              style="height: 500px">
                     </div>
                     <div class="col-10 mt-3">
@@ -49,17 +50,19 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <p class="last-news">সর্বশেষ খবর</p>
+                <p class="last-news" id="latest_news_title">সর্বশেষ খবর</p>
                 <div style="height: 50rem;overflow: auto;margin-top: 1rem">
                     {% for data in latest_news_list %}
                         <div class="row d-flex justify-content-evenly mb-3 my-row"
                              style="background: var(--card-primary-bg);">
                             <div class="col-8" style="padding:1.5rem">
-                                <p class="card-headline">{{ data.bangla_title }}</p>
-                                <p>Posted : <span>9 min ago</span></p>
+                                <p class="card-headline latest_news_title_bengali">{{ data.bangla_title }}</p>
+                                <p class="card-headline latest_news_title_english"
+                                   style="display: none">{{ data.english_title }}</p>
+                                <p>Posted : <span>{{ data.time_passed }}</span></p>
                             </div>
                             <div class="col-4 p-0">
-                                <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
+                                <img class="w-100" src="{{ data.image.url }}">
                             </div>
                         </div>
                     {% endfor %}
@@ -89,6 +92,12 @@
 
         let latest_news_title = document.getElementById("latest_news_title");
 
+        let report_content = document.getElementById("report_content");
+        let report_headline = document.getElementById("report_headline");
+
+        let reporter_place = document.getElementById("reporter_place");
+        let reporter_id = document.getElementById("reporter_id");
+
         if (toggleInput.checked) {
             cat_other.style.display = "block"
             cat_national.innerHTML = "জাতীয়";
@@ -114,6 +123,12 @@
 
             latest_news_title.innerHTML = "সর্বশেষ খবর";
 
+            report_content.innerHTML = "{{ news_details_info.2.bangla_content }}";
+            report_headline.innerHTML = "{{ news_details_info.2.bangla_title }}";
+
+            reporter_place.innerHTML = "রিপোর্টার";
+            reporter_id.innerHTML = "নিজস্ব প্রতিবেদক";
+
         } else {
             cat_other.style.display = "none"
             cat_national.innerHTML = "National";
@@ -138,6 +153,13 @@
             });
 
             latest_news_title.innerHTML = "Latest News";
+
+            report_content.innerHTML = "{{ news_details_info.2.english_content }}";
+            report_headline.innerHTML = "{{ news_details_info.2.english_title }}";
+
+            reporter_place.innerHTML = "Reporter";
+            reporter_id.innerHTML = "Corresponding Reporter";
+
         }
     }
 </script>
