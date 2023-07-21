@@ -489,3 +489,7 @@ def search_filter(keyword):
                                 Q(bangla_title__icontains=keyword) |
                                 Q(englishtag__the_tag__icontains=keyword) |
                                 Q(banglatag__the_tag__icontains=keyword)).distinct("id")
+
+
+def today_all_news():
+    return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day)
