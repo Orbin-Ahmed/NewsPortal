@@ -5,6 +5,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from .services import *
+from django.utils import timezone
 
 
 # Create your views here.
@@ -90,6 +91,8 @@ def publish_news(request):
         return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 3:
         user_obj = user_obj.username
+        # category_list_view = category_list()
+        category_list_view = []
         if request.method == "POST":
             title_bn = request.POST['newsTitleBN']
             details_bn = request.POST['detailsNewsBN']
@@ -108,7 +111,6 @@ def publish_news(request):
             t = post_report(request, title_bn, details_bn, tag_bn, category_bn, news_image, title_en, details_en,
                             tag_en,
                             category_en)
-        category_list_view = category_list()
         return render(request, 'reporter/newReport.html',
                       {'user_name': user_obj, 'date': my_date, 'category_list': category_list_view})
     else:
@@ -141,7 +143,8 @@ def edit_news_redirect(request, post_id):
         return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 3:
         news_details_info = post_details(post_id)
-        category_list_view = category_list()
+        # category_list_view = category_list()
+        category_list_view = []
         return render(request, 'reporter/newReport.html',
                       {'user_name': user_obj, 'news_data': news_details_info, 'date': my_date,
                        'category_list': category_list_view})
@@ -258,7 +261,6 @@ def news_details(request, news_id):
     elif user_obj.user_type != 3:
         user_obj = user_obj.username
         news_details_info = post_details(news_id)
-        print(news_details_info)
         news_details_info[2].bangla_content = re.sub(r'\r?\n', '', news_details_info[2].bangla_content)
         news_details_info[2].english_content = re.sub(r'\r?\n', '', news_details_info[2].english_content)
         return render(request, 'moderator/report_details.html',
@@ -366,10 +368,14 @@ def remove_from_something(request, post_id, post_type):
 def landing_page(request):
     my_date = bangla_date()
     headline = headline_list()
-    focus = focus_list()
     highlight = highlights()
+    latest_news_list = latest_news()
+    for news in latest_news_list:
+        time_passed = timezone.now() - news.date_created
+        news.time_passed = calculate_time_passed(time_passed)
     return render(request, 'client/landing_page.html',
-                  {'date': my_date, 'headline_list': headline, 'focus_list': focus, 'highlights_list': highlight})
+                  {'date': my_date, 'headline_list': headline, 'highlights_list': highlight,
+                   'latest_news_list': latest_news_list})
 
 
 def today_news(request):
@@ -384,10 +390,31 @@ def category_news(request):
 
 def details_news(request, post_id):
     my_date = bangla_date()
+    headline = headline_list()
     view_counter(post_id)
-    return render(request, 'client/details_news.html', {'date': my_date})
+    news_details_info = post_details(post_id)
+    return render(request, 'client/details_news.html',
+                  {'date': my_date, 'news_details_info': news_details_info, 'headline_list': headline})
 
 
 def like_news_counter(request, post_id):
     like_counter(post_id)
     return HttpResponse(status=200)
+
+
+def calculate_time_passed(time_difference):
+    seconds_passed = time_difference.total_seconds()
+
+    # Calculate time passed in human-readable format
+    minutes_passed = seconds_passed // 60
+    hours_passed = minutes_passed // 60
+    days_passed = hours_passed // 24
+
+    if days_passed > 0:
+        return f"{int(days_passed)} days ago"
+    elif hours_passed > 0:
+        return f"{int(hours_passed)} hours ago"
+    elif minutes_passed > 0:
+        return f"{int(minutes_passed)} minutes ago"
+    else:
+        return "Less than a minute ago"

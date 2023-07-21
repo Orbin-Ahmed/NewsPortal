@@ -21,24 +21,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link nav-typography nav-border-left" href="/category-news/">জাতীয়</a>
+                    <a class="nav-link nav-typography nav-border-left" href="/category-news/"
+                       id="cat_national">জাতীয়</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-typography nav-border-left" href="#">দেশগ্রাম</a>
+                    <a class="nav-link nav-typography nav-border-left" href="#" id="cat_country">দেশগ্রাম</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-typography nav-border-left" href="#">পূর্ব-পশ্চিম</a>
+                    <a class="nav-link nav-typography nav-border-left" href="#" id="cat_world">পূর্ব-পশ্চিম</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-typography nav-border-left" href="#">শোবিজ</a>
+                    <a class="nav-link nav-typography nav-border-left" href="#" id="cat_showbiz">শোবিজ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-typography nav-border-left" href="#">মাঠে ময়দানে</a>
+                    <a class="nav-link nav-typography nav-border-left" href="#" id="cat_sports">মাঠে ময়দানে</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle nav-typography nav-border-left" href="#" role="button"
                        data-bs-toggle="dropdown"
-                       aria-expanded="false">
+                       aria-expanded="false" id="cat_other">
                         অন্যান্য
                     </a>
                     <ul class="dropdown-menu">
@@ -50,7 +51,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-typography nav-border-left" href="/today-news/">আজকের শিরোনাম</a>
+                    <a class="nav-link nav-typography nav-border-left" href="/today-news/" id="cat_today_headline">আজকের
+                        শিরোনাম</a>
                 </li>
                 {#                <li class="nav-item">#}
                 {#                    <a class="nav-link nav-typography nav-border-left" href="#">ই-পেপার</a>#}
@@ -66,7 +68,8 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="button">Search</button>
             </form>
-            <label class="toggle responsive-class" style="margin: 0 1rem 0.5rem 1rem">
+            <label class="toggle responsive-class" onclick="toggleLanguage_client();"
+                   style="margin: 0 1rem 0.5rem 1rem">
                 <input class="toggle-input" type="checkbox" checked/>
                 <span class="toggle-label" data-off="Bengali" data-on="English"></span>
                 <span class="toggle-handle"></span>
@@ -82,7 +85,10 @@
     <ul>
         {% for data in headline_list %}
             <li>
-                {{ data }}
+                <a href="/details-news/{{ data.post.id }}/">
+                    <p class="m-0 top_rolling_headline_bangla">{{ data.post.bangla_title }}</p>
+                    <p class="m-0 top_rolling_headline_english" style="display: none">{{ data.post.english_title }}</p>
+                </a>
             </li>
         {% endfor %}
     </ul>
