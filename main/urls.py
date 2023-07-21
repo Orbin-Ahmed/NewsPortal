@@ -8,6 +8,7 @@ urlpatterns = [path('', views.landing_page),
                path('category-news/', views.category_news),
                path('details-news/<post_id>/<category_name>/', views.details_news),
                path('like-news/<post_id>/', views.like_news_counter),
+               path('search-news/<keywords>/', views.search_news),
                path('login/', views.login),
                path('publish-news/', views.publish_news),  # Reporter
                path('edit-news/', views.edit_news),  # Reporter

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>আজকের শিরোনাম||Dainik 71 er Bangladesh</title>
+    {% load static %}
+    {% include 'root/css.html' %}
+    <style>
+        .main-section {
+            background-color: var(--admin-background) !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid p-0">
+    {% include 'client/res/nav.html' %}
+    <div class="main-section pt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <p class="last-news" style="padding: 1rem 1rem 0.7rem 4rem;" id="search_news_title">শিরোনাম</p>
+                {% for data in search_result %}
+                    <div class="row mt-3 my-row"
+                         style="background: var(--card-primary-bg);">
+                        <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
+                            <p class="card-headline d-flex align-items-center search_news_title_bengali">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.bangla_title }}</p>
+                            <p class="card-headline d-flex align-items-center search_news_title_english"
+                               style="display: none">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.english_title }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% include 'root/js.html' %}
+<script>
+    function toggleLanguage_client() {
+        let toggleInput = document.querySelector(".toggle-input");
+        let cat_today_headline = document.getElementById("cat_today_headline");
+        let cat_other = document.getElementById("cat_other");
+        let cat_sports = document.getElementById("cat_sports");
+        let cat_showbiz = document.getElementById("cat_showbiz");
+        let cat_world = document.getElementById("cat_world");
+        let cat_country = document.getElementById("cat_country");
+        let cat_national = document.getElementById("cat_national");
+
+        let top_rolling_headline_bangla = document.querySelectorAll(".top_rolling_headline_bangla");
+        let top_rolling_headline_english = document.querySelectorAll(".top_rolling_headline_english");
+
+        let search_news_title_bengali = document.querySelectorAll(".search_news_title_bengali");
+        let search_news_title_english = document.querySelectorAll(".search_news_title_english");
+
+        let search_news_title = document.getElementById("search_news_title");
+
+        if (toggleInput.checked) {
+            cat_other.style.display = "block"
+            cat_national.innerHTML = "জাতীয়";
+            cat_country.innerHTML = "দেশগ্রাম";
+            cat_world.innerHTML = "পূর্ব-পশ্চিম";
+            cat_showbiz.innerHTML = "শোবিজ";
+            cat_today_headline.innerHTML = "আজকের শিরোনাম";
+            cat_sports.innerHTML = "মাঠে ময়দানে";
+
+            top_rolling_headline_english.forEach(element => {
+                element.style.display = "none";
+            });
+            top_rolling_headline_bangla.forEach(element => {
+                element.style.display = "block";
+            });
+
+            search_news_title_bengali.forEach(element => {
+                element.style.display = "none";
+            });
+            search_news_title_english.forEach(element => {
+                element.style.display = "block";
+            });
+
+            search_news_title.innerHTML = "শিরোনাম";
+
+        } else {
+            cat_other.style.display = "none"
+            cat_national.innerHTML = "National";
+            cat_country.innerHTML = "Country";
+            cat_world.innerHTML = "World";
+            cat_showbiz.innerHTML = "Showbiz";
+            cat_today_headline.innerHTML = "Today's Headline";
+            cat_sports.innerHTML = "Sports";
+
+            top_rolling_headline_bangla.forEach(element => {
+                element.style.display = "none";
+            });
+            top_rolling_headline_english.forEach(element => {
+                element.style.display = "block";
+            });
+
+            search_news_title_english.forEach(element => {
+                element.style.display = "block";
+            });
+            search_news_title_bengali.forEach(element => {
+                element.style.display = "none";
+            });
+
+            search_news_title.innerHTML = "Headline";
+        }
+    }
+</script>
+</body>
+</html>

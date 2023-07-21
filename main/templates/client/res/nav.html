@@ -65,8 +65,9 @@
                  style="margin: 0 1rem" onclick="open_date_picker()">
             <input type="text" id="datepicker" class="responsive-class" value="" hidden>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="button">Search</button>
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                       id="search_keywords">
+                <button class="btn btn-outline-success" type="button" onclick="search_filter()">Search</button>
             </form>
             <label class="toggle responsive-class" onclick="toggleLanguage_client();"
                    style="margin: 0 1rem 0.5rem 1rem">

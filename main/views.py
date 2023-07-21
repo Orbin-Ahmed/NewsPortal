@@ -371,6 +371,7 @@ def landing_page(request):
     highlight = highlights()
     latest_news_list = latest_news()
     focus_list = trending_list()
+    max_views_list = max_views_today()
     for news in latest_news_list:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
@@ -403,6 +404,14 @@ def details_news(request, post_id, category_name):
     return render(request, 'client/details_news.html',
                   {'date': my_date, 'news_details_info': news_details_info, 'headline_list': headline,
                    'latest_news_list': latest_news_list})
+
+
+def search_news(request, keywords):
+    my_date = bangla_date()
+    headline = headline_list()
+    result = search_filter(keywords)
+    return render(request, 'client/search_news.html',
+                  {'date': my_date, 'headline_list': headline, 'search_result': result})
 
 
 def like_news_counter(request, post_id):
