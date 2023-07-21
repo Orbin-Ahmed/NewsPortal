@@ -370,12 +370,13 @@ def landing_page(request):
     headline = headline_list()
     highlight = highlights()
     latest_news_list = latest_news()
+    focus_list = trending_list()
     for news in latest_news_list:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
     return render(request, 'client/landing_page.html',
                   {'date': my_date, 'headline_list': headline, 'highlights_list': highlight,
-                   'latest_news_list': latest_news_list})
+                   'latest_news_list': latest_news_list, 'focus_list': focus_list})
 
 
 def today_news(request):

@@ -44,6 +44,11 @@
         let latest_news_title_bengali = document.querySelectorAll(".latest_news_title_bengali");
         let latest_news_title_english = document.querySelectorAll(".latest_news_title_english");
 
+        let focus_headline_bengali_title = document.querySelectorAll(".focus_headline_bengali_title");
+        let focus_headline_english_title = document.querySelectorAll(".focus_headline_english_title");
+
+        let focus_headline_bengali_title_m = document.querySelector(".focus_headline_bengali_title_m");
+
         let latest_news_title = document.getElementById("latest_news_title");
 
         if (toggleInput.checked) {
@@ -62,6 +67,13 @@
                 element.style.display = "block";
             });
 
+            focus_headline_english_title.forEach(element => {
+                element.style.display = "none";
+            });
+            focus_headline_bengali_title.forEach(element => {
+                element.style.display = "flex";
+            });
+
             latest_news_title_english.forEach(element => {
                 element.style.display = "none";
             });
@@ -70,6 +82,8 @@
             });
 
             latest_news_title.innerHTML = "সর্বশেষ খবর";
+
+            focus_headline_bengali_title_m.innerHTML = "ফোকাস";
 
         } else {
             cat_other.style.display = "none"
@@ -87,6 +101,13 @@
                 element.style.display = "block";
             });
 
+            focus_headline_bengali_title.forEach(element => {
+                element.style.display = "none";
+            });
+            focus_headline_english_title.forEach(element => {
+                element.style.display = "flex";
+            });
+
             latest_news_title_english.forEach(element => {
                 element.style.display = "block";
             });
@@ -95,6 +116,7 @@
             });
 
             latest_news_title.innerHTML = "Latest News";
+            focus_headline_bengali_title_m.innerHTML = "Focus News";
         }
     }
 </script>
