@@ -2,7 +2,7 @@ import re
 
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AnonymousUser
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from .services import *
 
@@ -108,7 +108,9 @@ def publish_news(request):
             t = post_report(request, title_bn, details_bn, tag_bn, category_bn, news_image, title_en, details_en,
                             tag_en,
                             category_en)
-        return render(request, 'reporter/newReport.html', {'user_name': user_obj, 'date': my_date})
+        category_list_view = category_list()
+        return render(request, 'reporter/newReport.html',
+                      {'user_name': user_obj, 'date': my_date, 'category_list': category_list_view})
     else:
         return HttpResponseRedirect('/login/')
 
@@ -139,8 +141,10 @@ def edit_news_redirect(request, post_id):
         return HttpResponseRedirect('/login/')
     elif user_obj.user_type == 3:
         news_details_info = post_details(post_id)
+        category_list_view = category_list()
         return render(request, 'reporter/newReport.html',
-                      {'user_name': user_obj, 'news_data': news_details_info, 'date': my_date})
+                      {'user_name': user_obj, 'news_data': news_details_info, 'date': my_date,
+                       'category_list': category_list_view})
 
 
 def edit_news(request):
@@ -361,7 +365,11 @@ def remove_from_something(request, post_id, post_type):
 # Client Side
 def landing_page(request):
     my_date = bangla_date()
-    return render(request, 'client/landing_page.html', {'date': my_date})
+    headline = headline_list()
+    focus = focus_list()
+    highlight = highlights()
+    return render(request, 'client/landing_page.html',
+                  {'date': my_date, 'headline_list': headline, 'focus_list': focus, 'highlights_list': highlight})
 
 
 def today_news(request):
@@ -374,6 +382,12 @@ def category_news(request):
     return render(request, 'client/category_news.html', {'date': my_date})
 
 
-def details_news(request):
+def details_news(request, post_id):
     my_date = bangla_date()
+    view_counter(post_id)
     return render(request, 'client/details_news.html', {'date': my_date})
+
+
+def like_news_counter(request, post_id):
+    like_counter(post_id)
+    return HttpResponse(status=200)

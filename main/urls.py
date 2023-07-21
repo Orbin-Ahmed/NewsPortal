@@ -6,7 +6,8 @@ from django.conf.urls.static import static
 urlpatterns = [path('', views.landing_page),
                path('today-news/', views.today_news),
                path('category-news/', views.category_news),
-               path('details-news/', views.details_news),
+               path('details-news/<post_id>/', views.details_news),
+               path('like-news/<post_id>/', views.like_news_counter),
                path('login/', views.login),
                path('publish-news/', views.publish_news),  # Reporter
                path('edit-news/', views.edit_news),  # Reporter
