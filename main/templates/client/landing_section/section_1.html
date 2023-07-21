@@ -7,9 +7,11 @@
                 <div class="carousel-item active" data-bs-interval="2000">
                     <img src="{{ focus_list.0.post.image.url }}" class="d-block w-100" style="height: 26rem" alt="img">
                     <div class="carousel-caption d-none d-md-block slider-caption">
-                        <p class="focus_headline_bengali_title">{{ focus_list.0.post.bangla_title }}</p>
-                        <p class="focus_headline_english_title"
-                           style="display: none">{{ focus_list.0.post.english_title }}</p>
+                        <a href="/details-news/{{ focus_list.0.post.id }}/{{ focus_list.0.post.english_category.the_category }}/">
+                            <p class="focus_headline_bengali_title">{{ focus_list.0.post.bangla_title }}</p>
+                            <p class="focus_headline_english_title"
+                               style="display: none">{{ focus_list.0.post.english_title }}</p>
+                        </a>
                     </div>
                 </div>
                 {% for data in focus_list %}
@@ -19,9 +21,11 @@
                                  style="height: 26rem"
                                  alt="img">
                             <div class="carousel-caption d-none d-md-block slider-caption">
-                                <p class="focus_headline_bengali_title">{{ data.post.bangla_title }}</p>
-                                <p class="focus_headline_english_title"
-                                   style="display: none">{{ data.post.english_title }}</p>
+                                <a href="/details-news/{{ data.post.id }}/{{ data.post.english_category.the_category }}/">
+                                    <p class="focus_headline_bengali_title">{{ data.post.bangla_title }}</p>
+                                    <p class="focus_headline_english_title"
+                                       style="display: none">{{ data.post.english_title }}</p>
+                                </a>
                             </div>
                         </div>
                     {% endif %}
@@ -49,13 +53,16 @@
                 <div class="row mt-3 my-row"
                      style="background: var(--card-primary-bg);">
                     <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                        <p class="card-headline align-items-center focus_headline_bengali_title" style="display: flex">
-                            <img src="{% static 'logo/Polygon 1.svg' %}"
-                                 style="margin-right: 0.5rem">{{ data.post.bangla_title }}</p>
-                        <p class="card-headline align-items-center focus_headline_english_title"
-                           style="display: none">
-                            <img src="{% static 'logo/Polygon 1.svg' %}"
-                                 style="margin-right: 0.5rem">{{ data.post.english_title }}</p>
+                        <a href="/details-news/{{ data.post.id }}/{{ data.post.english_category.the_category }}/">
+                            <p class="card-headline align-items-center focus_headline_bengali_title"
+                               style="display: flex">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.post.bangla_title }}</p>
+                            <p class="card-headline align-items-center focus_headline_english_title"
+                               style="display: none">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.post.english_title }}</p>
+                        </a>
                     </div>
                 </div>
             {% endfor %}
@@ -68,7 +75,8 @@
         <div style="height: 50rem;overflow: auto;margin-top: 1rem">
             {% for data in latest_news_list %}
                 <div class="row d-flex justify-content-evenly mb-3 my-row"
-                     style="background: var(--card-primary-bg);">
+                     style="background: var(--card-primary-bg);cursor: pointer"
+                     onclick="location.href='/details-news/{{ data.id }}/{{ data.english_category.the_category }}/'">
                     <div class="col-8" style="padding:1.5rem">
                         <p class="card-headline latest_news_title_bengali">{{ data.bangla_title }}</p>
                         <p class="card-headline latest_news_title_english"
