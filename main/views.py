@@ -406,7 +406,7 @@ def details_news(request, post_id, category_name):
 
 def like_news_counter(request, post_id):
     like_counter(post_id)
-    return HttpResponse(status=200)
+    return HttpResponseRedirect('/')
 
 
 def calculate_time_passed(time_difference):
