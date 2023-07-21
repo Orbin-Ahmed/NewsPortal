@@ -5,29 +5,31 @@
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="2000">
-                    <img src="{% static 'images/Rectangle 65.png' %}" class="d-block w-100" alt="...">
+                    <img src="{{ focus_list.0.post.image.url }}" class="d-block w-100" style="height: 26rem" alt="img">
                     <div class="carousel-caption d-none d-md-block slider-caption">
-                        <p>তিস্তা নদীর তীব্র ভাঙন, নদীগর্ভে বিলীন বাড়িঘর</p>
+                        <a href="/details-news/{{ focus_list.0.post.id }}/{{ focus_list.0.post.english_category.the_category }}/">
+                            <p class="focus_headline_bengali_title">{{ focus_list.0.post.bangla_title }}</p>
+                            <p class="focus_headline_english_title"
+                               style="display: none">{{ focus_list.0.post.english_title }}</p>
+                        </a>
                     </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="{% static 'images/Rectangle 67.png' %}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block slider-caption">
-                        <p>তামিম না ফিরলে আফগানিস্তান সিরিজে নেতৃত্ব দেবেন লিটন</p>
-                    </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="{% static 'images/Rectangle 68.png' %}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block slider-caption">
-                        <p>বিশ্বকাপের আগে হঠাৎ কেন বিদায় তামিমের</p>
-                    </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="{% static 'images/Rectangle 69.png' %}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block slider-caption">
-                        <p>গণতন্ত্র সুরক্ষায় একসঙ্গে কাজ করছি</p>
-                    </div>
-                </div>
+                {% for data in focus_list %}
+                    {% if not forloop.first %}
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="{{ data.post.image.url }}" class="d-block w-100"
+                                 style="height: 26rem"
+                                 alt="img">
+                            <div class="carousel-caption d-none d-md-block slider-caption">
+                                <a href="/details-news/{{ data.post.id }}/{{ data.post.english_category.the_category }}/">
+                                    <p class="focus_headline_bengali_title">{{ data.post.bangla_title }}</p>
+                                    <p class="focus_headline_english_title"
+                                       style="display: none">{{ data.post.english_title }}</p>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
                     data-bs-slide="prev">
@@ -43,184 +45,49 @@
         {#Focus Section#}
         <div class="row d-flex align-items-center last-news mt-3 pt-0 pb-0 my-row"
              style="padding-right: 0;">
-            <div class="col-6 p-0">ফোকাস</div>
+            <div class="col-6 p-0 focus_headline_bengali_title_m">ফোকাস</div>
             <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
         </div>
         <div style="height: 30rem;overflow: auto">
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
+            {% for data in focus_list %}
+                <div class="row mt-3 my-row"
+                     style="background: var(--card-primary-bg);">
+                    <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
+                        <a href="/details-news/{{ data.post.id }}/{{ data.post.english_category.the_category }}/">
+                            <p class="card-headline align-items-center focus_headline_bengali_title"
+                               style="display: flex">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.post.bangla_title }}</p>
+                            <p class="card-headline align-items-center focus_headline_english_title"
+                               style="display: none">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.post.english_title }}</p>
+                        </a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
-                </div>
-            </div>
-
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
-                </div>
-            </div>
-
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
-                </div>
-            </div>
-
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
-                </div>
-            </div>
-
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
-                </div>
-            </div>
-
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
-                </div>
-            </div>
-
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
         {#Focus Section end#}
     </div>
     {#Right Section#}
     <div class="col-md-4 p-0" style="margin-left: 1rem;margin-top: 2rem">
-        <p class="last-news">সর্বশেষ খবর</p>
+        <p class="last-news" id="latest_news_title">সর্বশেষ খবর</p>
         <div style="height: 50rem;overflow: auto;margin-top: 1rem">
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
+            {% for data in latest_news_list %}
+                <div class="row d-flex justify-content-evenly mb-3 my-row"
+                     style="background: var(--card-primary-bg);cursor: pointer"
+                     onclick="location.href='/details-news/{{ data.id }}/{{ data.english_category.the_category }}/'">
+                    <div class="col-8" style="padding:1.5rem">
+                        <p class="card-headline latest_news_title_bengali">{{ data.bangla_title }}</p>
+                        <p class="card-headline latest_news_title_english"
+                           style="display: none">{{ data.english_title }}</p>
+                        <p>Posted : <span>{{ data.time_passed }}</span></p>
+                    </div>
+                    <div class="col-4 p-0">
+                        <img src="{{ data.image.url }}" style="width: 100%">
+                    </div>
                 </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
-                </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
-                </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
-                </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
-                </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
-                </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
-                </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-evenly mb-3 my-row"
-                 style="background: var(--card-secondary-bg);">
-                <div class="col-8" style="padding:1.5rem">
-                    <p class="card-headline">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</p>
-                    <p>Posted : <span>9 min ago</span></p>
-                </div>
-                <div class="col-4 p-0">
-                    <img src="{% static 'images/Rectangle 70.png' %}" style="width: 100%">
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     {#Right Section end#}
