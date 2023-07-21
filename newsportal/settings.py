@@ -81,6 +81,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# postgresql
+# DATABASES = {
+#     "default": {
+#         "ENGINE": os.getenv("DATABASE_ENGINE"),
+#         "NAME": os.getenv("DATABASE_NAME"),
+#         "USER": os.getenv("DATABASE_USER"),
+#         "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+#         "HOST": os.getenv("DATABASE_HOST"),
+#         "PORT": os.getenv("DATABASE_PORT"),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

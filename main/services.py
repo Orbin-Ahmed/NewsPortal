@@ -465,7 +465,7 @@ def latest_category_news(category_name):
 
 
 def max_views_today():
-    return Post.objects.filter(is_approved=True, date_created__day=datetime.today()).order_by("-view_counter")[:30]
+    return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day).order_by("-view_counter")[:30]
 
 
 def filtered_all_news():
