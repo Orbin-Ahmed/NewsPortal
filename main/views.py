@@ -372,6 +372,7 @@ def landing_page(request):
     latest_news_list = latest_news()
     focus_list = trending_list()
     max_views_list = max_views_today()
+    print(max_views_list)
     for news in latest_news_list:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
