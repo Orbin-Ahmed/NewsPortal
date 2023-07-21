@@ -1,8 +1,10 @@
 from datetime import datetime, date
 import pybengali
+from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.db.models import Q
+from django.utils.timezone import make_aware
 
 from main.models import Post, EnglishCategory, BanglaCategory, EnglishTag, BanglaTag, SpecialNews, User
 
@@ -77,7 +79,7 @@ def approve_post(request, post_id):
         post_object = Post.objects.get(id=post_id)
         post_object.is_approved = True
         post_object.need_edit = False
-        post_object.date_created = datetime.now()
+        post_object.date_created = make_aware(datetime.now())
         # approved true, need edit false
         post_object.save()
         return True
@@ -398,30 +400,41 @@ def edit_post(request, post_id, update_object):
                            )
 
 
+# trending top views in descending order -> 8 objects returned in queryset
 def highlights():
     approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
     return approved_post.order_by("-view_counter")[:8]
 
 
+# returns a list of category except static 5 ta -> returns [["english_category", "bangla_category"], ... ]
 def category_list():
-    approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
-    return approved_post.exclude(Q(english_category__the_category="national") |
-                                 Q(english_category__the_category="sports") |
-                                 Q(english_category__the_category="country") |
-                                 Q(english_category__the_category="showbiz") |
-                                 Q(english_category__the_category="world"))
+    approved_post = Post.objects.filter(is_approved=True)
+    approved_post = approved_post.exclude(Q(english_category__the_category="national") |
+                                          Q(english_category__the_category="sports") |
+                                          Q(english_category__the_category="country") |
+                                          Q(english_category__the_category="showbiz") |
+                                          Q(english_category__the_category="world")).distinct(
+        "english_category__the_category")
+    _list = []
+    for each in approved_post:
+        combo = [each.english_category.the_category, each.bangla_category.the_category]
+        _list.append(combo)
+    return _list
 
 
-def focus_list():
-    approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
-    return approved_post.filter(specialnews__is_trending=True)
+# # returns queryset of trending all
+# def focus_list():
+#     approved_post = Post.objects.filter(is_approved=True)
+#     return approved_post.filter(specialnews__is_trending=True)
+#
+#
+# # returns queryset of headline all
+# def headline_list():
+#     approved_post = Post.objects.filter(is_approved=True)
+#     return approved_post.filter(specialnews__is_headline=True)
 
 
-def headline_list():
-    approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
-    return approved_post.filter(specialnews__is_headline=True)
-
-
+# like counter -> returns True when done
 def like_counter(post_id):
     post_object = Post.objects.get(id=post_id)
     post_object.like_counter = post_object.like_counter + 1
@@ -429,8 +442,44 @@ def like_counter(post_id):
     return True
 
 
+# view counter -> returns True when done
 def view_counter(post_id):
     post_object = Post.objects.get(id=post_id)
     post_object.view_counter = post_object.view_counter + 1
     post_object.save()
     return True
+
+
+def latest_news():
+    return Post.objects.filter(is_approved=True).order_by("-date_created")
+
+
+def highest_view_category_news(category_name):
+    return Post.objects.filter(is_approved=True, english_category__the_category=category_name.lower()).order_by(
+        "-view_counter")
+
+
+def latest_category_news(category_name):
+    return Post.objects.filter(is_approved=True, english_category__the_category=category_name.lower()).order_by(
+        "-date_created")
+
+
+def max_views_today():
+    return Post.objects.filter(is_approved=True, date_created__day=datetime.today()).order_by("-view_counter")[:30]
+
+
+def filtered_all_news():
+    approved_post = Post.objects.filter(is_approved=True)
+    return approved_post.exclude(Q(english_category__the_category="national") |
+                                 Q(english_category__the_category="sports") |
+                                 Q(english_category__the_category="country") |
+                                 Q(english_category__the_category="showbiz") |
+                                 Q(english_category__the_category="world"))
+
+
+def search_filter(keyword):
+    approved_post = Post.objects.filter(is_approved=True)
+    return approved_post.filter(Q(english_title__icontains=keyword) |
+                                Q(bangla_title__icontains=keyword) |
+                                Q(englishtag__the_tag__icontains=keyword) |
+                                Q(banglatag__the_tag__icontains=keyword)).distinct("id")
