@@ -388,13 +388,18 @@ def category_news(request):
     return render(request, 'client/category_news.html', {'date': my_date})
 
 
-def details_news(request, post_id):
+def details_news(request, post_id, category_name):
     my_date = bangla_date()
     headline = headline_list()
     view_counter(post_id)
     news_details_info = post_details(post_id)
+    latest_news_list = latest_category_news(category_name)
+    for news in latest_news_list:
+        time_passed = timezone.now() - news.date_created
+        news.time_passed = calculate_time_passed(time_passed)
     return render(request, 'client/details_news.html',
-                  {'date': my_date, 'news_details_info': news_details_info, 'headline_list': headline})
+                  {'date': my_date, 'news_details_info': news_details_info, 'headline_list': headline,
+                   'latest_news_list': latest_news_list})
 
 
 def like_news_counter(request, post_id):

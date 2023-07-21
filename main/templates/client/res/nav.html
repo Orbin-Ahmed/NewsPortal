@@ -85,7 +85,7 @@
     <ul>
         {% for data in headline_list %}
             <li>
-                <a href="/details-news/{{ data.post.id }}/">
+                <a href="/details-news/{{ data.post.id }}/{{ data.post.english_category.the_category }}/">
                     <p class="m-0 top_rolling_headline_bangla">{{ data.post.bangla_title }}</p>
                     <p class="m-0 top_rolling_headline_english" style="display: none">{{ data.post.english_title }}</p>
                 </a>
