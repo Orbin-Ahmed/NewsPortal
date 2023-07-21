@@ -31,7 +31,7 @@ class Post(models.Model):
                                         related_name="bangla_category")
     is_approved = models.BooleanField(default=False)
     need_edit = models.BooleanField(default=False)
-    date_created = models.DateField(null=True, blank=True)
+    date_created = models.DateTimeField(null=True, blank=True)
     like_counter = models.IntegerField(default=0)
     view_counter = models.IntegerField(default=0)
 
