@@ -682,6 +682,10 @@ a {
     margin-right: 0.7rem;
 }
 
+.category-img {
+    height: 10rem;
+}
+
 /*Media Queries Start*/
 
 @media only screen and (max-width: 1366px) {
@@ -751,6 +755,10 @@ a {
         position: absolute;
         left: -37.5rem;
         top: -2.1875rem;
+    }
+
+    .category-img {
+        height: unset;
     }
 }
 

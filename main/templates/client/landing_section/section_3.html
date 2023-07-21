@@ -11,28 +11,31 @@
         <div class="row d-flex justify-content-evenly mt-3 mb-4">
             <div class="col-md-3 mb-3">
                 <div class="card" style="background: var(--card-primary-bg)">
-                    <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
+                    <img src="{{ national_news_list.0.image.url }}" class="card-img-top img-fluid category-img"
+                         alt="...">
                     <div class="card-body">
                         <a href="/news-details/" style="cursor: pointer;"><h5
-                                class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5></a>
+                                class="card-headline truncate">{{ national_news_list.0.bangla_title }}</h5></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <div class="card" style="background: var(--card-primary-bg)">
-                    <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
+                    <img src="{{ national_news_list.1.image.url }}" class="card-img-top img-fluid category-img"
+                         alt="...">
                     <div class="card-body">
                         <a href="/news-details/" style="cursor: pointer;"><h5
-                                class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5></a>
+                                class="card-headline truncate">{{ national_news_list.1.bangla_title }}</h5></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <div class="card" style="background: var(--card-primary-bg)">
-                    <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
+                    <img src="{{ national_news_list.2.image.url }}" class="card-img-top img-fluid category-img"
+                         alt="...">
                     <div class="card-body">
                         <a href="/news-details/" style="cursor: pointer;"><h5
-                                class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5></a>
+                                class="card-headline truncate">{{ national_news_list.2.bangla_title }}</h5></a>
                     </div>
                 </div>
             </div>
@@ -41,28 +44,31 @@
         <div class="row d-flex justify-content-evenly mt-3 mb-4">
             <div class="col-md-3 mb-3">
                 <div class="card" style="background: var(--card-primary-bg)">
-                    <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
+                    <img src="{{ national_news_list.3.image.url }}" class="card-img-top img-fluid category-img"
+                         alt="...">
                     <div class="card-body">
                         <a href="/news-details/" style="cursor: pointer;"><h5
-                                class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5></a>
+                                class="card-headline truncate">{{ national_news_list.3.bangla_title }}</h5></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <div class="card" style="background: var(--card-primary-bg)">
-                    <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
+                    <img src="{{ national_news_list.4.image.url }}" class="card-img-top img-fluid category-img"
+                         alt="...">
                     <div class="card-body">
                         <a href="/news-details/" style="cursor: pointer;"><h5
-                                class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5></a>
+                                class="card-headline truncate">{{ national_news_list.4.bangla_title }}</h5></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <div class="card" style="background: var(--card-primary-bg)">
-                    <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
+                    <img src="{{ national_news_list.5.image.url }}" class="card-img-top img-fluid category-img"
+                         alt="...">
                     <div class="card-body">
                         <a href="/news-details/" style="cursor: pointer;"><h5
-                                class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার ভিড়</h5></a>
+                                class="card-headline truncate">{{ national_news_list.5.bangla_title }}</h5></a>
                     </div>
                 </div>
             </div>
@@ -76,16 +82,16 @@
             <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
         </div>
         <div style="height: 30rem;overflow: auto">
-            <div class="row mt-3 my-row"
-                 style="background: var(--card-primary-bg);">
-                <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                    <p class="card-headline d-flex align-items-center">
-                        <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">মাদারীপুরে
-                        হা-ডু-ডু
-                        খেলা
-                        দেখতে হাজারো জনতার ভিড়</p>
+            {% for data in max_views_list %}
+                <div class="row mt-3 my-row"
+                     style="background: var(--card-primary-bg);">
+                    <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
+                        <p class="card-headline d-flex align-items-center">
+                            <img src="{% static 'logo/Polygon 1.svg' %}"
+                                 style="margin-right: 0.5rem">{{ data.bangla_title }}</p>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
