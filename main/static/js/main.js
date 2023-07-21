@@ -64,5 +64,7 @@ $('.image-upload-wrap').bind('dragleave', function () {
 // Image Upload End
 
 // DatePicker
-
-
+function search_filter() {
+    let keywords = document.getElementById('search_keywords').value;
+    location.href = '/search-news/' + keywords + '/'
+}

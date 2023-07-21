@@ -403,7 +403,7 @@ def edit_post(request, post_id, update_object):
 # trending top views in descending order -> 8 objects returned in queryset
 def highlights():
     approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
-    return approved_post.order_by("-view_counter")[:8]
+    return approved_post.order_by("-view_counter")[:10]
 
 
 # returns a list of category except static 5 ta -> returns [["english_category", "bangla_category"], ... ]
