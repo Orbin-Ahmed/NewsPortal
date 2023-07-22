@@ -49,7 +49,21 @@
 
         let focus_headline_bengali_title_m = document.querySelector(".focus_headline_bengali_title_m");
 
+        let highlights_section_title = document.getElementById("highlights_section_title");
         let latest_news_title = document.getElementById("latest_news_title");
+        let national_headline_title = document.getElementById("national_headline_title");
+        let max_view_title = document.getElementById("max_view_title");
+        let showbiz_headline_title = document.getElementById("showbiz_headline_title");
+
+        let footer_home_icon = document.getElementById("footer_home_icon");
+        let footer_headline_icon = document.getElementById("footer_headline_icon");
+        let footer_sports_icon = document.getElementById("footer_sports_icon");
+        let footer_country_icon = document.getElementById("footer_country_icon");
+        let footer_world_icon = document.getElementById("footer_world_icon");
+        let footer_showbiz_icon = document.getElementById("footer_showbiz_icon");
+        let footer_editor_icon = document.getElementById("footer_editor_icon");
+        let country_headline_title = document.getElementById("country_headline_title");
+        let sports_headline_title = document.getElementById("sports_headline_title");
 
         if (toggleInput.checked) {
             cat_other.style.display = "block"
@@ -83,7 +97,21 @@
 
             latest_news_title.innerHTML = "সর্বশেষ খবর";
 
+            highlights_section_title.innerHTML = "হাইলাইটস";
             focus_headline_bengali_title_m.innerHTML = "ফোকাস";
+            national_headline_title.innerHTML = "জাতীয়";
+            max_view_title.innerHTML = "সর্বাধিক পঠিত";
+            showbiz_headline_title.innerHTML = "শোবিজ";
+
+            footer_home_icon.innerHTML = "হোম";
+            footer_headline_icon.innerHTML = "আজকের শিরোনাম";
+            footer_sports_icon.innerHTML = "মাঠে ময়দানে";
+            footer_country_icon.innerHTML = "দেশগ্রাম";
+            footer_world_icon.innerHTML = "পূর্ব-পশ্চিম";
+            footer_showbiz_icon.innerHTML = "শোবিজ";
+            footer_editor_icon.innerHTML = "সম্পাদকের নাম : আ ন ম ছিদ্দিক";
+            country_headline_title.innerHTML = "দেশগ্রাম";
+            sports_headline_title.innerHTML = "মাঠে ময়দানে";
 
         } else {
             cat_other.style.display = "none"
@@ -117,6 +145,20 @@
 
             latest_news_title.innerHTML = "Latest News";
             focus_headline_bengali_title_m.innerHTML = "Focus News";
+            highlights_section_title.innerHTML = "Highlights";
+            national_headline_title.innerHTML = "National";
+            max_view_title.innerHTML = "Most Read";
+            showbiz_headline_title.innerHTML = "Showbiz";
+
+            footer_home_icon.innerHTML = "Home";
+            footer_headline_icon.innerHTML = "Today's Headline";
+            footer_sports_icon.innerHTML = "Sports";
+            footer_country_icon.innerHTML = "Country";
+            footer_world_icon.innerHTML = "World";
+            footer_showbiz_icon.innerHTML = "Showbiz";
+            footer_editor_icon.innerHTML = "Editor's Name: A N M Siddique";
+            country_headline_title.innerHTML = "Country";
+            sports_headline_title.innerHTML = "Sports";
         }
     }
 </script>

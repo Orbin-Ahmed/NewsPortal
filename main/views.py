@@ -2,10 +2,13 @@ import re
 
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AnonymousUser
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from .services import *
 from django.utils import timezone
+from PIL import Image
+from io import BytesIO
 
 
 # Create your views here.
@@ -107,8 +110,13 @@ def publish_news(request):
             category_en = request.POST['newsCategoryEN']
 
             news_image = request.FILES['news_image']
+            buffer = convert_to_aspect_ratio(news_image, 1)
+            file = InMemoryUploadedFile(
+                buffer, None, "image.png", "image/png",
+                buffer.tell(), None
+            )
 
-            t = post_report(request, title_bn, details_bn, tag_bn, category_bn, news_image, title_en, details_en,
+            t = post_report(request, title_bn, details_bn, tag_bn, category_bn, file, title_en, details_en,
                             tag_en,
                             category_en)
         return render(request, 'reporter/newReport.html',
@@ -132,8 +140,13 @@ def edit_news_redirect(request, post_id):
         category_en = request.POST['newsCategoryEN']
 
         news_image = request.FILES['news_image']
+        buffer = convert_to_aspect_ratio(news_image, 1)
+        file = InMemoryUploadedFile(
+            buffer, None, "image.png", "image/png",
+            buffer.tell(), None
+        )
         edit_post_obj = {'bangla_title': title_bn, 'bangla_content': details_bn, 'bangla_tag': tag_bn,
-                         'bangla_category': category_bn, 'image': news_image, 'english_title': title_en,
+                         'bangla_category': category_bn, 'image': file, 'english_title': title_en,
                          'english_content': details_en, 'english_tag': tag_en, 'english_category': category_en}
         edit_post(request, post_id, edit_post_obj)
         return HttpResponseRedirect('/publish-news/')
@@ -370,14 +383,23 @@ def landing_page(request):
     headline = headline_list()
     highlight = highlights()
     latest_news_list = latest_news()
+    for news in latest_news_list:
+        time_passed = timezone.now() - news.date_created
+        news.time_passed = calculate_time_passed(time_passed)
     focus_list = trending_list()
     max_views_list = max_views_today()
-    for news in latest_news_list:
+    national_news = highest_view_category_news("National", 6)
+    showbiz_news = highest_view_category_news("showbiz", 7)
+    country_news = highest_view_category_news("country", 7)
+    sports_news = highest_view_category_news("sports", 7)
+    for news in showbiz_news:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
     return render(request, 'client/landing_page.html',
                   {'date': my_date, 'headline_list': headline, 'highlights_list': highlight,
-                   'latest_news_list': latest_news_list, 'focus_list': focus_list})
+                   'latest_news_list': latest_news_list, 'focus_list': focus_list, 'max_views_list': max_views_list,
+                   'national_news_list': national_news, 'showbiz_news_list': showbiz_news,
+                   'country_news_list': country_news, 'sports_news_list': sports_news})
 
 
 def today_news(request):
@@ -435,3 +457,38 @@ def calculate_time_passed(time_difference):
         return f"{int(minutes_passed)} minutes ago"
     else:
         return "Less than a minute ago"
+
+
+def convert_to_aspect_ratio(image_path, aspect_ratio):
+    # Open the image using Pillow
+    im = Image.open(image_path)
+    # Get the original dimensions of the image
+    width, height = im.size
+    # Calculate the new height and width based on the aspect ratio
+    new_height = int(width / aspect_ratio)
+    new_width = int(height * aspect_ratio)
+    # Determine the area to crop based on the new dimensions
+    if new_height > height:
+        # Crop the sides of the image
+        left = int((width - new_width) / 2)
+        top = 0
+        right = int(left + new_width)
+        bottom = height
+    else:
+        # Crop the top and bottom of the image
+        left = 0
+        top = int((height - new_height) / 2)
+        right = width
+        bottom = int(top + new_height)
+    # Crop the image to the specified area
+    im = im.crop((left, top, right, bottom))
+    # Resize the image to the specified aspect ratio
+    im = im.resize((int(new_width), int(new_height)))
+    # Create a BytesIO object to hold the image data
+    buffer = BytesIO()
+    # Save the image to the buffer in PNG format
+    im.save(buffer, format="PNG")
+    # Reset the buffer position to the beginning
+    buffer.seek(0)
+    # Return the buffer object
+    return buffer

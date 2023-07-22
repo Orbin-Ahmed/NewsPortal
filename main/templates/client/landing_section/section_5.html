@@ -1,96 +1,125 @@
 {% load static %}
-<div class="row d-flex justify-content-evenly mt-5">
-    <div class="col-md-9">
+{% if country_news_list.0.bangla_title %}
+    <div class="row d-flex justify-content-evenly mt-5">
+        <div class="col-md-9">
 
-        <div class="row d-flex align-items-center last-news mt-3 pt-0 pb-0 my-row"
-             style="padding-right: 0;padding-left: 4rem">
-            <div class="col-6 p-0">দেশগ্রাম</div>
-            <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
-        </div>
-        <div class="row d-flex justify-content-evenly mt-3">
-            <div class="col-md-5 mb-3 d-flex align-items-center">
-                <div>
-                    <div class="img-container">
-                        <img class="img-fluid" src="{% static 'images/katrina.png' %}">
-                        <p class="carousel-caption m-0 slider-caption">বিমানবন্দরে নামতেই সেলফি বিড়ম্বনায় ক্যাটরিনা</p>
-                    </div>
-                </div>
+            <div class="row d-flex align-items-center last-news mt-3 pt-0 pb-0 my-row"
+                 style="padding-right: 0;padding-left: 4rem">
+                <div class="col-6 p-0" id="country_headline_title">দেশগ্রাম</div>
+                <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
             </div>
-            {#Right Section#}
-            <div class="col-md-7 mt-3 mb-3">
-                <div class="row d-flex justify-content-evenly mt-3 mb-4">
-                    <div class="col-md-3 mb-3">
-                        <div class="card" style="background: var(--card-primary-bg)">
-                            <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;"><h5
-                                        class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার
-                                    ভিড়</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card" style="background: var(--card-primary-bg)">
-                            <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;"><h5
-                                        class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার
-                                    ভিড়</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card" style="background: var(--card-primary-bg)">
-                            <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;"><h5
-                                        class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার
-                                    ভিড়</h5>
-                                </a>
-                            </div>
+            <div class="row d-flex justify-content-evenly mt-3">
+                <div class="col-md-5 mb-3 d-flex align-items-center">
+                    <div>
+                        <div class="img-container">
+                            <img class="img-fluid" src="{{ country_news_list.0.image.url }}">
+                            <p class="carousel-caption m-0 slider-caption focus_headline_bengali_title">{{ country_news_list.0.bangla_title }}</p>
+                            <p class="carousel-caption m-0 slider-caption focus_headline_english_title"
+                               style="display: none;">{{ country_news_list.0.english_title }}</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="row d-flex justify-content-evenly mt-3 mb-4">
-                    <div class="col-md-3 mb-3">
-                        <div class="card" style="background: var(--card-primary-bg)">
-                            <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;"><h5
-                                        class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার
-                                    ভিড়</h5>
-                                </a>
+                {#Right Section#}
+                {% if country_news_list.1.bangla_title %}
+                    <div class="col-md-7 mt-3 mb-3">
+                        <div class="row d-flex justify-content-evenly mt-3 mb-4">
+                            <div class="col-md-3 mb-3">
+                                <div class="card" style="background: var(--card-primary-bg)">
+                                    <img src="{{ country_news_list.1.image.url }}" class="card-img-top category-img"
+                                         alt="...">
+                                    <div class="card-body">
+                                        <a href="/news-details/" style="cursor: pointer;">
+                                            <h5 class="card-headline truncate focus_headline_bengali_title">{{ country_news_list.1.bangla_title }}</h5>
+                                            <h5 class="card-headline truncate focus_headline_english_title"
+                                                style="display: none;">{{ country_news_list.1.english_title }}</h5>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
+                            {% if country_news_list.2.bangla_title %}
+                                <div class="col-md-3 mb-3">
+                                    <div class="card" style="background: var(--card-primary-bg)">
+                                        <img src="{{ country_news_list.2.image.url }}" class="card-img-top category-img"
+                                             alt="...">
+                                        <div class="card-body">
+                                            <a href="/news-details/" style="cursor: pointer;">
+                                                <h5 class="card-headline truncate focus_headline_bengali_title">{{ country_news_list.2.bangla_title }}</h5>
+                                                <h5 class="card-headline truncate focus_headline_english_title"
+                                                    style="display: none;">{{ country_news_list.2.english_title }}</h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if country_news_list.3.bangla_title %}
+                                <div class="col-md-3 mb-3">
+                                    <div class="card" style="background: var(--card-primary-bg)">
+                                        <img src="{{ country_news_list.3.image.url }}" class="card-img-top category-img"
+                                             alt="...">
+                                        <div class="card-body">
+                                            <a href="/news-details/" style="cursor: pointer;">
+                                                <h5 class="card-headline truncate focus_headline_bengali_title">{{ country_news_list.3.bangla_title }}</h5>
+                                                <h5 class="card-headline truncate focus_headline_english_title"
+                                                    style="display: none;">{{ country_news_list.3.english_title }}</h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card" style="background: var(--card-primary-bg)">
-                            <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;"><h5
-                                        class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার
-                                    ভিড়</h5>
-                                </a>
+                        {% if country_news_list.4.bangla_title %}
+                            <div class="row d-flex justify-content-evenly mt-3 mb-4">
+                                <div class="col-md-3 mb-3">
+                                    <div class="card" style="background: var(--card-primary-bg)">
+                                        <img src="{{ country_news_list.4.image.url }}" class="card-img-top category-img"
+                                             alt="...">
+                                        <div class="card-body">
+                                            <a href="/news-details/" style="cursor: pointer;">
+                                                <h5 class="card-headline truncate focus_headline_bengali_title">{{ country_news_list.4.bangla_title }}</h5>
+                                                <h5 class="card-headline truncate focus_headline_english_title"
+                                                    style="display: none">{{ country_news_list.4.english_title }}</h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if country_news_list.5.bangla_title %}
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card" style="background: var(--card-primary-bg)">
+                                            <img src="{{ country_news_list.5.image.url }}"
+                                                 class="card-img-top category-img"
+                                                 alt="...">
+                                            <div class="card-body">
+                                                <a href="/news-details/" style="cursor: pointer;">
+                                                    <h5 class="card-headline truncate focus_headline_bengali_title">{{ country_news_list.5.bangla_title }}</h5>
+                                                    <h5 class="card-headline truncate focus_headline_english_title"
+                                                        style="display: none">{{ country_news_list.5.english_title }}</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if country_news_list.6.bangla_title %}
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card" style="background: var(--card-primary-bg)">
+                                            <img src="{{ country_news_list.6.image.url }}"
+                                                 class="card-img-top category-img"
+                                                 alt="...">
+                                            <div class="card-body">
+                                                <a href="/news-details/" style="cursor: pointer;">
+                                                    <h5 class="card-headline truncate focus_headline_bengali_title">{{ country_news_list.6.bangla_title }}</h5>
+                                                    <h5 class="card-headline truncate focus_headline_english_title"
+                                                        style="display: none">{{ country_news_list.6.english_title }}</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
-                        </div>
+                        {% endif %}
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card" style="background: var(--card-primary-bg)">
-                            <img src="{% static 'images/tamim.png' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;"><h5
-                                        class="card-headline truncate">মাদারীপুরে হা-ডু-ডু খেলা দেখতে হাজারো জনতার
-                                    ভিড়</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endif %}
+                {#Right Section end#}
             </div>
-            {#Right Section end#}
         </div>
     </div>
-</div>
+{% endif %}
