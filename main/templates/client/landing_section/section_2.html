@@ -1,7 +1,7 @@
 {% load static %}
 {% load mathfilters %}
 <div class="row d-flex mt-5 background-highlights">
-    <p class="headline text-center mt-2" style="color: var(--highlight-title)">হাইলাইটস</p>
+    <p class="headline text-center mt-2" id="highlights_section_title" style="color: var(--highlight-title)">হাইলাইটস</p>
     {% for data in highlights_list %}
         {% if forloop.counter0|mod:5 == 0 %}
             <div class="row d-flex justify-content-evenly mt-3 mb-4">

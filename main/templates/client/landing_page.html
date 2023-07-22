@@ -49,7 +49,10 @@
 
         let focus_headline_bengali_title_m = document.querySelector(".focus_headline_bengali_title_m");
 
+        let highlights_section_title = document.getElementById("highlights_section_title");
         let latest_news_title = document.getElementById("latest_news_title");
+        let national_headline_title = document.getElementById("national_headline_title");
+        let max_view_title = document.getElementById("max_view_title");
 
         if (toggleInput.checked) {
             cat_other.style.display = "block"
@@ -83,7 +86,10 @@
 
             latest_news_title.innerHTML = "সর্বশেষ খবর";
 
+            highlights_section_title.innerHTML = "হাইলাইটস";
             focus_headline_bengali_title_m.innerHTML = "ফোকাস";
+            national_headline_title.innerHTML = "জাতীয়";
+            max_view_title.innerHTML = "সর্বাধিক পঠিত";
 
         } else {
             cat_other.style.display = "none"
@@ -117,6 +123,9 @@
 
             latest_news_title.innerHTML = "Latest News";
             focus_headline_bengali_title_m.innerHTML = "Focus News";
+            highlights_section_title.innerHTML = "Highlights";
+            national_headline_title.innerHTML = "National";
+            max_view_title.innerHTML = "Most Read";
         }
     }
 </script>
