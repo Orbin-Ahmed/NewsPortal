@@ -370,16 +370,20 @@ def landing_page(request):
     headline = headline_list()
     highlight = highlights()
     latest_news_list = latest_news()
+    for news in latest_news_list:
+        time_passed = timezone.now() - news.date_created
+        news.time_passed = calculate_time_passed(time_passed)
     focus_list = trending_list()
     max_views_list = max_views_today()
     national_news = highest_view_category_news("National", 6)
-    for news in latest_news_list:
+    showbiz_news = highest_view_category_news("showbiz", 7)
+    for news in showbiz_news:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
     return render(request, 'client/landing_page.html',
                   {'date': my_date, 'headline_list': headline, 'highlights_list': highlight,
                    'latest_news_list': latest_news_list, 'focus_list': focus_list, 'max_views_list': max_views_list,
-                   'national_news_list': national_news})
+                   'national_news_list': national_news, 'showbiz_news_list': showbiz_news})
 
 
 def today_news(request):
