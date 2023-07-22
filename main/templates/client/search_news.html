@@ -23,20 +23,23 @@
                     <div class="row mt-3 my-row"
                          style="background: var(--card-primary-bg);">
                         <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                            <p class="card-headline d-flex align-items-center search_news_title_bengali">
-                                <img src="{% static 'logo/Polygon 1.svg' %}"
-                                     style="margin-right: 0.5rem">{{ data.bangla_title }}</p>
-                            <p class="card-headline d-flex align-items-center search_news_title_english"
-                               style="display: none">
-                                <img src="{% static 'logo/Polygon 1.svg' %}"
-                                     style="margin-right: 0.5rem">{{ data.english_title }}</p>
+                            <a href="/details-news/{{ data.id }}/{{ data.english_category.the_category }}/">
+                                <p class="card-headline align-items-center search_news_title_bengali"
+                                   style="display: flex">
+                                    <img src="{% static 'logo/Polygon 1.svg' %}"
+                                         style="margin-right: 0.5rem">{{ data.bangla_title }}</p>
+                                <p class="card-headline align-items-center search_news_title_english"
+                                   style="display: none">
+                                    <img src="{% static 'logo/Polygon 1.svg' %}"
+                                         style="margin-right: 0.5rem">{{ data.english_title }}</p>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
-
+    {% include 'client/res/footer.html' %}
 </div>
 {% include 'root/js.html' %}
 <script>
@@ -58,6 +61,14 @@
 
         let search_news_title = document.getElementById("search_news_title");
 
+        let footer_home_icon = document.getElementById("footer_home_icon");
+        let footer_headline_icon = document.getElementById("footer_headline_icon");
+        let footer_sports_icon = document.getElementById("footer_sports_icon");
+        let footer_country_icon = document.getElementById("footer_country_icon");
+        let footer_world_icon = document.getElementById("footer_world_icon");
+        let footer_showbiz_icon = document.getElementById("footer_showbiz_icon");
+        let footer_editor_icon = document.getElementById("footer_editor_icon");
+
         if (toggleInput.checked) {
             cat_other.style.display = "block"
             cat_national.innerHTML = "জাতীয়";
@@ -78,10 +89,18 @@
                 element.style.display = "none";
             });
             search_news_title_english.forEach(element => {
-                element.style.display = "block";
+                element.style.display = "flex";
             });
 
             search_news_title.innerHTML = "শিরোনাম";
+
+            footer_home_icon.innerHTML = "হোম";
+            footer_headline_icon.innerHTML = "আজকের শিরোনাম";
+            footer_sports_icon.innerHTML = "মাঠে ময়দানে";
+            footer_country_icon.innerHTML = "দেশগ্রাম";
+            footer_world_icon.innerHTML = "পূর্ব-পশ্চিম";
+            footer_showbiz_icon.innerHTML = "শোবিজ";
+            footer_editor_icon.innerHTML = "সম্পাদকের নাম : আ ন ম ছিদ্দিক";
 
         } else {
             cat_other.style.display = "none"
@@ -100,13 +119,21 @@
             });
 
             search_news_title_english.forEach(element => {
-                element.style.display = "block";
+                element.style.display = "flex";
             });
             search_news_title_bengali.forEach(element => {
                 element.style.display = "none";
             });
 
             search_news_title.innerHTML = "Headline";
+
+            footer_home_icon.innerHTML = "Home";
+            footer_headline_icon.innerHTML = "Today's Headline";
+            footer_sports_icon.innerHTML = "Sports";
+            footer_country_icon.innerHTML = "Country";
+            footer_world_icon.innerHTML = "World";
+            footer_showbiz_icon.innerHTML = "Showbiz";
+            footer_editor_icon.innerHTML = "Editor's Name: A N M Siddique";
         }
     }
 </script>
