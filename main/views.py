@@ -414,8 +414,13 @@ def category_news(request, category_name):
     my_date = bangla_date()
     headline = headline_list()
     category_news_list = highest_view_category_news(category_name)
+    latest_news_list = latest_category_news(category_name)
+    for news in latest_news_list:
+        time_passed = timezone.now() - news.date_created
+        news.time_passed = calculate_time_passed(time_passed)
     return render(request, 'client/category_news.html',
-                  {'date': my_date, 'headline_list': headline, 'category_news_list': category_news_list})
+                  {'date': my_date, 'headline_list': headline, 'category_news_list': category_news_list,
+                   'latest_news_list': latest_news_list})
 
 
 def details_news(request, post_id, category_name):
