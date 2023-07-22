@@ -491,5 +491,6 @@ def search_filter(keyword):
 def today_all_news():
     return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day)
 
+
 def today_all_headlines():
     return Post.objects.filter(is_approved=True, specialnews__is_headline=True, date_created__day=datetime.today().day)

@@ -404,7 +404,10 @@ def landing_page(request):
 
 def today_news(request):
     my_date = bangla_date()
-    return render(request, 'client/today_news.html', {'date': my_date})
+    headline = headline_list()
+    today_all_headline = today_all_news()
+    return render(request, 'client/today_news.html',
+                  {'date': my_date, 'today_all_headline': today_all_headline, 'headline_list': headline})
 
 
 def category_news(request):
