@@ -192,13 +192,10 @@ def admin_view(request):
         return False
 
 
-# date filter admin view all approved news
-def filter_admin_view(request, date):
-    if request.user.user_type == 1:
-        post_list = Post.objects.filter(is_approved=True, date_created=date)
-        return post_list
-    else:
-        return False
+# date filter view all approved news
+def filter_date_view(request, _date):
+    post_list = Post.objects.filter(is_approved=True, date_created=_date)
+    return post_list
 
 
 # admin delete news
@@ -451,7 +448,7 @@ def view_counter(post_id):
 
 
 def latest_news():
-    return Post.objects.filter(is_approved=True).order_by("-date_created")
+    return Post.objects.filter(is_approved=True).order_by("-date_created")[:30]
 
 
 def highest_view_category_news(category_name):
@@ -483,3 +480,11 @@ def search_filter(keyword):
                                 Q(bangla_title__icontains=keyword) |
                                 Q(englishtag__the_tag__icontains=keyword) |
                                 Q(banglatag__the_tag__icontains=keyword)).distinct("id")
+
+
+def today_all_news():
+    return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day)
+
+
+def today_all_headlines():
+    return Post.objects.filter(is_approved=True, specialnews__is_headline=True, date_created__day=datetime.today().day)
