@@ -1,16 +1,16 @@
 {% load static %}
 {% load mathfilters %}
 <div class="row d-flex mt-5 background-highlights">
-    <p class="headline text-center mt-2" style="color: var(--highlight-title)">হাইলাইটস</p>
+    <p class="headline text-center mt-2" id="highlights_section_title" style="color: var(--highlight-title)">হাইলাইটস</p>
     {% for data in highlights_list %}
         {% if forloop.counter0|mod:5 == 0 %}
             <div class="row d-flex justify-content-evenly mt-3 mb-4">
         {% endif %}
         <div class="col-md-2 mb-3">
             <div class="card" style="background:var(--card-primary-bg)">
-                <img src="{{ data.image.url }}" class="card-img-top img-fluid" alt="..." style="height: 150px;">
+                <img src="{{ data.image.url }}" class="card-img-top img-fluid category-img" alt="...">
                 <div class="card-body">
-                    <a href="/details-news/{{ data.id }}/{{ data.english_category.the_category }}/" style="cursor: pointer;"><h5 class="card-headline truncate">{{ data.bangla_title }}</h5></a>
+                    <a href="/details-news/{{ data.id }}/{{ data.english_category.the_category }}/" style="cursor: pointer;"><h5 class="card-headline truncate focus_headline_bengali_title">{{ data.bangla_title }}</h5><h5 class="card-headline truncate focus_headline_english_title" style="display: none;">{{ data.english_title }}</h5></a>
                 </div>
             </div>
         </div>
