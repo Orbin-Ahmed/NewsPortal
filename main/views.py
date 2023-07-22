@@ -410,9 +410,12 @@ def today_news(request):
                   {'date': my_date, 'today_all_headline': today_all_headline, 'headline_list': headline})
 
 
-def category_news(request):
+def category_news(request, category_name):
     my_date = bangla_date()
-    return render(request, 'client/category_news.html', {'date': my_date})
+    headline = headline_list()
+    category_news_list = highest_view_category_news(category_name)
+    return render(request, 'client/category_news.html',
+                  {'date': my_date, 'headline_list': headline, 'category_news_list': category_news_list})
 
 
 def details_news(request, post_id, category_name):

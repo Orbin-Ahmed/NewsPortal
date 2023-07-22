@@ -350,5 +350,93 @@
     {% include 'client/res/footer.html' %}
 </div>
 {% include 'root/js.html' %}
+<script>
+    function toggleLanguage_client() {
+        let toggleInput = document.querySelector(".toggle-input");
+        let cat_today_headline = document.getElementById("cat_today_headline");
+        let cat_other = document.getElementById("cat_other");
+        let cat_sports = document.getElementById("cat_sports");
+        let cat_showbiz = document.getElementById("cat_showbiz");
+        let cat_world = document.getElementById("cat_world");
+        let cat_country = document.getElementById("cat_country");
+        let cat_national = document.getElementById("cat_national");
+
+        let top_rolling_headline_bangla = document.querySelectorAll(".top_rolling_headline_bangla");
+        let top_rolling_headline_english = document.querySelectorAll(".top_rolling_headline_english");
+
+        let focus_headline_bengali_title = document.querySelectorAll(".focus_headline_bengali_title");
+        let focus_headline_english_title = document.querySelectorAll(".focus_headline_english_title");
+
+        let footer_home_icon = document.getElementById("footer_home_icon");
+        let footer_headline_icon = document.getElementById("footer_headline_icon");
+        let footer_sports_icon = document.getElementById("footer_sports_icon");
+        let footer_country_icon = document.getElementById("footer_country_icon");
+        let footer_world_icon = document.getElementById("footer_world_icon");
+        let footer_showbiz_icon = document.getElementById("footer_showbiz_icon");
+        let footer_editor_icon = document.getElementById("footer_editor_icon");
+
+        if (toggleInput.checked) {
+            cat_other.style.display = "block"
+            cat_national.innerHTML = "জাতীয়";
+            cat_country.innerHTML = "দেশগ্রাম";
+            cat_world.innerHTML = "পূর্ব-পশ্চিম";
+            cat_showbiz.innerHTML = "শোবিজ";
+            cat_today_headline.innerHTML = "আজকের শিরোনাম";
+            cat_sports.innerHTML = "মাঠে ময়দানে";
+
+            top_rolling_headline_english.forEach(element => {
+                element.style.display = "none";
+            });
+            top_rolling_headline_bangla.forEach(element => {
+                element.style.display = "block";
+            });
+
+            focus_headline_english_title.forEach(element => {
+                element.style.display = "none";
+            });
+            focus_headline_bengali_title.forEach(element => {
+                element.style.display = "flex";
+            });
+
+            footer_home_icon.innerHTML = "হোম";
+            footer_headline_icon.innerHTML = "আজকের শিরোনাম";
+            footer_sports_icon.innerHTML = "মাঠে ময়দানে";
+            footer_country_icon.innerHTML = "দেশগ্রাম";
+            footer_world_icon.innerHTML = "পূর্ব-পশ্চিম";
+            footer_showbiz_icon.innerHTML = "শোবিজ";
+            footer_editor_icon.innerHTML = "সম্পাদকের নাম : আ ন ম ছিদ্দিক";
+        } else {
+            cat_other.style.display = "none"
+            cat_national.innerHTML = "National";
+            cat_country.innerHTML = "Country";
+            cat_world.innerHTML = "World";
+            cat_showbiz.innerHTML = "Showbiz";
+            cat_today_headline.innerHTML = "Today's Headline";
+            cat_sports.innerHTML = "Sports";
+
+            top_rolling_headline_bangla.forEach(element => {
+                element.style.display = "none";
+            });
+            top_rolling_headline_english.forEach(element => {
+                element.style.display = "block";
+            });
+
+            focus_headline_bengali_title.forEach(element => {
+                element.style.display = "none";
+            });
+            focus_headline_english_title.forEach(element => {
+                element.style.display = "flex";
+            });
+
+            footer_home_icon.innerHTML = "Home";
+            footer_headline_icon.innerHTML = "Today's Headline";
+            footer_sports_icon.innerHTML = "Sports";
+            footer_country_icon.innerHTML = "Country";
+            footer_world_icon.innerHTML = "World";
+            footer_showbiz_icon.innerHTML = "Showbiz";
+            footer_editor_icon.innerHTML = "Editor's Name: A N M Siddique";
+        }
+    }
+</script>
 </body>
 </html>
