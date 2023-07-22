@@ -193,9 +193,9 @@ def admin_view(request):
 
 
 # date filter admin view all approved news
-def filter_admin_view(request, date):
+def filter_admin_view(request, _date):
     if request.user.user_type == 1:
-        post_list = Post.objects.filter(is_approved=True, date_created=date)
+        post_list = Post.objects.filter(is_approved=True, date_created=_date)
         return post_list
     else:
         return False
@@ -489,3 +489,7 @@ def search_filter(keyword):
                                 Q(bangla_title__icontains=keyword) |
                                 Q(englishtag__the_tag__icontains=keyword) |
                                 Q(banglatag__the_tag__icontains=keyword)).distinct("id")
+
+
+def today_all_news():
+    return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day)
