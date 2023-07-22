@@ -10,12 +10,15 @@
             </div>
 
             <div class="row d-flex justify-content-evenly mt-3 mb-4">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3"
+                     onclick="location.href='/details-news/{{ national_news_list.0.id }}/{{ national_news_list.0.english_category.the_category }}/'"
+                     style="cursor: pointer">
                     <div class="card" style="background: var(--card-primary-bg)">
                         <img src="{{ national_news_list.0.image.url }}" class="card-img-top img-fluid category-img"
                              alt="...">
                         <div class="card-body">
-                            <a href="/news-details/" style="cursor: pointer;">
+                            <a href="/details-news/{{ national_news_list.0.id }}/{{ national_news_list.0.english_category.the_category }}/"
+                               style="cursor: pointer;">
                                 <h5 class="card-headline truncate focus_headline_bengali_title">{{ national_news_list.0.bangla_title }}</h5>
                                 <h5 class="card-headline truncate focus_headline_english_title"
                                     style="display: none">{{ national_news_list.0.english_title }}</h5>
@@ -24,12 +27,15 @@
                     </div>
                 </div>
                 {% if national_news_list.1.bangla_title %}
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3"
+                         onclick="location.href='/details-news/{{ national_news_list.1.id }}/{{ national_news_list.1.english_category.the_category }}/'"
+                         style="cursor: pointer">
                         <div class="card" style="background: var(--card-primary-bg)">
                             <img src="{{ national_news_list.1.image.url }}" class="card-img-top img-fluid category-img"
                                  alt="...">
                             <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;">
+                                <a href="/details-news/{{ national_news_list.1.id }}/{{ national_news_list.1.english_category.the_category }}/"
+                                   style="cursor: pointer;">
                                     <h5 class="card-headline truncate focus_headline_bengali_title">{{ national_news_list.1.bangla_title }}</h5>
                                     <h5 class="card-headline truncate focus_headline_english_title"
                                         style="display: none">{{ national_news_list.1.english_title }}</h5>
@@ -39,12 +45,15 @@
                     </div>
                 {% endif %}
                 {% if national_news_list.2.bangla_title %}
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3"
+                         onclick="location.href='/details-news/{{ national_news_list.2.id }}/{{ national_news_list.2.english_category.the_category }}/'"
+                         style="cursor: pointer">
                         <div class="card" style="background: var(--card-primary-bg)">
                             <img src="{{ national_news_list.2.image.url }}" class="card-img-top img-fluid category-img"
                                  alt="...">
                             <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;">
+                                <a href="/details-news/{{ national_news_list.2.id }}/{{ national_news_list.2.english_category.the_category }}/"
+                                   style="cursor: pointer;">
                                     <h5 class="card-headline truncate focus_headline_bengali_title">{{ national_news_list.2.bangla_title }}</h5>
                                     <h5 class="card-headline truncate focus_headline_english_title"
                                         style="display: none">{{ national_news_list.2.english_title }}</h5>
@@ -57,12 +66,15 @@
             {% if national_news_list.3.bangla_title %}
                 <div class="row d-flex justify-content-evenly mt-3 mb-4">
 
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3"
+                         onclick="location.href='/details-news/{{ national_news_list.3.id }}/{{ national_news_list.3.english_category.the_category }}/'"
+                         style="cursor: pointer">
                         <div class="card" style="background: var(--card-primary-bg)">
                             <img src="{{ national_news_list.3.image.url }}" class="card-img-top img-fluid category-img"
                                  alt="...">
                             <div class="card-body">
-                                <a href="/news-details/" style="cursor: pointer;">
+                                <a href="/details-news/{{ national_news_list.3.id }}/{{ national_news_list.3.english_category.the_category }}/"
+                                   style="cursor: pointer;">
                                     <h5 class="card-headline truncate focus_headline_bengali_title">{{ national_news_list.3.bangla_title }}</h5>
                                     <h5 class="card-headline truncate focus_headline_english_title"
                                         style="display: none">{{ national_news_list.3.english_title }}</h5>
@@ -71,13 +83,16 @@
                         </div>
                     </div>
                     {% if national_news_list.4.bangla_title %}
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-3 mb-3"
+                             onclick="location.href='/details-news/{{ national_news_list.4.id }}/{{ national_news_list.4.english_category.the_category }}/'"
+                             style="cursor: pointer">
                             <div class="card" style="background: var(--card-primary-bg)">
                                 <img src="{{ national_news_list.4.image.url }}"
                                      class="card-img-top img-fluid category-img"
                                      alt="...">
                                 <div class="card-body">
-                                    <a href="/news-details/" style="cursor: pointer;">
+                                    <a href="/details-news/{{ national_news_list.4.id }}/{{ national_news_list.4.english_category.the_category }}/"
+                                       style="cursor: pointer;">
                                         <h5 class="card-headline truncate focus_headline_bengali_title">{{ national_news_list.4.bangla_title }}</h5>
                                         <h5 class="card-headline truncate focus_headline_english_title"
                                             style="display: none">{{ national_news_list.4.english_title }}</h5>
@@ -87,13 +102,16 @@
                         </div>
                     {% endif %}
                     {% if national_news_list.5.bangla_title %}
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-3 mb-3"
+                             onclick="location.href='/details-news/{{ national_news_list.5.id }}/{{ national_news_list.5.english_category.the_category }}/'"
+                             style="cursor: pointer">
                             <div class="card" style="background: var(--card-primary-bg)">
                                 <img src="{{ national_news_list.5.image.url }}"
                                      class="card-img-top img-fluid category-img"
                                      alt="...">
                                 <div class="card-body">
-                                    <a href="/news-details/" style="cursor: pointer;">
+                                    <a href="/details-news/{{ national_news_list.5.id }}/{{ national_news_list.5.english_category.the_category }}/"
+                                       style="cursor: pointer;">
                                         <h5 class="card-headline truncate focus_headline_bengali_title">{{ national_news_list.5.bangla_title }}</h5>
                                         <h5 class="card-headline truncate focus_headline_english_title"
                                             style="display: none">{{ national_news_list.5.english_title }}</h5>
@@ -117,13 +135,16 @@
                 <div class="row mt-3 my-row"
                      style="background: var(--card-primary-bg);">
                     <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
-                        <p class="card-headline align-items-center focus_headline_bengali_title" style="display: flex">
-                            <img src="{% static 'logo/Polygon 1.svg' %}"
-                                 style="margin-right: 0.5rem">{{ data.bangla_title }}</p>
-                        <p class="card-headline align-items-center focus_headline_english_title"
-                           style="display: none">
-                            <img src="{% static 'logo/Polygon 1.svg' %}"
-                                 style="margin-right: 0.5rem">{{ data.english_title }}</p>
+                        <a href="/details-news/{{ data.id }}/{{ data.english_category.the_category }}/">
+                            <p class="card-headline align-items-center focus_headline_bengali_title"
+                               style="display: flex">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.bangla_title }}</p>
+                            <p class="card-headline align-items-center focus_headline_english_title"
+                               style="display: none">
+                                <img src="{% static 'logo/Polygon 1.svg' %}"
+                                     style="margin-right: 0.5rem">{{ data.english_title }}</p>
+                        </a>
                     </div>
                 </div>
             {% endfor %}

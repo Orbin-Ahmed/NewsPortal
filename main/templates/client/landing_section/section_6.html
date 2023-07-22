@@ -5,14 +5,18 @@
         {% if sports_news_list.1.bangla_title %}
             <div class="col-md-2 d-flex align-items-center">
                 <div>
-                    <div class="img-container mb-3">
+                    <div class="img-container mb-3"
+                         onclick="location.href='/details-news/{{ sports_news_list.1.id }}/{{ sports_news_list.1.english_category.the_category }}/'"
+                         style="cursor: pointer">
                         <img class="img-fluid" src="{{ sports_news_list.1.image.url }}">
                         <p class="carousel-caption m-0 card-headline focus_headline_bengali_title">{{ sports_news_list.1.bangla_title }}</p>
                         <p class="carousel-caption m-0 card-headline focus_headline_english_title"
                            style="display: none;">{{ sports_news_list.1.english_title }}</p>
                     </div>
                     {% if sports_news_list.2.bangla_title %}
-                        <div class="img-container mb-3">
+                        <div class="img-container mb-3"
+                             onclick="location.href='/details-news/{{ sports_news_list.2.id }}/{{ sports_news_list.2.english_category.the_category }}/'"
+                             style="cursor: pointer">
                             <img class="img-fluid" src="{{ sports_news_list.2.image.url }}">
                             <p class="carousel-caption m-0 card-headline focus_headline_bengali_title">{{ sports_news_list.2.bangla_title }}</p>
                             <p class="carousel-caption m-0 card-headline focus_headline_english_title"
@@ -22,7 +26,9 @@
                 </div>
             </div>
         {% endif %}
-        <div class="col-md-5 mb-3">
+        <div class="col-md-5 mb-3"
+             onclick="location.href='/details-news/{{ sports_news_list.0.id }}/{{ sports_news_list.0.english_category.the_category }}/'"
+             style="cursor: pointer">
             <div class="img-container">
                 <img class="img-fluid" src="{{ sports_news_list.0.image.url }}">
                 <p class="carousel-caption m-0 slider-caption focus_headline_bengali_title">{{ sports_news_list.0.bangla_title }}</p>
@@ -33,7 +39,8 @@
         {% if sports_news_list.3.bangla_title %}
             <div class="col-md-3">
                 <div class="row d-flex justify-content-evenly mb-3 my-row"
-                     style="background: var(--card-primary-bg);border-radius: 0.5rem">
+                     style="background: var(--card-primary-bg);border-radius: 0.5rem;cursor: pointer"
+                     onclick="location.href='/details-news/{{ sports_news_list.3.id }}/{{ sports_news_list.3.english_category.the_category }}/'">
                     <div class="col-8" style="padding:0.8rem">
                         <p class="card-headline truncate focus_headline_bengali_title">{{ sports_news_list.3.bangla_title }}</p>
                         <p class="card-headline truncate focus_headline_english_title"
@@ -46,7 +53,8 @@
                 </div>
                 {% if sports_news_list.4.bangla_title %}
                     <div class="row d-flex justify-content-evenly mb-3 my-row"
-                         style="background: var(--card-secondary-bg);border-radius: 0.5rem">
+                         style="background: var(--card-secondary-bg);border-radius: 0.5rem;cursor: pointer"
+                         onclick="location.href='/details-news/{{ sports_news_list.4.id }}/{{ sports_news_list.4.english_category.the_category }}/'">
                         <div class="col-8" style="padding:0.8rem">
                             <p class="card-headline truncate focus_headline_bengali_title">{{ sports_news_list.4.bangla_title }}</p>
                             <p class="card-headline truncate focus_headline_english_title"
@@ -60,7 +68,8 @@
                 {% endif %}
                 {% if sports_news_list.5.bangla_title %}
                     <div class="row d-flex justify-content-evenly mb-3 my-row"
-                         style="background: var(--card-primary-bg);border-radius: 0.5rem">
+                         style="background: var(--card-primary-bg);border-radius: 0.5rem;cursor: pointer"
+                         onclick="location.href='/details-news/{{ sports_news_list.5.id }}/{{ sports_news_list.5.english_category.the_category }}/'">
                         <div class="col-8" style="padding:0.8rem">
                             <p class="card-headline truncate focus_headline_bengali_title">{{ sports_news_list.5.bangla_title }}</p>
                             <p class="card-headline truncate focus_headline_english_title"
@@ -74,7 +83,8 @@
                 {% endif %}
                 {% if sports_news_list.6.bangla_title %}
                     <div class="row d-flex justify-content-evenly mb-3 my-row"
-                         style="background: var(--card-secondary-bg);border-radius: 0.5rem">
+                         style="background: var(--card-secondary-bg);border-radius: 0.5rem;cursor: pointer"
+                         onclick="location.href='/details-news/{{ sports_news_list.6.id }}/{{ sports_news_list.6.english_category.the_category }}/'">
                         <div class="col-8" style="padding:0.8rem">
                             <p class="card-headline truncate focus_headline_bengali_title">{{ sports_news_list.6.bangla_title }}</p>
                             <p class="card-headline truncate focus_headline_english_title"

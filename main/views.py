@@ -149,7 +149,7 @@ def edit_news_redirect(request, post_id):
                          'bangla_category': category_bn, 'image': file, 'english_title': title_en,
                          'english_content': details_en, 'english_tag': tag_en, 'english_category': category_en}
         edit_post(request, post_id, edit_post_obj)
-        return HttpResponseRedirect('/publish-news/')
+        return HttpResponseRedirect('/edit-news/')
     my_date = bangla_date()
     user_obj = request.user
     if user_obj == AnonymousUser():
