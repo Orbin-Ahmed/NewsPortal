@@ -10,7 +10,7 @@
             <div class="card" style="background:var(--card-primary-bg)">
                 <img src="{{ data.image.url }}" class="card-img-top img-fluid" alt="..." style="height: 150px;">
                 <div class="card-body">
-                    <a href="/details-news/{{ data.id }}/{{ data.english_category.the_category }}/" style="cursor: pointer;"><h5 class="card-headline truncate">{{ data.bangla_title }}</h5></a>
+                    <a href="/details-news/{{ data.id }}/{{ data.english_category.the_category }}/" style="cursor: pointer;"><h5 class="card-headline truncate focus_headline_bengali_title">{{ data.bangla_title }}</h5><h5 class="card-headline truncate focus_headline_english_title" style="display: none;">{{ data.english_title }}</h5></a>
                 </div>
             </div>
         </div>
