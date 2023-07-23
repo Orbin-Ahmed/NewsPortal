@@ -1,6 +1,7 @@
 import json
 import re
 
+from django.contrib.auth import logout
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -33,6 +34,11 @@ def login(request):
             print("Invalid")
             return HttpResponseRedirect('/login/')
     return render(request, 'auth/login.html', {'date': my_date})
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/login/')
 
 
 # Admin View Start
@@ -441,9 +447,15 @@ def previous_date_news(request, p_month, p_date, p_year):
     new_date = datetime(year=int(p_year), month=int(p_month), day=int(p_date))
     # new_date = p_year + '-' + p_month + '-' + p_date
     previous_news_list = filter_date_view(request, new_date)
-    print(new_date)
+    formatted_data = {}
+    for data in previous_news_list:
+        category = data.english_category.the_category
+        if category not in formatted_data:
+            formatted_data[category] = []
+        formatted_data[category].append(data)
+    formatted_list = list(formatted_data.values())
     return render(request, 'client/date_filter_view.html',
-                  {'date': my_date, 'headline_list': headline, 'previous_news_list': previous_news_list})
+                  {'date': my_date, 'headline_list': headline, 'previous_news_list': formatted_list})
 
 
 def category_news(request, category_name):
