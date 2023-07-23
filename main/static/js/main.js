@@ -70,4 +70,17 @@ function search_filter() {
 }
 
 // Language Toggler in localStorage
+function language_toggle_main() {
+    toggleLanguage_client();
+    let checkbox = document.querySelector(".toggle-input");
+    if (checkbox.checked) {
+        console.log("Hi")
+    } else {
+        console.log("bye")
+    }
+    // localStorage.setItem("language", current_status);
+}
 
+document.addEventListener("DOMContentLoaded", function () {
+
+});
