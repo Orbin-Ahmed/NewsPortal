@@ -397,7 +397,7 @@ def edit_post(request, post_id, update_object):
                            )
 
 
-# trending top views in descending order -> 8 objects returned in queryset
+# trending top views in descending order -> 10 objects returned in queryset
 def highlights():
     approved_post = Post.objects.filter(is_approved=True, specialnews__is_trending=True)
     return approved_post.order_by("-view_counter")[:10]
@@ -451,10 +451,11 @@ def latest_news():
     return Post.objects.filter(is_approved=True).order_by("-date_created")[:30]
 
 
+# latest not highest view
 def highest_view_category_news(category_name, number=None):
     result = Post.objects.filter(is_approved=True, english_category__the_category=category_name.lower()).order_by(
-        "-view_counter")
-    if number is None:
+        "-date_created")
+    if number is not None:
         result = result[:number]
     return result
 
@@ -477,7 +478,7 @@ def filtered_all_news():
                                  Q(english_category__the_category="sports") |
                                  Q(english_category__the_category="country") |
                                  Q(english_category__the_category="showbiz") |
-                                 Q(english_category__the_category="world"))
+                                 Q(english_category__the_category="world")).order_by("-date_created")[:30]
 
 
 def search_filter(keyword):
@@ -491,6 +492,11 @@ def search_filter(keyword):
 def today_all_news():
     return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day)
 
+
+# def today_all_category_news(category_name):
+#     return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day,
+#                                english_category__the_category=category_name)
+#
 
 def today_all_headlines():
     return Post.objects.filter(is_approved=True, specialnews__is_headline=True, date_created__day=datetime.today().day)
