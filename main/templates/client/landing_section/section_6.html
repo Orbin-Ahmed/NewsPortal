@@ -1,7 +1,8 @@
 {% load static %}
 {% if sports_news_list.0.bangla_title %}
     <div class="row d-flex justify-content-evenly mt-5 mb-5 background-field">
-        <p class="headline text-center mt-4" style="color: var(--white)" id="sports_headline_title">মাঠে ময়দানে</p>
+        <p class="headline text-center mt-4" style="color: var(--white);cursor: pointer;" id="sports_headline_title"
+           onclick="location.href='category-news/Sports/'">মাঠে ময়দানে</p>
         {% if sports_news_list.1.bangla_title %}
             <div class="col-md-2 d-flex align-items-center">
                 <div>
