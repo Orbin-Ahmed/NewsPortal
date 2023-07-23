@@ -194,7 +194,7 @@ def admin_view(request):
 
 # date filter view all approved news
 def filter_date_view(request, _date):
-    post_list = Post.objects.filter(is_approved=True, date_created=_date)
+    post_list = Post.objects.filter(is_approved=True, date_created=make_aware(_date))
     return post_list
 
 
