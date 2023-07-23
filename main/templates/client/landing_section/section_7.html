@@ -13,7 +13,7 @@
 
                 <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
             </div>
-            <div class="img-container mt-2">
+            <div class="img-container mt-2" onclick="location.href='/details-news/{{ data_list.0.id }}/{{ data_list.0.english_category.the_category }}/'" style="cursor: pointer;">
                 <img class="img-fluid" src="{{ data_list.0.image.url }}">
                 <p class="carousel-caption m-0 card-headline focus_headline_bengali_title">{{ data_list.0.bangla_title }}</p>
                 <p class="carousel-caption m-0 card-headline focus_headline_english_title" style="display: none">{{ data_list.0.english_title }}</p>
@@ -23,7 +23,7 @@
                 {% for data in data_list %}
                     {% if not forloop.first %}
                         <div class="row mt-3 my-row"
-                             style="background: var(--card-primary-bg);">
+                             style="background: var(--card-primary-bg);cursor: pointer;" onclick="location.href='/details-news/{{ data.id }}/{{ data.english_category.the_category }}/'">
                             <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
                                 <p class="card-headline align-items-center focus_headline_bengali_title" style="display: flex">
                                     <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">{{ data.bangla_title }}</p>

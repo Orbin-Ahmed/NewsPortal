@@ -71,7 +71,7 @@
         let footer_editor_icon = document.getElementById("footer_editor_icon");
 
         if (toggleInput.checked) {
-            cat_other.style.display = "block"
+            cat_other.innerHTML = "অন্যান্য";
             cat_national.innerHTML = "জাতীয়";
             cat_country.innerHTML = "দেশগ্রাম";
             cat_world.innerHTML = "পূর্ব-পশ্চিম";
@@ -103,7 +103,7 @@
             footer_showbiz_icon.innerHTML = "শোবিজ";
             footer_editor_icon.innerHTML = "সম্পাদকের নাম : আ ন ম ছিদ্দিক";
         } else {
-            cat_other.style.display = "none"
+            cat_other.innerHTML = "Other";
             cat_national.innerHTML = "National";
             cat_country.innerHTML = "Country";
             cat_world.innerHTML = "World";
