@@ -461,7 +461,7 @@ def previous_date_news(request, p_month, p_date, p_year):
 def category_news(request, category_name):
     my_date = bangla_date()
     headline = headline_list()
-    category_news_list = highest_view_category_news(category_name)
+    category_news_list = highest_view_category_news(category_name, 30)
     latest_news_list = latest_category_news(category_name)
     for news in latest_news_list:
         time_passed = timezone.now() - news.date_created
