@@ -74,13 +74,36 @@ function language_toggle_main() {
     toggleLanguage_client();
     let checkbox = document.querySelector(".toggle-input");
     if (checkbox.checked) {
-        console.log("Hi")
+        localStorage.setItem("language", "BN");
     } else {
-        console.log("bye")
+        localStorage.setItem("language", "EN");
     }
-    // localStorage.setItem("language", current_status);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Get the toggleInput element
+    let toggleInput = document.querySelector(".toggle-input");
 
+    // Get the value from localStorage (assuming you've stored it previously)
+    let language = localStorage.getItem("language");
+
+    // Check if the language is stored in localStorage
+    if (language !== null) {
+        // If "English" is stored, uncheck the checkbox
+        if (language === "EN") {
+            toggleInput.checked = false;
+        } else {
+            // Otherwise, check the checkbox
+            toggleInput.checked = true;
+        }
+    }
+    toggleLanguage_client();
+    // Add an event listener to the checkbox to update localStorage when changed
+    toggleInput.addEventListener("change", function () {
+        if (this.checked) {
+            localStorage.setItem("language", "BN");
+        } else {
+            localStorage.setItem("language", "EN");
+        }
+    });
 });
