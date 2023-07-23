@@ -401,7 +401,6 @@ def landing_page(request):
             formatted_data[category] = []
         formatted_data[category].append(data)
     formatted_list = list(formatted_data.values())
-    print(formatted_list)
     for news in showbiz_news:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
