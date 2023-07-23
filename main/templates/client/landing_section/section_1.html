@@ -48,7 +48,7 @@
             <div class="col-6 p-0 focus_headline_bengali_title_m">ফোকাস</div>
             <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
         </div>
-        <div style="height: 30rem;overflow: auto">
+        <div style="max-height: 30rem;overflow: auto">
             {% for data in focus_list %}
                 <div class="row mt-3 my-row"
                      style="background: var(--card-primary-bg);">
@@ -72,7 +72,7 @@
     {#Right Section#}
     <div class="col-md-4 p-0" style="margin-left: 1rem;margin-top: 2rem">
         <p class="last-news" id="latest_news_title">সর্বশেষ খবর</p>
-        <div style="height: 50rem;overflow: auto;margin-top: 1rem">
+        <div style="max-height: 50rem;overflow: auto;margin-top: 1rem">
             {% for data in latest_news_list %}
                 <div class="row d-flex justify-content-evenly mb-3 my-row"
                      style="background: var(--card-primary-bg);cursor: pointer"

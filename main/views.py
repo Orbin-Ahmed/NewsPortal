@@ -1,3 +1,4 @@
+import json
 import re
 
 from django.contrib.auth.hashers import make_password
@@ -9,6 +10,7 @@ from .services import *
 from django.utils import timezone
 from PIL import Image
 from io import BytesIO
+from datetime import datetime
 
 
 # Create your views here.
@@ -110,7 +112,7 @@ def publish_news(request):
             category_en = request.POST['newsCategoryEN']
 
             news_image = request.FILES['news_image']
-            buffer = convert_to_aspect_ratio(news_image, 1)
+            buffer = convert_to_square(news_image)
             file = InMemoryUploadedFile(
                 buffer, None, "image.png", "image/png",
                 buffer.tell(), None
@@ -140,7 +142,7 @@ def edit_news_redirect(request, post_id):
         category_en = request.POST['newsCategoryEN']
 
         news_image = request.FILES['news_image']
-        buffer = convert_to_aspect_ratio(news_image, 1)
+        buffer = convert_to_square(news_image)
         file = InMemoryUploadedFile(
             buffer, None, "image.png", "image/png",
             buffer.tell(), None
@@ -149,7 +151,7 @@ def edit_news_redirect(request, post_id):
                          'bangla_category': category_bn, 'image': file, 'english_title': title_en,
                          'english_content': details_en, 'english_tag': tag_en, 'english_category': category_en}
         edit_post(request, post_id, edit_post_obj)
-        return HttpResponseRedirect('/publish-news/')
+        return HttpResponseRedirect('/edit-news/')
     my_date = bangla_date()
     user_obj = request.user
     if user_obj == AnonymousUser():
@@ -392,6 +394,14 @@ def landing_page(request):
     showbiz_news = highest_view_category_news("showbiz", 7)
     country_news = highest_view_category_news("country", 7)
     sports_news = highest_view_category_news("sports", 7)
+    other_news = filtered_all_news()
+    formatted_data = {}
+    for data in other_news:
+        category = data.english_category.the_category
+        if category not in formatted_data:
+            formatted_data[category] = []
+        formatted_data[category].append(data)
+    formatted_list = list(formatted_data.values())
     for news in showbiz_news:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
@@ -399,17 +409,54 @@ def landing_page(request):
                   {'date': my_date, 'headline_list': headline, 'highlights_list': highlight,
                    'latest_news_list': latest_news_list, 'focus_list': focus_list, 'max_views_list': max_views_list,
                    'national_news_list': national_news, 'showbiz_news_list': showbiz_news,
-                   'country_news_list': country_news, 'sports_news_list': sports_news})
+                   'country_news_list': country_news, 'sports_news_list': sports_news,
+                   'other_news_list': formatted_list})
+
+
+def dynamic_news(request):
+    other_news_list = filtered_all_news()
+    headline = headline_list()
+    formatted_data = {}
+    for data in other_news_list:
+        category = data.english_category.the_category
+        if category not in formatted_data:
+            formatted_data[category] = []
+        formatted_data[category].append(data)
+    formatted_list = list(formatted_data.values())
+    return render(request, 'client/dynamic_content.html',
+                  {'other_news_list': formatted_list, 'headline_list': headline})
 
 
 def today_news(request):
     my_date = bangla_date()
-    return render(request, 'client/today_news.html', {'date': my_date})
+    headline = headline_list()
+    today_all_headline = today_all_news()
+    return render(request, 'client/today_news.html',
+                  {'date': my_date, 'today_all_headline': today_all_headline, 'headline_list': headline})
 
 
-def category_news(request):
+def previous_date_news(request, p_month, p_date, p_year):
     my_date = bangla_date()
-    return render(request, 'client/category_news.html', {'date': my_date})
+    headline = headline_list()
+    new_date = datetime(year=int(p_year), month=int(p_month), day=int(p_date))
+    # new_date = p_year + '-' + p_month + '-' + p_date
+    previous_news_list = filter_date_view(request, new_date)
+    print(new_date)
+    return render(request, 'client/date_filter_view.html',
+                  {'date': my_date, 'headline_list': headline, 'previous_news_list': previous_news_list})
+
+
+def category_news(request, category_name):
+    my_date = bangla_date()
+    headline = headline_list()
+    category_news_list = highest_view_category_news(category_name)
+    latest_news_list = latest_category_news(category_name)
+    for news in latest_news_list:
+        time_passed = timezone.now() - news.date_created
+        news.time_passed = calculate_time_passed(time_passed)
+    return render(request, 'client/category_news.html',
+                  {'date': my_date, 'headline_list': headline, 'category_news_list': category_news_list,
+                   'latest_news_list': latest_news_list})
 
 
 def details_news(request, post_id, category_name):
@@ -457,6 +504,30 @@ def calculate_time_passed(time_difference):
         return f"{int(minutes_passed)} minutes ago"
     else:
         return "Less than a minute ago"
+
+
+def convert_to_square(image_path):
+    # Open the image using Pillow
+    im = Image.open(image_path)
+    # Get the original dimensions of the image
+    width, height = im.size
+    # Calculate the new size for the square image
+    size = min(width, height)
+    # Determine the area to crop based on the new dimensions
+    left = int((width - size) / 2)
+    top = int((height - size) / 2)
+    right = left + size
+    bottom = top + size
+    # Crop the image to the square area
+    im = im.crop((left, top, right, bottom))
+    # Create a BytesIO object to hold the image data
+    buffer = BytesIO()
+    # Save the image to the buffer in PNG format
+    im.save(buffer, format="PNG")
+    # Reset the buffer position to the beginning
+    buffer.seek(0)
+    # Return the buffer object
+    return buffer
 
 
 def convert_to_aspect_ratio(image_path, aspect_ratio):

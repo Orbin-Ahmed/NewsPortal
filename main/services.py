@@ -186,7 +186,7 @@ def remove_from_special(post_id, post_type):
 # admin view all approved news
 def admin_view(request):
     if request.user.user_type == 1 or request.user.user_type == 2:
-        post_list = Post.objects.filter(is_approved=True)
+        post_list = Post.objects.filter(is_approved=True, date_created__day=datetime.today().day)
         return post_list
     else:
         return False
@@ -490,6 +490,7 @@ def search_filter(keyword):
 
 def today_all_news():
     return Post.objects.filter(is_approved=True, date_created__day=datetime.today().day)
+
 
 def today_all_headlines():
     return Post.objects.filter(is_approved=True, specialnews__is_headline=True, date_created__day=datetime.today().day)

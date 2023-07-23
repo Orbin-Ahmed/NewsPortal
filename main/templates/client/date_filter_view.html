@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dainik 71 ar Bangladesh</title>
     {% load static %}
+    {% load mathfilters %}
     {% include 'root/css.html' %}
     <style>
         .main-section {
@@ -16,13 +17,47 @@
 <div class="container-fluid p-0">
     {% include 'client/res/nav.html' %}
     <div class="main-section">
-        {% include 'client/landing_section/section_1.html' %}
-        {% include 'client/landing_section/section_2.html' %}
-        {% include 'client/landing_section/section_3.html' %}
-        {% include 'client/landing_section/section_4.html' %}
-        {% include 'client/landing_section/section_5.html' %}
-        {% include 'client/landing_section/section_6.html' %}
-        {% include 'client/landing_section/section_7.html' %}
+        {% for data_list in previous_news_list %}
+            {% if forloop.counter0|mod:3 == 0 %}
+                <div class="row d-flex justify-content-evenly mt-3 pb-5">
+            {% endif %}
+
+                <div class="col-md-3">
+                    <div class="row d-flex align-items-center last-news mt-3 pt-0 pb-0 my-row"
+                         style="padding-right: 0;">
+                        <div class="col-6 p-0 focus_headline_bengali_title" style="text-transform: capitalize;">{{ data_list.0.bangla_category.the_category }}</div>
+                        <div class="col-6 p-0 focus_headline_english_title" style="display: none;text-transform: capitalize;">{{ data_list.0.english_category.the_category }}</div>
+
+                        <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
+                    </div>
+                    <div class="img-container mt-2" onclick="location.href='/details-news/{{ data_list.0.id }}/{{ data_list.0.english_category.the_category }}/'" style="cursor: pointer;">
+                        <img class="img-fluid" src="{{ data_list.0.image.url }}">
+                        <p class="carousel-caption m-0 card-headline focus_headline_bengali_title">{{ data_list.0.bangla_title }}</p>
+                        <p class="carousel-caption m-0 card-headline focus_headline_english_title" style="display: none">{{ data_list.0.english_title }}</p>
+                    </div>
+                    <div style="max-height: 25rem;overflow: auto">
+                        {#Loop area#}
+                        {% for data in data_list %}
+                            {% if not forloop.first %}
+                                <div class="row mt-3 my-row"
+                                     style="background: var(--card-primary-bg);cursor: pointer;" onclick="location.href='/details-news/{{ data.id }}/{{ data.english_category.the_category }}/'">
+                                    <div class="col-11" style="padding: 1rem 1rem 0.5rem 1rem">
+                                        <p class="card-headline align-items-center focus_headline_bengali_title" style="display: flex">
+                                            <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">{{ data.bangla_title }}</p>
+                                        <p class="card-headline align-items-center focus_headline_english_title" style="display: none">
+                                            <img src="{% static 'logo/Polygon 1.svg' %}" style="margin-right: 0.5rem">{{ data.english_title }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {#Loop area end#}
+                    </div>
+                </div>
+
+            {% if forloop.counter0|mod:3 == 2 or forloop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
     {% include 'client/res/footer.html' %}
 </div>
@@ -41,19 +76,10 @@
         let top_rolling_headline_bangla = document.querySelectorAll(".top_rolling_headline_bangla");
         let top_rolling_headline_english = document.querySelectorAll(".top_rolling_headline_english");
 
-        let latest_news_title_bengali = document.querySelectorAll(".latest_news_title_bengali");
-        let latest_news_title_english = document.querySelectorAll(".latest_news_title_english");
 
         let focus_headline_bengali_title = document.querySelectorAll(".focus_headline_bengali_title");
         let focus_headline_english_title = document.querySelectorAll(".focus_headline_english_title");
 
-        let focus_headline_bengali_title_m = document.querySelector(".focus_headline_bengali_title_m");
-
-        let highlights_section_title = document.getElementById("highlights_section_title");
-        let latest_news_title = document.getElementById("latest_news_title");
-        let national_headline_title = document.getElementById("national_headline_title");
-        let max_view_title = document.getElementById("max_view_title");
-        let showbiz_headline_title = document.getElementById("showbiz_headline_title");
 
         let footer_home_icon = document.getElementById("footer_home_icon");
         let footer_headline_icon = document.getElementById("footer_headline_icon");
@@ -62,9 +88,6 @@
         let footer_world_icon = document.getElementById("footer_world_icon");
         let footer_showbiz_icon = document.getElementById("footer_showbiz_icon");
         let footer_editor_icon = document.getElementById("footer_editor_icon");
-
-        let country_headline_title = document.getElementById("country_headline_title");
-        let sports_headline_title = document.getElementById("sports_headline_title");
 
         if (toggleInput.checked) {
             cat_other.innerHTML = "অন্যান্য"
@@ -89,21 +112,6 @@
                 element.style.display = "flex";
             });
 
-            latest_news_title_english.forEach(element => {
-                element.style.display = "none";
-            });
-            latest_news_title_bengali.forEach(element => {
-                element.style.display = "block";
-            });
-
-            latest_news_title.innerHTML = "সর্বশেষ খবর";
-
-            highlights_section_title.innerHTML = "হাইলাইটস";
-            focus_headline_bengali_title_m.innerHTML = "ফোকাস";
-            national_headline_title.innerHTML = "জাতীয়";
-            max_view_title.innerHTML = "সর্বাধিক পঠিত";
-            showbiz_headline_title.innerHTML = "শোবিজ";
-
             footer_home_icon.innerHTML = "হোম";
             footer_headline_icon.innerHTML = "আজকের শিরোনাম";
             footer_sports_icon.innerHTML = "মাঠে ময়দানে";
@@ -111,8 +119,6 @@
             footer_world_icon.innerHTML = "পূর্ব-পশ্চিম";
             footer_showbiz_icon.innerHTML = "শোবিজ";
             footer_editor_icon.innerHTML = "সম্পাদকের নাম : আ ন ম ছিদ্দিক";
-            country_headline_title.innerHTML = "দেশগ্রাম";
-            sports_headline_title.innerHTML = "মাঠে ময়দানে";
 
         } else {
             cat_other.innerHTML = "Other"
@@ -137,20 +143,6 @@
                 element.style.display = "flex";
             });
 
-            latest_news_title_english.forEach(element => {
-                element.style.display = "block";
-            });
-            latest_news_title_bengali.forEach(element => {
-                element.style.display = "none";
-            });
-
-            latest_news_title.innerHTML = "Latest News";
-            focus_headline_bengali_title_m.innerHTML = "Focus News";
-            highlights_section_title.innerHTML = "Highlights";
-            national_headline_title.innerHTML = "National";
-            max_view_title.innerHTML = "Most Read";
-            showbiz_headline_title.innerHTML = "Showbiz";
-
             footer_home_icon.innerHTML = "Home";
             footer_headline_icon.innerHTML = "Today's Headline";
             footer_sports_icon.innerHTML = "Sports";
@@ -158,8 +150,6 @@
             footer_world_icon.innerHTML = "World";
             footer_showbiz_icon.innerHTML = "Showbiz";
             footer_editor_icon.innerHTML = "Editor's Name: A N M Siddique";
-            country_headline_title.innerHTML = "Country";
-            sports_headline_title.innerHTML = "Sports";
         }
     }
 </script>

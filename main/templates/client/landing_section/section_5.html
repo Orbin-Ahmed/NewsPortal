@@ -4,14 +4,17 @@
         <div class="col-md-9">
 
             <div class="row d-flex align-items-center last-news mt-3 pt-0 pb-0 my-row"
-                 style="padding-right: 0;padding-left: 4rem">
+                 style="padding-right: 0;padding-left: 4rem;cursor:pointer;"
+                 onclick="location.href='category-news/Country/'">
                 <div class="col-6 p-0" id="country_headline_title">দেশগ্রাম</div>
                 <div class="col-6 p-0"><a class="float-end"><img src="{% static 'logo/right_arrow.svg' %}"></a></div>
             </div>
             <div class="row d-flex justify-content-evenly mt-3">
                 <div class="col-md-5 mb-3 d-flex align-items-center">
                     <div>
-                        <div class="img-container">
+                        <div class="img-container"
+                             onclick="location.href='/details-news/{{ country_news_list.0.id }}/{{ country_news_list.0.english_category.the_category }}/'"
+                             style="cursor: pointer">
                             <img class="img-fluid" src="{{ country_news_list.0.image.url }}">
                             <p class="carousel-caption m-0 slider-caption focus_headline_bengali_title">{{ country_news_list.0.bangla_title }}</p>
                             <p class="carousel-caption m-0 slider-caption focus_headline_english_title"
@@ -23,7 +26,9 @@
                 {% if country_news_list.1.bangla_title %}
                     <div class="col-md-7 mt-3 mb-3">
                         <div class="row d-flex justify-content-evenly mt-3 mb-4">
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-3 mb-3"
+                                 onclick="location.href='/details-news/{{ country_news_list.1.id }}/{{ country_news_list.1.english_category.the_category }}/'"
+                                 style="cursor: pointer">
                                 <div class="card" style="background: var(--card-primary-bg)">
                                     <img src="{{ country_news_list.1.image.url }}" class="card-img-top category-img"
                                          alt="...">
@@ -37,7 +42,9 @@
                                 </div>
                             </div>
                             {% if country_news_list.2.bangla_title %}
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-3 mb-3"
+                                     onclick="location.href='/details-news/{{ country_news_list.2.id }}/{{ country_news_list.2.english_category.the_category }}/'"
+                                     style="cursor: pointer">
                                     <div class="card" style="background: var(--card-primary-bg)">
                                         <img src="{{ country_news_list.2.image.url }}" class="card-img-top category-img"
                                              alt="...">
@@ -52,7 +59,9 @@
                                 </div>
                             {% endif %}
                             {% if country_news_list.3.bangla_title %}
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-3 mb-3"
+                                     onclick="location.href='/details-news/{{ country_news_list.3.id }}/{{ country_news_list.3.english_category.the_category }}/'"
+                                     style="cursor: pointer">
                                     <div class="card" style="background: var(--card-primary-bg)">
                                         <img src="{{ country_news_list.3.image.url }}" class="card-img-top category-img"
                                              alt="...">
@@ -69,7 +78,9 @@
                         </div>
                         {% if country_news_list.4.bangla_title %}
                             <div class="row d-flex justify-content-evenly mt-3 mb-4">
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-3 mb-3"
+                                     onclick="location.href='/details-news/{{ country_news_list.4.id }}/{{ country_news_list.4.english_category.the_category }}/'"
+                                     style="cursor: pointer">
                                     <div class="card" style="background: var(--card-primary-bg)">
                                         <img src="{{ country_news_list.4.image.url }}" class="card-img-top category-img"
                                              alt="...">
@@ -83,7 +94,9 @@
                                     </div>
                                 </div>
                                 {% if country_news_list.5.bangla_title %}
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-3 mb-3"
+                                         onclick="location.href='/details-news/{{ country_news_list.5.id }}/{{ country_news_list.5.english_category.the_category }}/'"
+                                         style="cursor: pointer">
                                         <div class="card" style="background: var(--card-primary-bg)">
                                             <img src="{{ country_news_list.5.image.url }}"
                                                  class="card-img-top category-img"
@@ -99,7 +112,9 @@
                                     </div>
                                 {% endif %}
                                 {% if country_news_list.6.bangla_title %}
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-3 mb-3"
+                                         onclick="location.href='/details-news/{{ country_news_list.6.id }}/{{ country_news_list.6.english_category.the_category }}/'"
+                                         style="cursor: pointer">
                                         <div class="card" style="background: var(--card-primary-bg)">
                                             <img src="{{ country_news_list.6.image.url }}"
                                                  class="card-img-top category-img"
