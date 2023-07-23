@@ -12,6 +12,7 @@ urlpatterns = [path('', views.landing_page),
                path('like-news/<post_id>/', views.like_news_counter),
                path('search-news/<keywords>/', views.search_news),
                path('login/', views.login),
+               path('user-logout/', views.user_logout),
                path('publish-news/', views.publish_news),  # Reporter
                path('edit-news/', views.edit_news),  # Reporter
                path('edit-news-redirect/<post_id>/', views.edit_news_redirect),  # Reporter
