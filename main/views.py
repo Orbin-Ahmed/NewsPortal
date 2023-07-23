@@ -481,10 +481,6 @@ def calculate_time_passed(time_difference):
         return "Less than a minute ago"
 
 
-from PIL import Image
-from io import BytesIO
-
-
 def convert_to_square(image_path):
     # Open the image using Pillow
     im = Image.open(image_path)
@@ -499,6 +495,41 @@ def convert_to_square(image_path):
     bottom = top + size
     # Crop the image to the square area
     im = im.crop((left, top, right, bottom))
+    # Create a BytesIO object to hold the image data
+    buffer = BytesIO()
+    # Save the image to the buffer in PNG format
+    im.save(buffer, format="PNG")
+    # Reset the buffer position to the beginning
+    buffer.seek(0)
+    # Return the buffer object
+    return buffer
+
+
+def convert_to_aspect_ratio(image_path, aspect_ratio):
+    # Open the image using Pillow
+    im = Image.open(image_path)
+    # Get the original dimensions of the image
+    width, height = im.size
+    # Calculate the new height and width based on the aspect ratio
+    new_height = int(width / aspect_ratio)
+    new_width = int(height * aspect_ratio)
+    # Determine the area to crop based on the new dimensions
+    if new_height > height:
+        # Crop the sides of the image
+        left = int((width - new_width) / 2)
+        top = 0
+        right = int(left + new_width)
+        bottom = height
+    else:
+        # Crop the top and bottom of the image
+        left = 0
+        top = int((height - new_height) / 2)
+        right = width
+        bottom = int(top + new_height)
+    # Crop the image to the specified area
+    im = im.crop((left, top, right, bottom))
+    # Resize the image to the specified aspect ratio
+    im = im.resize((int(new_width), int(new_height)))
     # Create a BytesIO object to hold the image data
     buffer = BytesIO()
     # Save the image to the buffer in PNG format
