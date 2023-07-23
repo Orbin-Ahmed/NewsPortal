@@ -10,6 +10,7 @@ from .services import *
 from django.utils import timezone
 from PIL import Image
 from io import BytesIO
+from datetime import datetime
 
 
 # Create your views here.
@@ -432,6 +433,17 @@ def today_news(request):
     today_all_headline = today_all_news()
     return render(request, 'client/today_news.html',
                   {'date': my_date, 'today_all_headline': today_all_headline, 'headline_list': headline})
+
+
+def previous_date_news(request, p_month, p_date, p_year):
+    my_date = bangla_date()
+    headline = headline_list()
+    new_date = datetime(year=int(p_year), month=int(p_month), day=int(p_date))
+    # new_date = p_year + '-' + p_month + '-' + p_date
+    previous_news_list = filter_date_view(request, new_date)
+    print(new_date)
+    return render(request, 'client/date_filter_view.html',
+                  {'date': my_date, 'headline_list': headline, 'previous_news_list': previous_news_list})
 
 
 def category_news(request, category_name):

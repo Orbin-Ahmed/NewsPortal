@@ -68,3 +68,6 @@ function search_filter() {
     let keywords = document.getElementById('search_keywords').value;
     location.href = '/search-news/' + keywords + '/'
 }
+
+// Language Toggler in localStorage
+
