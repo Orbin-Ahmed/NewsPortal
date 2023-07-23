@@ -22,15 +22,15 @@
         </div>
         <div class="col-md-10">
             <p class="headline text-center mt-2">All News</p>
-            <div class="row d-flex justify-content-end">
-                <div class="col-2">
-                    <div class="input-group mb-3">
-                        <input type="date" class="form-control" id="dateInput">
-                        <button class="btn news-primary-btn" style="width: unset;padding: 0.375rem 0.75rem">Apply
-                        </button>
-                    </div>
-                </div>
-            </div>
+{#            <div class="row d-flex justify-content-end">#}
+{#                <div class="col-2">#}
+{#                    <div class="input-group mb-3">#}
+{#                        <input type="date" class="form-control" id="dateInput">#}
+{#                        <button class="btn news-primary-btn" style="width: unset;padding: 0.375rem 0.75rem">Apply#}
+{#                        </button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
             {% for data in all_news_list %}
                 {% if forloop.counter0|mod:4 == 0 %}
                     <div class="row d-flex justify-content-evenly mt-4 mb-4">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter0|mod:4 == 3 or loop.last %}
+                {% if forloop.counter0|mod:4 == 3 or forloop.last %}
                     </div>
                 {% endif %}
             {% endfor %}
