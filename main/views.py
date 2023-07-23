@@ -1,3 +1,4 @@
+import json
 import re
 
 from django.contrib.auth.hashers import make_password
@@ -110,7 +111,7 @@ def publish_news(request):
             category_en = request.POST['newsCategoryEN']
 
             news_image = request.FILES['news_image']
-            buffer = convert_to_aspect_ratio(news_image, 1)
+            buffer = convert_to_square(news_image)
             file = InMemoryUploadedFile(
                 buffer, None, "image.png", "image/png",
                 buffer.tell(), None
@@ -140,7 +141,7 @@ def edit_news_redirect(request, post_id):
         category_en = request.POST['newsCategoryEN']
 
         news_image = request.FILES['news_image']
-        buffer = convert_to_aspect_ratio(news_image, 1)
+        buffer = convert_to_square(news_image)
         file = InMemoryUploadedFile(
             buffer, None, "image.png", "image/png",
             buffer.tell(), None
@@ -392,6 +393,15 @@ def landing_page(request):
     showbiz_news = highest_view_category_news("showbiz", 7)
     country_news = highest_view_category_news("country", 7)
     sports_news = highest_view_category_news("sports", 7)
+    other_news = filtered_all_news()
+    formatted_data = {}
+    for data in other_news:
+        category = data.english_category.the_category
+        if category not in formatted_data:
+            formatted_data[category] = []
+        formatted_data[category].append(data)
+    formatted_list = list(formatted_data.values())
+    print(formatted_list)
     for news in showbiz_news:
         time_passed = timezone.now() - news.date_created
         news.time_passed = calculate_time_passed(time_passed)
@@ -399,7 +409,8 @@ def landing_page(request):
                   {'date': my_date, 'headline_list': headline, 'highlights_list': highlight,
                    'latest_news_list': latest_news_list, 'focus_list': focus_list, 'max_views_list': max_views_list,
                    'national_news_list': national_news, 'showbiz_news_list': showbiz_news,
-                   'country_news_list': country_news, 'sports_news_list': sports_news})
+                   'country_news_list': country_news, 'sports_news_list': sports_news,
+                   'other_news_list': formatted_list})
 
 
 def today_news(request):
@@ -470,31 +481,24 @@ def calculate_time_passed(time_difference):
         return "Less than a minute ago"
 
 
-def convert_to_aspect_ratio(image_path, aspect_ratio):
+from PIL import Image
+from io import BytesIO
+
+
+def convert_to_square(image_path):
     # Open the image using Pillow
     im = Image.open(image_path)
     # Get the original dimensions of the image
     width, height = im.size
-    # Calculate the new height and width based on the aspect ratio
-    new_height = int(width / aspect_ratio)
-    new_width = int(height * aspect_ratio)
+    # Calculate the new size for the square image
+    size = min(width, height)
     # Determine the area to crop based on the new dimensions
-    if new_height > height:
-        # Crop the sides of the image
-        left = int((width - new_width) / 2)
-        top = 0
-        right = int(left + new_width)
-        bottom = height
-    else:
-        # Crop the top and bottom of the image
-        left = 0
-        top = int((height - new_height) / 2)
-        right = width
-        bottom = int(top + new_height)
-    # Crop the image to the specified area
+    left = int((width - size) / 2)
+    top = int((height - size) / 2)
+    right = left + size
+    bottom = top + size
+    # Crop the image to the square area
     im = im.crop((left, top, right, bottom))
-    # Resize the image to the specified aspect ratio
-    im = im.resize((int(new_width), int(new_height)))
     # Create a BytesIO object to hold the image data
     buffer = BytesIO()
     # Save the image to the buffer in PNG format
