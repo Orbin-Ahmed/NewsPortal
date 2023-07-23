@@ -54,8 +54,9 @@
                 <div style="max-height: 50rem;overflow: auto;margin-top: 1rem">
                     {% for data in latest_news_list %}
                         <div class="row d-flex justify-content-evenly mb-3 my-row"
-                             style="background: var(--card-primary-bg);">
-                            <div class="col-8" style="padding:1.5rem">
+                             style="background: var(--card-primary-bg);cursor: pointer;"
+                             onclick="location.href='/details-news/{{ data.id }}/{{ data.english_category.the_category }}/'">
+                            <div class="col-8" style="padding:1.5rem;">
                                 <p class="card-headline latest_news_title_bengali">{{ data.bangla_title }}</p>
                                 <p class="card-headline latest_news_title_english"
                                    style="display: none">{{ data.english_title }}</p>
