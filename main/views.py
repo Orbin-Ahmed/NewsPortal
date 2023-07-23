@@ -412,6 +412,20 @@ def landing_page(request):
                    'other_news_list': formatted_list})
 
 
+def dynamic_news(request):
+    other_news_list = filtered_all_news()
+    headline = headline_list()
+    formatted_data = {}
+    for data in other_news_list:
+        category = data.english_category.the_category
+        if category not in formatted_data:
+            formatted_data[category] = []
+        formatted_data[category].append(data)
+    formatted_list = list(formatted_data.values())
+    return render(request, 'client/dynamic_content.html',
+                  {'other_news_list': formatted_list, 'headline_list': headline})
+
+
 def today_news(request):
     my_date = bangla_date()
     headline = headline_list()
