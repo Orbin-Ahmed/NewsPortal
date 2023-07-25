@@ -387,6 +387,7 @@ def remove_from_something(request, post_id, post_type):
 
 # Client Side
 def landing_page(request):
+    print(make_password("test@123"))
     my_date = bangla_date()
     headline = headline_list()
     highlight = highlights()
