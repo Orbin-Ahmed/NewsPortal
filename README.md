@@ -22,7 +22,8 @@ News archive allows users to search and access previously published news based o
 
 ### Homepage News Display:
 The homepage showcases news articles from various categories, prioritizing those deemed "trending" by moderators.
-![Detail news page](https://github.com/Orbin-Ahmed/NewsPortal/assets/93181928/416b86c3-aa19-49f1-88ed-e56454f6d2b1)
+![newsPortal](https://github.com/Orbin-Ahmed/NewsPortal/assets/93181928/0070f196-f8c6-46ab-8ac2-0d91674882ce)
+
 
 ### Enhanced User Experience:
 Integrate social media sharing functionalities (e.g., Facebook, Twitter) to increase news reach and facilitate reader engagement. Develop mobile app versions for broader accessibility, allowing users to access news on the go.
