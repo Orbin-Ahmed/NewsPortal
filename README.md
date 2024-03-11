@@ -1,4 +1,9 @@
+```diff
+- The site is currently under maintenance
+```
 # The Daily News: A Feature-Rich News Portal Project
+
+## Live : http://thedainik71arbangladesh.com/
 
 ## Project Overview
 This project is an online news portal designed to provide users with a comprehensive and convenient platform to access local and global news. It caters to various user roles, offers a multi-lingual news experience, and boasts a range of features for enhanced accessibility and engagement.
